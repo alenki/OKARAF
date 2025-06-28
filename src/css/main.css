@@ -1,4 +1,43 @@
 
+/* --------------- Nav ---------------- */
+.navbar {
+    position: fixed;
+    top: 10px;
+    justify-content: center;
+    z-index: 1000;
+
+    transition: transform .3s;
+
+    width: 23rem;
+    height: 4.1rem;
+    border-radius: 2.5rem;
+    
+background: rgba(93, 93, 93, 0.47);
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(6.8px);
+-webkit-backdrop-filter: blur(6.8px);
+border: 1px solid rgba(93, 93, 93, 0.3);
+
+/* background: rgba(128, 128, 128, 0.28);
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(6.8px);
+-webkit-backdrop-filter: blur(6.8px);
+border: 1px solid rgba(128, 128, 128, 0.3); */
+}
+.navbar.hide{
+    transform: translateY(-130%);
+}
+.nav_link {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: white;
+    font-size: 1.1rem;
+    text-decoration: none;
+}
+.nav_link:hover {
+    color: white;
+}
+/* --------------- End of Nav ---------------- */
+
 /* --------------- Hero ---------------- */
 .hero{
     height: 100vh;
@@ -14,5 +53,8 @@
     pointer-events: none;
 
     font-size: 15rem;
+
+    color: rgba(255, 255, 255, 0.87);
+
 }
 /* --------------- End of Hero ---------------- */

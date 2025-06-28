@@ -32,9 +32,11 @@ border: 1px solid rgba(128, 128, 128, 0.3); */
     color: white;
     font-size: 1.1rem;
     text-decoration: none;
+    display: flex;
 }
 .nav_link:hover {
     color: white;
+    border-bottom: 1.5px solid white;
 }
 /* --------------- End of Nav ---------------- */
 

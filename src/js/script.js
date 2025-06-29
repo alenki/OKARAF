@@ -1,6 +1,14 @@
 
-// Navbar animation
+// music
+const sound_button = document.querySelector('.sound_button');
+const music = document.getElementById("music")
+sound_button.onclick = function() {
+    if(music.muted==true) music.muted = false;
+    else music.muted = true;
+}
+    
 
+// Navbar animation
 let lastScroll = 0;
 const defaultOffset = 100;
 const header = document.querySelector('.navbar');

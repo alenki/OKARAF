@@ -1,10 +1,23 @@
 
 // music
-const sound_button = document.querySelector('.sound_button');
+const music_button = document.querySelector('.music_button');
+const music_on = document.querySelector('.music_on');
+const music_off = document.querySelector('.music_off');
 const music = document.getElementById("music")
-sound_button.onclick = function() {
-    if(music.muted==true) music.muted = false;
-    else music.muted = true;
+
+music_off.style.display = "none";
+music_button.onclick = function() {
+    if(music.muted==true) {
+        
+        music_on.style.display = "block";
+        music_off.style.display = "none";
+        music.muted = false;
+    }
+    else {
+        music_on.style.display = "none";
+        music_off.style.display = "block";
+        music.muted = true;
+    }
 }
     
 

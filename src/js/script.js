@@ -5,6 +5,10 @@ const music_on = document.querySelector('.music_on');
 const music_off = document.querySelector('.music_off');
 const music = document.getElementById("music")
 
+// Music volume
+music.volume = 0.1; 
+
+// Music button
 music_off.style.display = "none";
 music_button.onclick = function() {
     if(music.muted==true) {

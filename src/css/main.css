@@ -73,4 +73,29 @@
 footer {
     height: 15rem;
 }
+.marquee-text {
+  overflow: clip;
+}
+.marquee-text hr{
+    margin: 0;
+}
+.marquee-text-track {
+  display: flex;
+  height: 35px;
+  padding-left: 3rem;
+  gap: 3rem;
+  width: max-content;
+  animation: marquee-move-text var(--speed, 25s) linear infinite var(
+      --direction,
+      forwards
+    );
+}
+.marquee-text-track p {
+    margin-bottom: 0rem;
+}
+@keyframes marquee-move-text {
+  to {
+    transform: translateX(-50%);
+  }
+}
 /* --------------- End of footer ---------------- */

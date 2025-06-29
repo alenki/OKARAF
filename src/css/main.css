@@ -163,6 +163,30 @@ body {
 }
 /* --------------- End of projects ---------------- */
 
+/* --------------- End of certificates ---------------- */
+.certificate_image {
+    height: 37rem;
+    width: 55rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.certificate_image a {
+    height: 100%;
+    width: 100%;
+}
+.certificate_image img {
+    object-fit: cover;
+    border-radius: 0.5rem;
+    height: 100%;
+    width: 100%;
+}
+.certificate_image img:hover {
+    opacity: 0.7;
+}
+/* --------------- End of certificates ---------------- */
+
 /* --------------- footer ---------------- */
 footer {
     height: 15rem;

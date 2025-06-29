@@ -80,6 +80,9 @@
 /* --------------- End of Hero ---------------- */
 
 /* --------------- projects ---------------- */
+#projects {
+    margin-top: 145px;
+}
 .project_image {
     height: 37rem;
     width: 45rem;
@@ -134,5 +137,17 @@ footer {
   to {
     transform: translateX(-50%);
   }
+}
+
+.footer_subheading {
+    font-size: 1.1rem;
+}
+.footer-link {
+    color: white;
+    text-decoration: none;
+    border-bottom: 1.5px solid white;
+}
+.footer-link:hover {
+    opacity: 0.9;
 }
 /* --------------- End of footer ---------------- */

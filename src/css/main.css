@@ -1,4 +1,28 @@
 
+/* --------------- Fonts ---------------- */
+@font-face {
+    font-family: Fenice Regular;
+    src: url(./fonts/Fenice_Regular.ttf);
+    font-weight: 400, 300, 200, 100;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: Hero;
+    src: url(./fonts/Hero.ttf);
+    font-weight: 400, 300, 200, 100;
+    font-style: normal;
+    font-display: swap;
+}
+.fenice {
+    font-family: Fenice Regular;
+    letter-spacing: 3px;
+}
+.Hero {
+    font-family: Hero;
+}
+/* --------------- End of Fonts ---------------- */
+
 /* --------------- Nav ---------------- */
 .navbar {
     position: fixed;
@@ -59,13 +83,26 @@
 .project_image {
     height: 37rem;
     width: 45rem;
-    
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.project_image a {
+    height: 100%;
+    width: 100%;
 }
 .project_image img {
     object-fit: cover;
     border-radius: 0.5rem;
     height: 100%;
     width: 100%;
+}
+.project_image img:hover {
+    opacity: 0.7;
+}
+.project_description {
+    opacity: 0.67;
 }
 /* --------------- End of projects ---------------- */
 

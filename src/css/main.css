@@ -54,3 +54,17 @@
 
 }
 /* --------------- End of Hero ---------------- */
+
+/* --------------- projects ---------------- */
+.project_image {
+    height: 37rem;
+    width: 45rem;
+    
+}
+.project_image img {
+    object-fit: cover;
+    border-radius: 0.5rem;
+    height: 100%;
+    width: 100%;
+}
+/* --------------- End of projects ---------------- */

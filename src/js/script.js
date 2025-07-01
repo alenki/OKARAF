@@ -16,7 +16,6 @@ const music = document.getElementById("music")
 music.volume = 0.1; 
 
 // Music button
-music_off.style.display = "none";
 music_button.onclick = function() {
     if(music.muted==true) {
         music_on.style.display = "block";

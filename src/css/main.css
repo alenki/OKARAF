@@ -357,12 +357,6 @@ body {
 /* --------------- End of Loading screen / Экран загрузки ---------------- */
 
 /* --------------- Music button ---------------- */
-.sound_button {
-    width: 1.7rem;
-    height: 1.7rem;
-    background: none; 
-    border: none;
-}
 .music_button {
     z-index: 500;
     position: fixed;
@@ -382,6 +376,9 @@ body {
     border: 1px solid rgba(93, 93, 93, 0.3);
 
     display: flex;
+}
+.music_off {
+    display: none;
 }
 .music_icon {
     width: 1.75rem;

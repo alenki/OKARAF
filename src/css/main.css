@@ -228,9 +228,12 @@ body {
 #projects {
     margin-top: 145px;
 }
+.project_container {
+    display: flex;
+}
 .project_image {
-    height: 37rem;
-    width: 45rem;
+    height: 592px;
+    width: 720px;
 
     display: flex;
     justify-content: center;
@@ -251,6 +254,58 @@ body {
 }
 .project_description {
     opacity: 0.67;
+}
+@media only screen and (max-width: 1180px) {
+    .project_image {
+        height: 392px;
+        width: 520px;
+    }
+}
+@media only screen and (max-width: 995px) {
+    .project_image {
+        height: 330px;
+        width: 450px;
+    }
+}
+@media only screen and (max-width: 880px) {
+    .project_image {
+        height: 330px;
+        width: 450px;
+    }
+}
+@media only screen and (max-width: 780px) {
+    .project_container {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .project_heading {
+        width: 100%;
+    }
+    .project_text_block {
+        text-align: center;
+        padding: 0 !important;
+        margin: 0 !important;
+        padding-top: 23px !important;
+    }
+}
+@media only screen and (max-width: 475px) {
+    .project_image {
+        height: 250px;
+        width: 310px;
+    }
+}
+@media only screen and (max-width: 330px) {
+    .project_image {
+        height: 210px;
+        width: 270px;
+    }
+}
+@media only screen and (max-width: 285px) {
+    .project_image {
+        height: 160px;
+        width: 220px;
+    }
 }
 /* --------------- End of projects ---------------- */
 

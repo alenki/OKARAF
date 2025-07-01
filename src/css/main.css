@@ -12,13 +12,6 @@ body {
     font-style: normal;
     font-display: swap;
 }
-@font-face {
-    font-family: Hero;
-    src: url(./fonts/Hero.ttf);
-    font-weight: 400, 300, 200, 100;
-    font-style: normal;
-    font-display: swap;
-}
 .fenice {
     font-family: Fenice Regular;
     letter-spacing: 3px;

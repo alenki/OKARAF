@@ -1,3 +1,10 @@
+// Loading screen / Экран загрузки
+var loadingScreen = document.querySelector(".loadingScreen");
+function loading() {
+    console.log('wasup')
+    loadingScreen.style.display = 'none';
+}
+
 
 // music
 const music_button = document.querySelector('.music_button');
@@ -12,7 +19,6 @@ music.volume = 0.1;
 music_off.style.display = "none";
 music_button.onclick = function() {
     if(music.muted==true) {
-        
         music_on.style.display = "block";
         music_off.style.display = "none";
         music.muted = false;
@@ -23,7 +29,6 @@ music_button.onclick = function() {
         music.muted = true;
     }
 }
-    
 
 // Navbar animation
 let lastScroll = 0;

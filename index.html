@@ -9,7 +9,19 @@
     <link rel="stylesheet" href="/src/css/main.css">
     <title>OKARAF</title>
   </head>
-  <body>
+  <body onload="loading()" style="margin: 0; height: 100%; overflow: hidden">
+
+    <!-- Loading screen / Экран загрузки -->
+    <div class="loadingScreen text-light fenice"><div class="loader"></div>%</div>
+    <script>
+      function loading() {
+          document.body.style.margin = 0;
+          document.body.style.height = 0;
+          document.body.style.overflow = "auto";
+          document.querySelector(".loadingScreen").style.display = 'none';
+      }
+    </script>
+
     <!-- Music -->
     <audio src="/music.mp3" autoplay loop id="music"></audio>
 
@@ -187,7 +199,7 @@
     </footer>
 
     <!-- script -->
-    <script type="module" src="/src/js/script.js"></script>
     <script type="module" src="/src/main.tsx"></script>
+    <script type="module" src="/src/js/script.js"></script>
   </body>
 </html>

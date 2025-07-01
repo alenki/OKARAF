@@ -9,7 +9,18 @@
     <link rel="stylesheet" href="/src/css/main.css">
     <title>Сертификаты</title>
 </head>
-<body>
+<body onload="loading()" style="margin: 0; height: 100%; overflow: hidden">
+
+    <!-- Loading screen / Экран загрузки -->
+    <div class="loadingScreen text-light fenice"><div class="loader"></div>%</div>
+    <script>
+      function loading() {
+          document.body.style.margin = 0;
+          document.body.style.height = 0;
+          document.body.style.overflow = "auto";
+          document.querySelector(".loadingScreen").style.display = 'none';
+      }
+    </script>
 
     <!-- Header -->
     <header class="d-flex justify-content-center">

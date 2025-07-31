@@ -10,7 +10,7 @@ import { EffectComposer, wrapEffect } from "@react-three/postprocessing";
 import { Effect } from "postprocessing";
 import * as THREE from "three";
 
-import "../../src/css/dither.css";
+import "/src/css/dither.css";
 
 const waveVertexShader = `
 precision highp float;

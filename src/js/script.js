@@ -6,29 +6,6 @@ function loading() {
 }
 
 
-// music
-const music_button = document.querySelector('.music_button');
-const music_on = document.querySelector('.music_on');
-const music_off = document.querySelector('.music_off');
-const music = document.getElementById("music")
-
-// Music volume
-music.volume = 0.1; 
-
-// Music button
-music_button.onclick = function() {
-    if(music.muted==true) {
-        music_on.style.display = "block";
-        music_off.style.display = "none";
-        music.muted = false;
-    }
-    else {
-        music_on.style.display = "none";
-        music_off.style.display = "block";
-        music.muted = true;
-    }
-}
-
 // Navbar animation
 let lastScroll = 0;
 const defaultOffset = 100;

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/okaraf.png" />
@@ -7,7 +7,40 @@
     <meta name="keywords" content="омар караф, омар, караф, омар караф нальчик, караф нальчик, нальчик, omar karaf, omar, karaf, omar karaf nalchik, karaf nalchik, nalchick, karaf company, компания караф">
     <meta
       name="description"
-      content="Официальный сайт OKARAF">
+      content="Официальный сайт OKARAF — портфолио разработчика Омар Караф.">
+
+      <!-- SEO: Robots & Locale -->
+      <meta name="robots" content="index, follow">
+      <meta http-equiv="Content-Language" content="ru">
+
+      <!-- Open Graph -->
+      <meta property="og:type" content="website">
+      <meta property="og:site_name" content="OKARAF">
+      <meta property="og:locale" content="ru_RU">
+      <meta property="og:title" content="OKARAF">
+      <meta property="og:description" content="Официальный сайт OKARAF — портфолио разработчика Омар Караф.">
+      <meta property="og:image" content="/okaraf.png">
+      <!-- Twitter -->
+      <meta name="twitter:card" content="/okaraf.png">
+      <meta name="twitter:title" content="OKARAF">
+      <meta name="twitter:description" content="Официальный сайт OKARAF — портфолио разработчика Омар Караф.">
+      <meta name="twitter:image" content="/okaraf.png">
+      <!-- Schema -->
+      <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Omar Karaf",
+        "image": "/okaraf.png",
+        "email": "mailto:okaraf07@gmail.com",
+        "sameAs": [
+          "https://t.me/xAlenki",
+          "https://github.com/alenki",
+          "https://codeforces.com/profile/Alenki_"
+        ]
+      }
+      </script>
+
     <!-- CSS -->
     <link rel="stylesheet" href="/src/css/BootstrapSASS.css">
     <link rel="stylesheet" href="/src/css/main.css">
@@ -28,7 +61,7 @@
 
     <!-- Header -->
     <header class="d-flex justify-content-center">
-      <nav class="navbar">
+      <nav class="navbar" aria-label="Primary">
         <a href="#projects" class="nav_link">projects</a>
         <a href="/certificates/" class="nav_link">certificates</a>
         <a href="#contacts" class="nav_link">contacts</a>
@@ -48,13 +81,13 @@
       <div class="project_container pb-3">
           <!-- Image -->
           <div class="project_image">
-            <a href="https://galereya-trc.ru/" target="_blank">
-              <img src="/galereya.png" alt="GALEREYA">
+            <a href="https://galereya-trc.ru/" target="_blank" rel="noopener">
+              <img src="/galereya.png" alt="Фотка официального сайта ТРЦ ГАЛЕРЕЯ" loading="lazy" decoding="async">
             </a>  
           </div>
           <!-- Text -->
           <div class="project_text_block ps-lg-5 ms-lg-3 ps-4">
-            <h1 class="project_heading fenice text-light">GALEREYA</h1>
+            <h2 class="project_heading fenice text-light">GALEREYA</h2>
             <p class="project_description text-light">Официальный сайт ТРЦ "ГАЛЕРЕЯ"</p>
           </div>
         </a>
@@ -65,13 +98,13 @@
       <div class="project_container pb-3">
           <!-- Image -->
           <div class="project_image">
-            <a href="https://playtimekbsu.ru/" target="_blank">
-              <img src="/playtime.png" alt="PLAYTIME">
+            <a href="https://playtimekbsu.ru/" target="_blank" rel="noopener">
+              <img src="/playtime.png" alt="Фотка сайта олимпиады PLAYTIME" loading="lazy" decoding="async">
             </a>  
           </div>
           <!-- Text -->
           <div class="project_text_block ps-lg-5 ms-lg-3 ps-4">
-            <h1 class="project_heading fenice text-light">PLAYTIME</h1>
+            <h2 class="project_heading fenice text-light">PLAYTIME</h2>
             <p class="project_description text-light">Официальный сайт межрегиональной <br> когнитивной олимпиады "PLAYTIME"</p>
           </div>
         </a>
@@ -82,13 +115,13 @@
       <div class="project_container pb-3">
           <!-- Image -->
           <div class="project_image">
-            <a href="https://cerberkavkaz.netlify.app/" target="_blank">
-              <img src="/cerber.png" alt="CERBER">
+            <a href="https://cerberkavkaz.netlify.app/" target="_blank" rel="noopener">
+              <img src="/cerber.png" alt="фотка официального сайта бренда одежды CERBER" loading="lazy" decoding="async">
             </a>  
           </div>
           <!-- Text -->
           <div class="project_text_block ps-lg-5 ms-lg-3 ps-4">
-            <h1 class="project_heading fenice text-light">CERBER</h1>
+            <h2 class="project_heading fenice text-light">CERBER</h2>
             <p class="project_description text-light">Официальный сайт бренда одежды "CERBER"</p>
           </div>
         </a>
@@ -100,12 +133,12 @@
           <!-- Image -->
           <div class="project_image">
             <a href="#">
-              <img src="/okaraf.png" alt="OKARAF">
+              <img src="/okaraf.png" alt="фотка сайта-портфолио OKARAF" loading="lazy" decoding="async">
             </a>  
           </div>
           <!-- Text -->
           <div class="project_text_block ps-lg-5 ms-lg-3 ps-4">
-            <h1 class="project_heading fenice text-light">OKARAF</h1>
+            <h2 class="project_heading fenice text-light">OKARAF</h2>
             <p class="project_description text-light">Мое портфолио (этот сайт)</p>
           </div>
         </a>
@@ -170,14 +203,14 @@
         <!-- Contacts -->
         <div class="footer_m_part d-flex flex-column ms-auto">
           <b class="footer_subheading fenice">contacts</b>
-          <div class="mt-4"><a href="mailto:okaraf07@gmail.com" class="footer-link" target="_blank">Email</a></div>
-          <div class="mt-3"><a href="https://t.me/xAlenki" class="footer-link" target="_blank">Telegram</a></div>
+          <div class="mt-4"><a href="mailto:okaraf07@gmail.com" class="footer-link" target="_blank" rel="noopener">Email</a></div>
+          <div class="mt-3"><a href="https://t.me/xAlenki" class="footer-link" target="_blank" rel="noopener">Telegram</a></div>
         </div>
         <!-- Info -->
         <div class="footer_r_part d-flex flex-column ms-5 me-sm-5 me-3">
           <b class="footer_subheading fenice">info</b>
-          <div class="mt-4"><a href="https://codeforces.com/profile/Alenki_" class="footer-link" target="_blank">Codeforces</a></div>
-          <div class="mt-3"><a href="https://github.com/alenki" class="footer-link" target="_blank">Github</a></div>
+          <div class="mt-4"><a href="https://codeforces.com/profile/Alenki_" class="footer-link" target="_blank" rel="noopener">Codeforces</a></div>
+          <div class="mt-3"><a href="https://github.com/alenki" class="footer-link" target="_blank" rel="noopener">Github</a></div>
         </div>
 
         <!-- Mobile version -->
@@ -185,14 +218,14 @@
           <!-- Contacts -->
           <div class="footer_lm_part d-none flex-column">
             <b class="footer_subheading fenice">contacts</b>
-            <div class="mt-4"><a href="mailto:okaraf07@gmail.com" class="footer-link" target="_blank">Email</a></div>
-            <div class="mt-3"><a href="https://t.me/xAlenki" class="footer-link" target="_blank">Telegram</a></div>
+            <div class="mt-4"><a href="mailto:okaraf07@gmail.com" class="footer-link" target="_blank" rel="noopener">Email</a></div>
+            <div class="mt-3"><a href="https://t.me/xAlenki" class="footer-link" target="_blank" rel="noopener">Telegram</a></div>
           </div>
           <!-- Info -->
           <div class="footer_rm_part d-none flex-column">
             <b class="footer_subheading fenice">info</b>
-            <div class="mt-4"><a href="https://codeforces.com/profile/Alenki_" class="footer-link" target="_blank">Codeforces</a></div>
-            <div class="mt-3"><a href="https://github.com/alenki" class="footer-link" target="_blank">Github</a></div>
+            <div class="mt-4"><a href="https://codeforces.com/profile/Alenki_" class="footer-link" target="_blank" rel="noopener">Codeforces</a></div>
+            <div class="mt-3"><a href="https://github.com/alenki" class="footer-link" target="_blank" rel="noopener">Github</a></div>
           </div>
         </div>
         <!-- Bottom part -->

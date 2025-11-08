@@ -8,7 +8,7 @@ createRoot(document.getElementById("background")!).render(
       <Dither
         waveColor={[0.5, 0.5, 0.5]}
         disableAnimation={false}
-        enableMouseInteraction={false}
+        enableMouseInteraction={true}
         mouseRadius={0.3}
         colorNum={4}
         waveAmplitude={0.3}

@@ -35,7 +35,7 @@ body {
 }
 .loader::after {
     content: counter(count);
-    animation: counter 15s linear;
+    animation: counter 2.5s linear;
     animation-fill-mode: forwards;
     counter-reset: count 0;
 }

@@ -1,11 +1,3 @@
-// Loading screen / Экран загрузки
-var loadingScreen = document.querySelector(".loadingScreen");
-function loading() {
-    console.log('wasup')
-    loadingScreen.style.display = 'none';
-}
-
-
 // Navbar animation
 let lastScroll = 0;
 const defaultOffset = 100;

@@ -9,17 +9,68 @@
     <link rel="stylesheet" href="/src/css/main.css">
     <title>Сертификаты</title>
 </head>
-<body onload="loading()" style="margin: 0; height: 100%; overflow: hidden">
+<body style="margin: 0; height: 100%; overflow: hidden">
 
     <!-- Loading screen / Экран загрузки -->
-    <div class="loadingScreen text-light fenice"><div class="loader"></div>%</div>
+    <div class="loadingScreen text-light fenice"><span class="loader">0</span>%</div>
     <script>
-      function loading() {
-          document.body.style.margin = 0;
-          document.body.style.height = 0;
+      (function() {
+        var loadingScreen = document.querySelector(".loadingScreen");
+        var loaderNum = document.querySelector(".loader");
+        var currentDisplay = 0;
+
+        function dismissLoader() {
+          document.body.style.margin = '0';
+          document.body.style.height = '0';
           document.body.style.overflow = "auto";
-          document.querySelector(".loadingScreen").style.display = 'none';
-      }
+          loadingScreen.style.display = 'none';
+        }
+
+        function updateCounter(target) {
+          if (currentDisplay >= target) return;
+          var step = function() {
+            if (currentDisplay < target) {
+              currentDisplay++;
+              loaderNum.textContent = currentDisplay;
+              requestAnimationFrame(step);
+            }
+            if (currentDisplay >= 100) {
+              setTimeout(dismissLoader, 200);
+            }
+          };
+          requestAnimationFrame(step);
+        }
+
+        window.addEventListener("DOMContentLoaded", function() {
+          var images = document.querySelectorAll("#projects img");
+          var total = images.length;
+          if (total === 0) { updateCounter(100); return; }
+          var loaded = 0;
+          images.forEach(function(img) {
+            if (img.complete) {
+              loaded++;
+            } else {
+              img.addEventListener("load", onLoad);
+              img.addEventListener("error", onLoad);
+            }
+          });
+          if (loaded >= total) { updateCounter(100); return; }
+          updateCounter(Math.floor((loaded / total) * 100));
+
+          function onLoad() {
+            loaded++;
+            var pct = Math.floor((loaded / total) * 100);
+            updateCounter(pct);
+          }
+        });
+
+        setTimeout(function() {
+          if (loadingScreen.style.display !== 'none') {
+            currentDisplay = 99;
+            updateCounter(100);
+          }
+        }, 20000);
+      })();
     </script>
 
     <!-- Header -->
@@ -38,7 +89,7 @@
           <!-- Image -->
           <div class="certificate_image">
             <a href="/certificates/stepik_c++.pdf" target="_blank">
-              <img src="/certificates/stepik_c++.png" alt="STEPIK C++">
+              <img src="/certificates/stepik_c++.webp" alt="STEPIK C++" decoding="async">
             </a>  
           </div>
           <!-- Text -->
@@ -55,7 +106,7 @@
           <!-- Image -->
           <div class="certificate_image">
             <a href="/certificates/sirius_algo.pdf" target="_blank">
-              <img src="/certificates/sirius_algo.png" alt="SIRIUS ALGORITHMS">
+              <img src="/certificates/sirius_algo.webp" alt="SIRIUS ALGORITHMS" decoding="async">
             </a>  
           </div>
           <!-- Text -->
@@ -72,7 +123,7 @@
           <!-- Image -->
           <div class="certificate_image">
             <a href="/certificates/ai_qualifying_stage.pdf" target="_blank">
-              <img src="/certificates/ai_qualifying_stage.png" alt="RUSSIAN AI CUP">
+              <img src="/certificates/ai_qualifying_stage.webp" alt="RUSSIAN AI CUP" decoding="async">
             </a>  
           </div>
           <!-- Text -->
@@ -89,7 +140,7 @@
           <!-- Image -->
           <div class="certificate_image">
             <a href="/certificates/ai_main_stage.pdf" target="_blank">
-              <img src="/certificates/ai_main_stage.png" alt="RUSSIAN AI CUP">
+              <img src="/certificates/ai_main_stage.webp" alt="RUSSIAN AI CUP" decoding="async">
             </a>  
           </div>
           <!-- Text -->
@@ -106,7 +157,7 @@
           <!-- Image -->
           <div class="certificate_image">
             <a href="/certificates/ai_final_stage.pdf" target="_blank">
-              <img src="/certificates/ai_final_stage.png" alt="RUSSIAN AI CUP">
+              <img src="/certificates/ai_final_stage.webp" alt="RUSSIAN AI CUP" decoding="async">
             </a>  
           </div>
           <!-- Text -->
@@ -123,7 +174,7 @@
           <!-- Image -->
           <div class="certificate_image">
             <a href="/certificates/vk_product.pdf" target="_blank">
-              <img src="/certificates/vk_product.png" alt="VK PRODUCT">
+              <img src="/certificates/vk_product.webp" alt="VK PRODUCT" decoding="async">
             </a>  
           </div>
           <!-- Text -->

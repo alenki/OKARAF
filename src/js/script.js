@@ -1,11 +1,3 @@
-// Loading screen / Экран загрузки
-var loadingScreen = document.querySelector(".loadingScreen");
-function loading() {
-    console.log('wasup')
-    loadingScreen.style.display = 'none';
-}
-
-
 // music
 const music_button = document.querySelector('.music_button');
 const music_on = document.querySelector('.music_on');

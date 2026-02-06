@@ -46,17 +46,70 @@
     <link rel="stylesheet" href="/src/css/main.css">
     <title>OKARAF</title>
   </head>
-  <body onload="loading()" style="margin: 0; height: 100%; overflow: hidden">
+  <body style="margin: 0; height: 100%; overflow: hidden">
 
     <!-- Loading screen / Экран загрузки -->
-    <div class="loadingScreen text-light fenice"><div class="loader"></div>%</div>
+    <div class="loadingScreen text-light fenice"><span class="loader">0</span>%</div>
     <script>
-      function loading() {
-          document.body.style.margin = 0;
-          document.body.style.height = 0;
+      (function() {
+        var loadingScreen = document.querySelector(".loadingScreen");
+        var loaderNum = document.querySelector(".loader");
+        var currentDisplay = 0;
+
+        function dismissLoader() {
+          document.body.style.margin = '0';
+          document.body.style.height = '0';
           document.body.style.overflow = "auto";
-          document.querySelector(".loadingScreen").style.display = 'none';
-      }
+          loadingScreen.style.display = 'none';
+        }
+
+        function updateCounter(target) {
+          if (currentDisplay >= target) return;
+          var step = function() {
+            if (currentDisplay < target) {
+              currentDisplay++;
+              loaderNum.textContent = currentDisplay;
+              requestAnimationFrame(step);
+            }
+            if (currentDisplay >= 100) {
+              setTimeout(dismissLoader, 200);
+            }
+          };
+          requestAnimationFrame(step);
+        }
+
+        window.addEventListener("DOMContentLoaded", function() {
+          var images = document.querySelectorAll("#projects img");
+          var total = images.length;
+          if (total === 0) { updateCounter(100); return; }
+          var loaded = 0;
+          images.forEach(function(img) {
+            if (img.complete) {
+              loaded++;
+            } else {
+              img.addEventListener("load", onLoad);
+              img.addEventListener("error", onLoad);
+            }
+          });
+          // handle already-cached images
+          if (loaded >= total) { updateCounter(100); return; }
+          updateCounter(Math.floor((loaded / total) * 100));
+
+          function onLoad() {
+            loaded++;
+            var pct = Math.floor((loaded / total) * 100);
+            updateCounter(pct);
+          }
+        });
+
+        // safety fallback: dismiss after 20s no matter what
+        setTimeout(function() {
+          if (loadingScreen.style.display !== 'none') {
+            currentDisplay = 99;
+            updateCounter(100);
+          }
+        }, 20000);
+      })();
     </script>
 
     <!-- Music -->
@@ -97,7 +150,7 @@
           <!-- Image -->
           <div class="project_image">
             <a href="https://galereya-trc.ru/" target="_blank" rel="noopener">
-              <img src="/galereya.png" alt="Фотка официального сайта ТРЦ ГАЛЕРЕЯ" loading="lazy" decoding="async">
+              <img src="/galereya.webp" alt="Фотка официального сайта ТРЦ ГАЛЕРЕЯ" decoding="async">
             </a>  
           </div>
           <!-- Text -->
@@ -114,7 +167,7 @@
           <!-- Image -->
           <div class="project_image">
             <a href="https://masterauto-07.ru/" target="_blank" rel="noopener">
-              <img src="/masterauto.png" alt="Фотка официального сайта авто сервиса MASTER AUTO" loading="lazy" decoding="async">
+              <img src="/masterauto.webp" alt="Фотка официального сайта авто сервиса MASTER AUTO" decoding="async">
             </a>  
           </div>
           <!-- Text -->
@@ -131,7 +184,7 @@
           <!-- Image -->
           <div class="project_image">
             <a href="https://kabardinobalkaria.com/" target="_blank" rel="noopener">
-              <img src="/kabardinobalkaria.png" alt="Website showcasing the mountains and culture of Kabardino-Balkaria" loading="lazy" decoding="async">
+              <img src="/kabardinobalkaria.webp" alt="Website showcasing the mountains and culture of Kabardino-Balkaria" decoding="async">
             </a>  
           </div>
           <!-- Text -->
@@ -147,7 +200,7 @@
           <!-- Image -->
           <div class="project_image">
             <a href="https://cerberkavkaz.ru/" target="_blank" rel="noopener">
-              <img src="/cerber.png" alt="фотка официального сайта бренда одежды CERBER" loading="lazy" decoding="async">
+              <img src="/cerber.webp" alt="фотка официального сайта бренда одежды CERBER" decoding="async">
             </a>  
           </div>
           <!-- Text -->
@@ -164,7 +217,7 @@
           <!-- Image -->
           <div class="project_image">
             <a href="https://mozaika.netlify.app/" target="_blank" rel="noopener">
-              <img src="/mozaika.png" alt="фотка официального сайта детского центра Мозаика" loading="lazy" decoding="async">
+              <img src="/mozaika.webp" alt="фотка официального сайта детского центра Мозаика" decoding="async">
             </a>  
           </div>
           <!-- Text -->
@@ -181,7 +234,7 @@
           <!-- Image -->
           <div class="project_image">
             <a href="https://playtimekbsu.ru/" target="_blank" rel="noopener">
-              <img src="/playtime.png" alt="Фотка сайта олимпиады PLAYTIME" loading="lazy" decoding="async">
+              <img src="/playtime.webp" alt="Фотка сайта олимпиады PLAYTIME" decoding="async">
             </a>  
           </div>
           <!-- Text -->
@@ -198,7 +251,7 @@
           <!-- Image -->
           <div class="project_image">
             <a href="#">
-              <img src="/okaraf.png" alt="фотка сайта-портфолио OKARAF" loading="lazy" decoding="async">
+              <img src="/okaraf.png" alt="фотка сайта-портфолио OKARAF" decoding="async">
             </a>  
           </div>
           <!-- Text -->

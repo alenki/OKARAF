@@ -1,69 +1,41 @@
-# React + TypeScript + Vite
+# OKARAF
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Portfolio website for web developer **Omar Karaf** ([okaraf.ru](https://okaraf.ru)).
 
-Currently, two official plugins are available:
+Built with **React + TypeScript + Vite**. The hero section features an interactive
+WebGL "dithered wave" animation rendered with Three.js and custom GLSL shaders.
+Deployed on **Netlify**.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Architecture
 
-## Expanding the ESLint configuration
+A hybrid app: the page is mostly static HTML/CSS/JS, and React renders **only** the
+animated hero background (the `#background` element). There is no router and no
+global state.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- `index.html` — main portfolio page (loader, music toggle, hero, project grid, footer)
+- `certificates/index.html` — standalone certificates page (no React)
+- `src/main.tsx` — mounts the `<Dither>` background into `#background`
+- `src/components/Dither.tsx` — the WebGL dithered-wave component (the only React component)
+- `src/js/script.js` — music toggle + navbar hide-on-scroll
+- `src/js/lenis.js` — smooth scrolling via [Lenis](https://github.com/darkroomengineering/lenis)
+- `src/css/main.css` — custom styles, fonts, animations
+- `src/sass/BootstrapSASS.scss` — Bootstrap customization (compiled to `src/css/BootstrapSASS.css`)
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Both HTML pages are configured as separate Vite entry points in `vite.config.ts`.
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## Commands
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+| Command | Description |
+| --- | --- |
+| `npm run dev` | Start the dev server on port **7777** |
+| `npm run build` | Type-check (`tsc -b`) and build for production |
+| `npm run preview` | Preview the production build locally |
+| `npm run lint` | Run ESLint over the project |
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Deployment
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Netlify, configured in `netlify.toml`:
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- `/certificates` is served from `certificates/index.html`
+- The `okaraf.netlify.app` subdomain is 301-redirected to `okaraf.ru`
+- Security headers are applied to all routes; hashed assets are cached immutably

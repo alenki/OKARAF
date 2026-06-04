@@ -1,18 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/svg+xml" href="/okaraf.png" />
+    <link rel="icon" type="image/png" href="/okaraf.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1c1c1c" />
+    <link rel="canonical" href="https://okaraf.ru/certificates/" />
+    <meta name="description" content="Сертификаты и достижения веб-разработчика Омара Карафа — OKARAF.">
+    <meta name="robots" content="index, follow">
+    <meta http-equiv="Content-Language" content="ru">
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="OKARAF">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:url" content="https://okaraf.ru/certificates/">
+    <meta property="og:title" content="Сертификаты — OKARAF">
+    <meta property="og:description" content="Сертификаты и достижения веб-разработчика Омара Карафа — OKARAF.">
+    <meta property="og:image" content="https://okaraf.ru/okaraf.png">
+    <meta property="og:image:alt" content="OKARAF">
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Сертификаты — OKARAF">
+    <meta name="twitter:description" content="Сертификаты и достижения веб-разработчика Омара Карафа — OKARAF.">
+    <meta name="twitter:image" content="https://okaraf.ru/okaraf.png">
     <!-- CSS -->
     <link rel="stylesheet" href="/src/css/BootstrapSASS.css">
     <link rel="stylesheet" href="/src/css/main.css">
-    <title>Сертификаты</title>
+    <title>Сертификаты — OKARAF</title>
 </head>
-<body style="margin: 0; height: 100%; overflow: hidden">
+<body style="margin: 0; overflow: hidden">
 
     <!-- Loading screen / Экран загрузки -->
-    <div class="loadingScreen text-light fenice"><span class="loader">0</span>%</div>
+    <div class="loadingScreen text-light fenice" role="status" aria-live="polite" aria-label="Загрузка"><span class="loader">0</span>%</div>
     <script>
       (function() {
         var loadingScreen = document.querySelector(".loadingScreen");
@@ -20,8 +39,6 @@
         var currentDisplay = 0;
 
         function dismissLoader() {
-          document.body.style.margin = '0';
-          document.body.style.height = '0';
           document.body.style.overflow = "auto";
           loadingScreen.style.display = 'none';
         }
@@ -46,6 +63,13 @@
           var total = images.length;
           if (total === 0) { updateCounter(100); return; }
           var loaded = 0;
+
+          function onLoad() {
+            loaded++;
+            var pct = Math.floor((loaded / total) * 100);
+            updateCounter(pct);
+          }
+
           images.forEach(function(img) {
             if (img.complete) {
               loaded++;
@@ -56,12 +80,6 @@
           });
           if (loaded >= total) { updateCounter(100); return; }
           updateCounter(Math.floor((loaded / total) * 100));
-
-          function onLoad() {
-            loaded++;
-            var pct = Math.floor((loaded / total) * 100);
-            updateCounter(pct);
-          }
         });
 
         setTimeout(function() {
@@ -75,29 +93,29 @@
 
     <!-- Header -->
     <header class="d-flex justify-content-center">
-      <nav class="navbar">
-        <a href="../" class="nav_link">projects</a>
-        <a href="#" class="nav_link">certificates</a>
+      <nav class="navbar" aria-label="Primary">
+        <a href="/" class="nav_link">projects</a>
+        <a href="/certificates/" class="nav_link" aria-current="page">certificates</a>
         <a href="#contacts" class="nav_link">contacts</a>
       </nav>
     </header>
 
     <!-- certificates -->
     <section class="container mb-5 pb-5" id="projects">
+      <h1 class="visually-hidden">Сертификаты — Omar Karaf</h1>
       <!-- stepik C++ -->
       <div class="project_container pb-3 d-flex">
           <!-- Image -->
           <div class="certificate_image">
-            <a href="/certificates/stepik_c++.pdf" target="_blank">
-              <img src="/certificates/stepik_c++.webp" alt="STEPIK C++" decoding="async">
-            </a>  
+            <a href="/certificates/stepik_c++.pdf" target="_blank" rel="noopener">
+              <img src="/certificates/stepik_c++.webp" alt="STEPIK C++" width="1351" height="951" decoding="async">
+            </a>
           </div>
           <!-- Text -->
           <div class="project_text_block ps-lg-5 ms-lg-3 ps-4">
-            <h1 class="project_heading fenice text-light">STEPIK C++</h1>
+            <h2 class="project_heading fenice text-light">STEPIK C++</h2>
             <p class="project_description text-light">Введение в программирование</p>
           </div>
-        </a>
       </div>
       <hr class="my-5 pb-3 text-light">
 
@@ -105,16 +123,15 @@
       <div class="project_container pb-3 d-flex">
           <!-- Image -->
           <div class="certificate_image">
-            <a href="/certificates/sirius_algo.pdf" target="_blank">
-              <img src="/certificates/sirius_algo.webp" alt="SIRIUS ALGORITHMS" decoding="async">
-            </a>  
+            <a href="/certificates/sirius_algo.pdf" target="_blank" rel="noopener">
+              <img src="/certificates/sirius_algo.webp" alt="SIRIUS ALGORITHMS" width="958" height="666" decoding="async">
+            </a>
           </div>
           <!-- Text -->
           <div class="project_text_block ps-lg-5 ms-lg-3 ps-4">
-            <h1 class="project_heading fenice text-light">SIRIUS ALGORITHMS</h1>
+            <h2 class="project_heading fenice text-light">SIRIUS ALGORITHMS</h2>
             <p class="project_description text-light">Введение в алгоритмы:<br>реализация на языке C++</p>
           </div>
-        </a>
       </div>
       <hr class="my-5 pb-3 text-light">
 
@@ -122,16 +139,15 @@
       <div class="project_container pb-5 d-flex">
           <!-- Image -->
           <div class="certificate_image">
-            <a href="/certificates/ai_qualifying_stage.pdf" target="_blank">
-              <img src="/certificates/ai_qualifying_stage.webp" alt="RUSSIAN AI CUP" decoding="async">
-            </a>  
+            <a href="/certificates/ai_qualifying_stage.pdf" target="_blank" rel="noopener">
+              <img src="/certificates/ai_qualifying_stage.webp" alt="RUSSIAN AI CUP" width="1293" height="878" decoding="async">
+            </a>
           </div>
           <!-- Text -->
           <div class="project_text_block ps-lg-5 ms-lg-3 ps-4">
-            <h1 class="project_heading fenice text-light">RUSSIAN AI CUP<br>QUALIFYING STAGE</h1>
+            <h2 class="project_heading fenice text-light">RUSSIAN AI CUP<br>QUALIFYING STAGE</h2>
             <p class="project_description text-light">Всероссийская олимпиада по<br>искусственному интеллекту 2023<br><br>Отборочный этап</p>
           </div>
-        </a>
       </div>
       <hr class="my-5 pb-3 text-light">
 
@@ -139,16 +155,15 @@
       <div class="project_container pb-5 d-flex">
           <!-- Image -->
           <div class="certificate_image">
-            <a href="/certificates/ai_main_stage.pdf" target="_blank">
-              <img src="/certificates/ai_main_stage.webp" alt="RUSSIAN AI CUP" decoding="async">
-            </a>  
+            <a href="/certificates/ai_main_stage.pdf" target="_blank" rel="noopener">
+              <img src="/certificates/ai_main_stage.webp" alt="RUSSIAN AI CUP" width="1293" height="879" decoding="async">
+            </a>
           </div>
           <!-- Text -->
           <div class="project_text_block ps-lg-5 ms-lg-3 ps-4">
-            <h1 class="project_heading fenice text-light">RUSSIAN AI CUP<br>MAIN STAGE</h1>
+            <h2 class="project_heading fenice text-light">RUSSIAN AI CUP<br>MAIN STAGE</h2>
             <p class="project_description text-light">Всероссийская олимпиада по<br>искусственному интеллекту 2023<br><br>Основной этап</p>
           </div>
-        </a>
       </div>
       <hr class="my-5 pb-3 text-light">
 
@@ -156,16 +171,15 @@
       <div class="project_container pb-5 d-flex">
           <!-- Image -->
           <div class="certificate_image">
-            <a href="/certificates/ai_final_stage.pdf" target="_blank">
-              <img src="/certificates/ai_final_stage.webp" alt="RUSSIAN AI CUP" decoding="async">
-            </a>  
+            <a href="/certificates/ai_final_stage.pdf" target="_blank" rel="noopener">
+              <img src="/certificates/ai_final_stage.webp" alt="RUSSIAN AI CUP" width="1292" height="881" decoding="async">
+            </a>
           </div>
           <!-- Text -->
           <div class="project_text_block ps-lg-5 ms-lg-3 ps-4">
-            <h1 class="project_heading fenice text-light">RUSSIAN AI CUP<br>FINAL STAGE</h1>
+            <h2 class="project_heading fenice text-light">RUSSIAN AI CUP<br>FINAL STAGE</h2>
             <p class="project_description text-light">Всероссийская олимпиада по<br>искусственному интеллекту 2023<br><br>Заключительный этап</p>
           </div>
-        </a>
       </div>
       <hr class="my-5 pb-3 text-light">
 
@@ -173,16 +187,15 @@
       <div class="project_container pb-5 d-flex">
           <!-- Image -->
           <div class="certificate_image">
-            <a href="/certificates/vk_product.pdf" target="_blank">
-              <img src="/certificates/vk_product.webp" alt="VK PRODUCT" decoding="async">
-            </a>  
+            <a href="/certificates/vk_product.pdf" target="_blank" rel="noopener">
+              <img src="/certificates/vk_product.webp" alt="VK PRODUCT" width="1348" height="950" decoding="async">
+            </a>
           </div>
           <!-- Text -->
           <div class="project_text_block ps-lg-5 ms-lg-3 ps-4">
-            <h1 class="project_heading fenice text-light">PRODUCT MANAGEMENT</h1>
+            <h2 class="project_heading fenice text-light">PRODUCT MANAGEMENT</h2>
             <p class="project_description text-light">Курс от ВК по продакт-менеджменту</p>
           </div>
-        </a>
       </div>
     </section>
 
@@ -190,7 +203,7 @@
     <footer id="contacts">
 
       <!-- Marquee -->
-      <div class="marquee-text my-5 text-light">
+      <div class="marquee-text my-5 text-light" aria-hidden="true">
         <hr>
         <div class="marquee-text-track align-items-center fenice">
           <p>FLUIDITY</p> <p style="font-size: 1.5rem;">♡</p>
@@ -243,15 +256,15 @@
         <!-- Contacts -->
         <div class="footer_m_part d-flex flex-column ms-auto">
           <b class="footer_subheading fenice">contacts</b>
-          <div class="mt-4"><a href="mailto:okaraf07@gmail.com" class="footer-link" target="_blank">Email</a></div>
-          <div class="mt-3"><a href="https://t.me/karafco" class="footer-link" target="_blank">Telegram</a></div>
+          <div class="mt-4"><a href="mailto:okaraf07@gmail.com" class="footer-link">Email</a></div>
+          <div class="mt-3"><a href="https://t.me/karafco" class="footer-link" target="_blank" rel="noopener">Telegram</a></div>
           <div class="mt-3"><a href="https://api.whatsapp.com/send?phone=79289996640" class="footer-link" target="_blank" rel="noopener">Whatsapp</a></div>
         </div>
         <!-- Info -->
         <div class="footer_r_part d-flex flex-column ms-5 me-sm-5 me-3">
           <b class="footer_subheading fenice">info</b>
-          <div class="mt-4"><a href="https://codeforces.com/profile/Alenki_" class="footer-link" target="_blank">Codeforces</a></div>
-          <div class="mt-3"><a href="https://github.com/alenki" class="footer-link" target="_blank">Github</a></div>
+          <div class="mt-4"><a href="https://codeforces.com/profile/Alenki_" class="footer-link" target="_blank" rel="noopener">Codeforces</a></div>
+          <div class="mt-3"><a href="https://github.com/alenki" class="footer-link" target="_blank" rel="noopener">Github</a></div>
         </div>
 
         <!-- Mobile version -->
@@ -259,15 +272,15 @@
           <!-- Contacts -->
           <div class="footer_lm_part d-none flex-column">
             <b class="footer_subheading fenice">contacts</b>
-            <div class="mt-4"><a href="mailto:okaraf07@gmail.com" class="footer-link" target="_blank">Email</a></div>
-            <div class="mt-3"><a href="https://t.me/karafco" class="footer-link" target="_blank">Telegram</a></div>
+            <div class="mt-4"><a href="mailto:okaraf07@gmail.com" class="footer-link">Email</a></div>
+            <div class="mt-3"><a href="https://t.me/karafco" class="footer-link" target="_blank" rel="noopener">Telegram</a></div>
             <div class="mt-3"><a href="https://api.whatsapp.com/send?phone=79289996640" class="footer-link" target="_blank" rel="noopener">Whatsapp</a></div>
           </div>
           <!-- Info -->
           <div class="footer_rm_part d-none flex-column">
             <b class="footer_subheading fenice">info</b>
-            <div class="mt-4"><a href="https://codeforces.com/profile/Alenki_" class="footer-link" target="_blank">Codeforces</a></div>
-            <div class="mt-3"><a href="https://github.com/alenki" class="footer-link" target="_blank">Github</a></div>
+            <div class="mt-4"><a href="https://codeforces.com/profile/Alenki_" class="footer-link" target="_blank" rel="noopener">Codeforces</a></div>
+            <div class="mt-3"><a href="https://github.com/alenki" class="footer-link" target="_blank" rel="noopener">Github</a></div>
           </div>
         </div>
         <!-- Bottom part -->
@@ -275,13 +288,10 @@
           <h3 class="fenice pb-3"><b>when in doubt, look intelligent</b></h3>
           <p class="fenice" style="white-space:pre-wrap;">OMAR KARAF © 2026</p>
         </div>
-        
+
       </div>
     </footer>
 
-    <!-- CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js" integrity="sha512-NcZdtrT77bJr4STcmsGAESr06BYGE8woZdSdEgqnpyqac7sugNO+Tr4bGwGF3MsnEkGKhU2KL2xh6Ec+BqsaHA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js" integrity="sha512-P2IDYZfqSwjcSjX0BKeNhwRUH8zRPGlgcWl5n6gBLzdi4Y5/0O4zaXrtO4K9TZK6Hn1BenYpKowuCavNandERg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- script -->
     <script type="module" src="/src/js/script.js"></script>
     <script type="module" src="/src/js/lenis.js"></script>

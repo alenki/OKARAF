@@ -6,18 +6,15 @@ body {
 
 /* --------------- Fonts ---------------- */
 @font-face {
-    font-family: Fenice Regular;
+    font-family: "Fenice Regular";
     src: url(./fonts/Fenice_Regular.ttf);
-    font-weight: 400, 300, 200, 100;
+    font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
 .fenice {
-    font-family: Fenice Regular;
+    font-family: "Fenice Regular";
     letter-spacing: 3px;
-}
-.Hero {
-    font-family: Hero;
 }
 /* --------------- End of Fonts ---------------- */
 
@@ -55,6 +52,14 @@ body {
     border: 1px solid rgba(93, 93, 93, 0.3);
 
     display: flex;
+    padding: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    color: inherit;
+}
+.music_button:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
 }
 .music_off {
     display: none;
@@ -104,7 +109,7 @@ body {
     transform: translateY(-130%);
 }
 .nav_link {
-    font-family: Fenice Regular;
+    font-family: "Fenice Regular";
     letter-spacing: 1px;
     color: white;
     font-size: 1rem;
@@ -116,6 +121,11 @@ body {
 .nav_link:hover {
     color: white;
     border-bottom: 1.5px solid white;
+}
+.nav_link:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 4px;
+    border-radius: 2px;
 }
 @media only screen and (max-width: 425px) {
     .navbar {
@@ -163,7 +173,7 @@ body {
 
     color: rgba(255, 255, 255, 0.87);
 
-    font-family: Fenice Regular;
+    font-family: "Fenice Regular";
     letter-spacing: -13px;
 
 }
@@ -178,7 +188,7 @@ body {
 
     color: rgba(255, 255, 255, 0.87);
 
-    font-family: Fenice Regular;
+    font-family: "Fenice Regular";
     letter-spacing: -13px;
 }
 .mobile_omar {
@@ -252,6 +262,7 @@ body {
     border-radius: 0.5rem;
     height: 100%;
     width: 100%;
+    transition: opacity .3s;
 }
 .project_image img:hover {
     opacity: 0.7;
@@ -331,6 +342,7 @@ body {
     border-radius: 0.5rem;
     height: 100%;
     width: 100%;
+    transition: opacity .3s;
 }
 .certificate_image img:hover {
     opacity: 0.7;
@@ -430,6 +442,10 @@ footer {
 .footer-link:hover {
     opacity: 0.9;
 }
+.footer-link:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+}
 @media only screen and (max-width: 620px) {
     .footer_l_part {
         padding-right: 35px;
@@ -486,3 +502,11 @@ footer {
     }
 }
 /* --------------- End of footer ---------------- */
+
+/* --------------- Reduced motion ---------------- */
+@media (prefers-reduced-motion: reduce) {
+    .marquee-text-track {
+        animation: none;
+    }
+}
+/* --------------- End of Reduced motion ---------------- */

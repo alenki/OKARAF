@@ -1,14 +1,27 @@
+# Serve the certificates page for the pretty URL (no trailing slash).
 [[redirects]]
   from = "/certificates"
   to = "/certificates/index.html"
   status = 200
 
+# Canonical-domain redirect: send the Netlify subdomain to the primary domain.
 [[redirects]]
-  from = "https://okaraf.netlify.app"
-  to = "https://okaraf.ru"
-  status = 200
+  from = "https://okaraf.netlify.app/*"
+  to = "https://okaraf.ru/:splat"
+  status = 301
+  force = true
 
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+# Security headers for every response.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
+# Long-term immutable caching for hashed build assets.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

@@ -1,0 +1,63 @@
+# ---------------------------------------------------------------------------
+# OKARAF — Apache config for reg.ru shared hosting (https://lumako.ru/okaraf/)
+# Upload the contents of dist/ into the "okaraf" folder inside the site root.
+# ---------------------------------------------------------------------------
+
+Options -Indexes
+DirectoryIndex index.html
+
+# --- Pretty URL for the certificates page -----------------------------------
+# /okaraf/certificates is a real directory, so Apache's DirectorySlash already
+# redirects it to /okaraf/certificates/ and serves index.html from there.
+
+# --- MIME types -------------------------------------------------------------
+<IfModule mod_mime.c>
+  AddType text/javascript              .js .mjs
+  AddType text/css                     .css
+  AddType application/json             .json
+  AddType image/webp                   .webp
+  AddType image/svg+xml                .svg
+  AddType audio/mpeg                   .mp3
+  AddType application/pdf              .pdf
+  AddType font/ttf                     .ttf
+  AddType font/woff                    .woff
+  AddType font/woff2                   .woff2
+  AddCharset UTF-8                     .html .css .js .mjs .json .svg
+</IfModule>
+
+# --- Compression ------------------------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/javascript
+  AddOutputFilterByType DEFLATE application/javascript application/json
+  AddOutputFilterByType DEFLATE image/svg+xml font/ttf font/woff font/woff2
+</IfModule>
+
+# --- Caching ----------------------------------------------------------------
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault                       "access plus 1 month"
+  ExpiresByType text/html              "access plus 0 seconds"
+  ExpiresByType image/webp             "access plus 1 year"
+  ExpiresByType image/png              "access plus 1 year"
+  ExpiresByType image/svg+xml          "access plus 1 year"
+  ExpiresByType audio/mpeg             "access plus 1 year"
+  ExpiresByType application/pdf        "access plus 1 month"
+  ExpiresByType font/ttf               "access plus 1 year"
+  ExpiresByType font/woff2             "access plus 1 year"
+</IfModule>
+
+# Hashed build output is immutable; HTML must always be revalidated.
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|mjs|css|woff2?|ttf)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+
+  # --- Security headers (mirrors the old netlify.toml) ----------------------
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+</IfModule>

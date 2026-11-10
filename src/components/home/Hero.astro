@@ -1,0 +1,46 @@
+---
+import { site } from '../../data/site';
+---
+
+<section class="hero" data-hero data-stage-name="Develop" aria-labelledby="hero-title">
+  <div class="hero-sheet" data-sheet>
+    <h1 class="hero-title" id="hero-title">Omar Karaf</h1>
+  </div>
+
+  <div class="hero-foot">
+    <div class="def">
+      <p class="def-entry" data-intro>
+        <span class="def-word">de·vel·op·er</span>
+        <span class="def-ipa">/dɪˈvel.ə.pər/</span>
+        <span class="def-pos label">noun</span>
+      </p>
+      <ol class="def-senses">
+        <li data-intro>
+          <span class="def-n">1</span>
+          <span>One who builds websites, automations and AI that make a business easy to see and easy to run.</span>
+        </li>
+        <li data-intro>
+          <span class="def-n">2</span>
+          <span>A chemical bath that turns a latent image into a visible one.</span>
+        </li>
+      </ol>
+    </div>
+
+    <dl class="meta">
+      <div data-intro-late>
+        <dt class="label">Based in</dt>
+        <dd>{site.location.city}, {site.location.country}<br /><span class="dim">{site.location.coords}</span></dd>
+      </div>
+      <div data-intro-late>
+        <dt class="label">Local time</dt>
+        <dd data-clock>--:--:-- {site.location.tzLabel}</dd>
+      </div>
+      <div data-intro-late>
+        <dt class="label">Status</dt>
+        <dd><span class="status-dot" aria-hidden="true"></span>Booking from <span class="todo">{site.availability}</span></dd>
+      </div>
+    </dl>
+  </div>
+
+  <a class="hero-cue label" href="#manifesto" data-intro-late>Scroll to develop <span aria-hidden="true">↓</span></a>
+</section>

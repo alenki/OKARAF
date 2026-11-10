@@ -1,0 +1,126 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { site } from '../../data/site';
+import '../../styles/case.css';
+
+export async function getStaticPaths() {
+  const work = (await getCollection('work')).sort((a, b) => a.data.order - b.data.order);
+  return work.map((entry, i) => ({
+    params: { slug: entry.id },
+    props: { entry, index: i, next: work[(i + 1) % work.length]! },
+  }));
+}
+
+interface Props {
+  entry: CollectionEntry<'work'>;
+  index: number;
+  next: CollectionEntry<'work'>;
+}
+
+const { entry, index, next } = Astro.props;
+const d = entry.data;
+const no = String(index + 1).padStart(2, '0');
+const { Content } = await render(entry);
+const host = new URL(d.url).host.replace(/^www\./, '');
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CreativeWork',
+  name: d.title,
+  description: d.summary,
+  url: new URL(`/work/${entry.id}/`, site.url).href,
+  creator: { '@type': 'Person', name: site.name, url: site.url },
+  dateCreated: /^\d{4}$/.test(d.year) ? d.year : undefined,
+};
+---
+
+<Base title={`${d.title} — ${site.name}`} description={d.summary} jsonLd={jsonLd} stage={`Print ${no}`}>
+  <article class="case">
+    <header class="case-head">
+      <a class="case-back label" href="/#work" data-reveal>← Back to the line</a>
+      <p class="label case-kicker" data-reveal>Print No. {no} · {d.type}</p>
+      <h1 class="case-title" data-reveal>{d.title}</h1>
+      <p class="case-summary" data-reveal>{d.summary}</p>
+      <dl class="case-label" data-reveal>
+        <div><dt class="label">Client</dt><dd>{d.client}</dd></div>
+        <div><dt class="label">Year</dt><dd>{d.year}</dd></div>
+        <div><dt class="label">Role</dt><dd>{d.role.join(', ')}</dd></div>
+        <div><dt class="label">Stack</dt><dd>{d.stack.join(', ')}</dd></div>
+        <div><dt class="label">Live</dt><dd><a href={d.url} target="_blank" rel="noopener">{host} ↗</a></dd></div>
+      </dl>
+    </header>
+
+    <figure class="case-cover">
+      <div class="case-cover-paper">
+        <Image
+          class="case-cover-img"
+          src={d.cover}
+          alt={d.alt}
+          widths={[960, 1440, 1920]}
+          sizes="(min-width: 1200px) 1100px, 94vw"
+          loading="eager"
+          fetchpriority="high"
+          style="view-transition-name: print-cover"
+        />
+      </div>
+      <figcaption class="label">No. {no} · {d.title} · {d.year}</figcaption>
+    </figure>
+
+    <section class="case-section" aria-labelledby="brief-title" data-stage-name="Latent">
+      <p class="label"><span class="idx">{'{01}'}</span> The latent image</p>
+      <h2 class="case-h2" id="brief-title">The brief</h2>
+      <div class="case-prose"><Content /></div>
+    </section>
+
+    <section class="case-section" aria-labelledby="process-title" data-stage-name="In the dark">
+      <p class="label"><span class="idx">{'{02}'}</span> In the dark</p>
+      <h2 class="case-h2" id="process-title">How it was developed</h2>
+      <ol class="case-process">
+        {d.process.map((step, i) => <li><span class="label">{String(i + 1).padStart(2, '0')}</span><p>{step}</p></li>)}
+      </ol>
+      <ul class="case-stack" aria-label="Stack">
+        {d.stack.map((s) => <li class="label">{s}</li>)}
+      </ul>
+    </section>
+
+    <section class="case-section" aria-labelledby="print-title" data-stage-name="The print">
+      <p class="label"><span class="idx">{'{03}'}</span> The print</p>
+      <h2 class="case-h2" id="print-title">Contact prints</h2>
+      <div class="case-gallery">
+        <figure class="case-shot">
+          <Image src={d.cover} alt={`${d.title}, first screen`} widths={[640, 960, 1280]} sizes="(min-width: 900px) 46vw, 92vw" loading="lazy" data-develop="2.2" />
+          <figcaption class="label">Frame A · first screen</figcaption>
+        </figure>
+        <figure class="case-shot case-shot--todo" aria-label="Screenshot placeholder">
+          <span class="label">Frame B · [mobile screens]</span>
+        </figure>
+        <figure class="case-shot case-shot--todo" aria-label="Screenshot placeholder">
+          <span class="label">Frame C · [a detail or interaction]</span>
+        </figure>
+      </div>
+    </section>
+
+    <section class="case-section" aria-labelledby="notes-title" data-stage-name="Notes">
+      <p class="label"><span class="idx">{'{04}'}</span> Exposure notes</p>
+      <h2 class="case-h2" id="notes-title">What came out of the tray</h2>
+      <dl class="case-results">
+        {d.results.map((r) => <div><dt class="case-result-value">{r.value}</dt><dd class="label">{r.label}</dd></div>)}
+      </dl>
+    </section>
+
+    <nav class="next-print" aria-label="Next project">
+      <a class="next-link" href={`/work/${next.id}/`} data-hold data-cursor="Hold to pull ↑">
+        <span class="label">Next print · hold to pull it out</span>
+        <span class="next-title" data-hold-title>{next.data.title}</span>
+        <span class="next-meta">{next.data.type} · {next.data.year}</span>
+        <span class="next-bar" aria-hidden="true"><span data-hold-bar></span></span>
+      </a>
+    </nav>
+  </article>
+</Base>
+
+<script>
+  import '../../scripts/pages/case';
+</script>

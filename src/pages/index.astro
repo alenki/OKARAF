@@ -1,0 +1,45 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Loader from '../components/Loader.astro';
+import Hero from '../components/home/Hero.astro';
+import Manifesto from '../components/home/Manifesto.astro';
+import Line from '../components/home/Line.astro';
+import Services from '../components/home/Services.astro';
+import Process from '../components/home/Process.astro';
+import About from '../components/home/About.astro';
+import Contact from '../components/home/Contact.astro';
+import { site } from '../data/site';
+import '../styles/home.css';
+
+const work = (await getCollection('work')).sort((a, b) => a.data.order - b.data.order);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.name,
+  jobTitle: 'Developer',
+  description: site.description,
+  url: site.url,
+  email: `mailto:${site.email}`,
+  image: new URL('/og/okaraf.jpg', site.url).href,
+  address: { '@type': 'PostalAddress', addressLocality: site.location.city, addressCountry: 'RU' },
+  sameAs: [site.links.github, site.links.codeforces],
+  knowsAbout: ['Web development', 'Web design', 'Business automation', 'Artificial intelligence', 'TypeScript', 'WebGL'],
+};
+---
+
+<Base jsonLd={jsonLd}>
+  <Loader slot="before" />
+  <Hero />
+  <Manifesto work={work} />
+  <Line work={work} />
+  <Services />
+  <Process />
+  <About />
+  <Contact />
+</Base>
+
+<script>
+  import '../scripts/pages/home';
+</script>

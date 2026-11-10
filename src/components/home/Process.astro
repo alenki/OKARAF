@@ -1,0 +1,29 @@
+---
+import { steps } from '../../data/site';
+---
+
+<section class="process" id="process" data-process data-stage-name="On the clock" aria-labelledby="process-title">
+  <header class="section-head">
+    <p class="label"><span class="idx">{'{04}'}</span> How I work</p>
+    <h2 class="section-title" id="process-title">Six baths,<br />always in order.</h2>
+    <p class="section-lede">
+      Every project runs through the same sequence, so nothing important gets skipped and you always know which bath we're in.
+    </p>
+  </header>
+
+  <div class="baths" data-baths>
+    <div class="baths-timer" aria-hidden="true"><span data-process-bar></span></div>
+    <ol class="baths-list">
+      {
+        steps.map((s, i) => (
+          <li class="bath" data-bath>
+            <span class="bath-no label">{`0${i + 1}`}</span>
+            <h3 class="bath-name">{s.name}</h3>
+            <p class="bath-line">{s.line}</p>
+            <p class="bath-time label">{s.time}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

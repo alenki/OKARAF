@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local tooling artifacts
+.superpowers/
+.playwright-mcp/
+
+# Astro
+.astro/

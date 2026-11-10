@@ -1,0 +1,79 @@
+---
+import { site } from '../../data/site';
+
+const kinds = ['Website', 'Automation', 'AI', 'Not sure yet'];
+const budgets = ['[Under $1,000]', '[$1,000–3,000]', '[$3,000–10,000]', '[$10,000+]'];
+---
+
+<section class="lights" id="contact" data-contact data-stage-name="Lights on" aria-labelledby="contact-title">
+  <div class="lights-grid">
+    <div class="lights-copy">
+      <p class="label lights-label"><span class="idx">{'{06}'}</span> Lights on.</p>
+      <h2 class="lights-title" id="contact-title">Let's develop<br />something.</h2>
+      <div class="lights-cta">
+        <a class="lights-email" href={`mailto:${site.email}`} data-cursor="Write ↗">{site.email}</a>
+        <button class="lights-copy-btn label" type="button" data-copy={site.email}>Copy</button>
+      </div>
+      <ul class="lights-links">
+        <li><a href={site.links.whatsapp} target="_blank" rel="noopener">WhatsApp ↗</a></li>
+        <li><a href={site.links.github} target="_blank" rel="noopener">GitHub ↗</a></li>
+        <li><a href={site.links.codeforces} target="_blank" rel="noopener">Codeforces ↗</a></li>
+      </ul>
+      <p class="lights-note">
+        Booking from <span class="todo">{site.availability}</span>. I reply <span class="todo">{site.replyTime}</span>.
+      </p>
+    </div>
+
+    <form class="brief" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-form novalidate>
+      <input type="hidden" name="form-name" value="contact" />
+      <p class="sr-only"><label>Leave this field empty <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+      <p class="label brief-head">Or send a short brief</p>
+
+      <div class="field">
+        <label for="f-name">Name</label>
+        <input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="e-name" />
+        <p class="field-error" id="e-name" data-error-for="name" aria-live="polite"></p>
+      </div>
+      <div class="field">
+        <label for="f-email">Email</label>
+        <input id="f-email" name="email" type="email" autocomplete="email" required aria-describedby="e-email" />
+        <p class="field-error" id="e-email" data-error-for="email" aria-live="polite"></p>
+      </div>
+      <fieldset class="field chips">
+        <legend>What are we developing?</legend>
+        {
+          kinds.map((k) => (
+            <label class="chip">
+              <input type="checkbox" name="what" value={k} />
+              <span>{k}</span>
+            </label>
+          ))
+        }
+      </fieldset>
+      <div class="field">
+        <label for="f-budget">Budget <span class="opt">(optional)</span></label>
+        <select id="f-budget" name="budget">
+          <option value="">Not sure yet</option>
+          {budgets.map((b) => <option value={b}>{b}</option>)}
+        </select>
+      </div>
+      <div class="field">
+        <label for="f-message">A few lines about it</label>
+        <textarea id="f-message" name="message" rows="4" required aria-describedby="e-message"></textarea>
+        <p class="field-error" id="e-message" data-error-for="message" aria-live="polite"></p>
+      </div>
+      <div class="brief-foot">
+        <button class="btn" type="submit">Send it to the darkroom</button>
+        <p
+          class="brief-status"
+          data-form-status
+          role="status"
+          aria-live="polite"
+          data-success={`Received. It's in the developer now, and I'll reply ${site.replyTime}.`}
+          data-failure={`That didn't go through. Email me at ${site.email} instead.`}
+        >
+        </p>
+      </div>
+    </form>
+  </div>
+</section>

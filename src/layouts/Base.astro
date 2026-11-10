@@ -1,0 +1,84 @@
+---
+import '@fontsource-variable/schibsted-grotesk';
+import '@fontsource/fragment-mono';
+import 'lenis/dist/lenis.css';
+import '../styles/tokens.css';
+import '../styles/base.css';
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../data/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** Root-relative path to the social preview image. */
+  image?: string;
+  jsonLd?: Record<string, unknown>;
+  stage?: string;
+  noindex?: boolean;
+}
+
+const { title = site.title, description = site.description, image = '/og/okaraf.jpg', jsonLd, stage, noindex = false } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL(image, Astro.site);
+---
+
+<!doctype html>
+<html lang="en" data-theme="safelight" data-lights="off">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <meta name="theme-color" content="#0d0c0b" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="/fonts/Fenice-Regular.woff2" as="font" type="font/woff2" crossorigin />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.brand} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    {jsonLd && <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+
+    <script is:inline>
+      // Before first paint: remembered theme, and whether this visit already saw the loader.
+      (function () {
+        var root = document.documentElement;
+        root.classList.add('js');
+        try {
+          if (localStorage.getItem('okaraf-theme') === 'lights') root.dataset.theme = 'lights';
+          if (sessionStorage.getItem('okaraf-seen') === '1') root.classList.add('seen');
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <canvas class="stage" data-stage aria-hidden="true"></canvas>
+    <div class="grain" aria-hidden="true"><div class="grain-layer"></div></div>
+    <div class="flash" data-flash aria-hidden="true"></div>
+    <slot name="before" />
+
+    <a class="skip label" href="#main">Skip to content</a>
+    <Nav stage={stage} />
+    <main id="main" tabindex="-1">
+      <slot />
+    </main>
+    <Footer />
+
+    <div class="cursor" data-cursor-root aria-hidden="true">
+      <span class="cursor-dot"></span><span class="cursor-label label" data-cursor-label></span>
+    </div>
+    <p class="timer label" data-timer aria-hidden="true">Dev 00:00 / 06:00</p>
+  </body>
+</html>

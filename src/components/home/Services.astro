@@ -1,0 +1,135 @@
+---
+import { Image } from 'astro:assets';
+import galereya from '../../assets/work/galereya.png';
+import { services } from '../../data/site';
+---
+
+<section class="services" id="services" data-stage-name="In the tray" aria-labelledby="services-title">
+  <header class="section-head">
+    <p class="label"><span class="idx">{'{03}'}</span> What I develop</p>
+    <h2 class="section-title" id="services-title">Three baths,<br />one darkroom.</h2>
+    <p class="section-lede">
+      Websites are what people see. Automations and AI keep the business running behind them. I build all three, so they're made to fit together.
+    </p>
+  </header>
+
+  {
+    services.map((s, i) => (
+      <article class={`service service--${s.id}`} aria-labelledby={`service-${s.id}`}>
+        <div class="service-copy">
+          <p class="label service-kicker">
+            <span class="idx">{`0${i + 1}`}</span> {s.darkroom}
+          </p>
+          <h3 class="service-title" id={`service-${s.id}`} data-focus>
+            <span class="focus-sharp">{s.name}</span>
+            <span class="focus-soft" aria-hidden="true">
+              {s.name}
+            </span>
+          </h3>
+          <p class="service-line">{s.line}</p>
+          <ul class="service-list">
+            {s.items.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="service-demo">
+          {s.id === 'websites' && (
+            <figure class="demo-print" data-demo="print">
+              <div class="demo-print-paper">
+                <Image class="demo-print-img" src={galereya} alt="The Galereya mall website, developing out of its own wireframe" widths={[640, 960, 1280]} sizes="(min-width: 1024px) 44vw, 90vw" loading="lazy" />
+                <svg class="wireframe" data-wireframe viewBox="0 0 1421 993" preserveAspectRatio="none" aria-hidden="true">
+                  <path d="M0 52h1421" />
+                  <rect x="175" y="14" width="80" height="24" />
+                  <rect x="620" y="10" width="180" height="32" />
+                  <rect x="1152" y="6" width="89" height="38" />
+                  <rect x="178" y="71" width="170" height="48" />
+                  <rect x="1080" y="71" width="170" height="48" />
+                  <rect x="74" y="151" width="1280" height="431" rx="20" />
+                  <path d="M74 151 1354 582M1354 151 74 582" class="wf-faint" />
+                  <rect x="149" y="451" width="365" height="179" rx="14" />
+                  <circle cx="685" cy="633" r="5" />
+                  <circle cx="716" cy="633" r="5" />
+                  <circle cx="745" cy="633" r="5" />
+                  <rect x="178" y="694" width="322" height="55" />
+                  <rect x="553" y="694" width="322" height="55" />
+                  <rect x="928" y="694" width="322" height="55" />
+                  <rect x="178" y="765" width="322" height="55" />
+                  <rect x="553" y="765" width="322" height="55" />
+                  <rect x="928" y="765" width="322" height="55" />
+                  <rect x="178" y="882" width="80" height="26" />
+                  <rect x="197" y="937" width="177" height="70" />
+                  <rect x="411" y="937" width="177" height="70" />
+                  <rect x="626" y="937" width="177" height="70" />
+                  <rect x="840" y="937" width="177" height="70" />
+                  <rect x="1054" y="937" width="177" height="70" />
+                </svg>
+              </div>
+              <figcaption class="demo-foot label">Structure first, then the surface · Galereya</figcaption>
+            </figure>
+          )}
+
+          {s.id === 'automations' && (
+            <div class="demo-pipeline" data-demo="pipeline">
+              <p class="demo-head label">
+                <span class="demo-dot" aria-hidden="true"></span> Example run · a new order
+              </p>
+              <ol class="pipe">
+                <li class="pipe-step" data-step>
+                  <span class="pipe-tray label">01</span>
+                  <span class="pipe-name">Trigger</span>
+                  <span class="pipe-what">A new order comes in on the website</span>
+                </li>
+                <li class="pipe-step" data-step>
+                  <span class="pipe-tray label">02</span>
+                  <span class="pipe-name">Read</span>
+                  <span class="pipe-what">AI reads the order and the customer's note</span>
+                </li>
+                <li class="pipe-step" data-step>
+                  <span class="pipe-tray label">03</span>
+                  <span class="pipe-name">Record</span>
+                  <span class="pipe-what">A row lands in the Google Sheet</span>
+                </li>
+                <li class="pipe-step" data-step>
+                  <span class="pipe-tray label">04</span>
+                  <span class="pipe-name">Notify</span>
+                  <span class="pipe-what">The owner gets it on Telegram</span>
+                </li>
+              </ol>
+              <pre class="pipe-log" data-log aria-hidden="true"></pre>
+              <template data-log-lines>
+                <li>14:02:11  order #2213 received · 2 × flat white</li>
+                <li>14:02:12  read › pickup 14:30, “oat milk, please”</li>
+                <li>14:02:12  sheets › orders › row 418 added</li>
+                <li>14:02:13  telegram › @owner ✓ delivered</li>
+              </template>
+              <p class="demo-foot label">Runs all night · nobody copies anything by hand · example data</p>
+            </div>
+          )}
+
+          {s.id === 'ai' && (
+            <div class="demo-latent" data-demo="latent">
+              <p class="demo-head label">
+                <span class="demo-dot" aria-hidden="true"></span> Example · a support assistant
+              </p>
+              <div class="latent-msg latent-q">
+                <span class="label">Customer</span>
+                <p data-question>Where's my order #2213?</p>
+              </div>
+              <div class="latent-space">
+                <canvas data-noise aria-hidden="true"></canvas>
+                <span class="label latent-tools">reading · orders · delivery times</span>
+              </div>
+              <div class="latent-msg latent-a">
+                <span class="label">Assistant</span>
+                <p data-answer>It left the warehouse this morning and arrives Thursday, 14:00. Want a reminder the day before?</p>
+              </div>
+              <p class="demo-foot label">Tested on [250] real questions before launch · example data</p>
+            </div>
+          )}
+        </div>
+      </article>
+    ))
+  }
+</section>

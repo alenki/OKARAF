@@ -1,0 +1,47 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Print from './Print.astro';
+import Peg from './Peg.astro';
+import { site } from '../../data/site';
+
+interface Props {
+  work: CollectionEntry<'work'>[];
+}
+const { work } = Astro.props;
+const count = String(work.length).padStart(2, '0');
+---
+
+<section class="line" id="work" data-line data-stage-name="Prints" aria-labelledby="work-title">
+  <div class="line-pin" data-line-pin>
+    <div class="line-track" data-line-track>
+      <svg class="line-wire" aria-hidden="true"><path data-wire-path d=""></path><circle data-wire-nail r="3.5" cx="-20" cy="-20"></circle></svg>
+
+      <header class="line-head">
+        <p class="label"><span class="idx">{'{02}'}</span> Selected work</p>
+        <h2 class="line-title" id="work-title">Prints,<br />hung to dry<sup class="count">{`{${count}}`}</sup></h2>
+        <p class="line-lede">
+          {work.length} websites, each one a latent image somebody brought in. Hover to lift one off the line, click to see how it was developed.
+        </p>
+        <a class="line-all label" href="/archive">The full contact sheet →</a>
+      </header>
+
+      {work.map((entry, i) => <Print entry={entry} index={i} />)}
+
+      <figure class="print print--blank" data-print style="--drop:30px; --tilt:1.1">
+        <div class="print-swing" data-swing>
+          <Peg />
+          <a class="print-paper print-blank" data-paper href="#contact" data-cursor="Book a slot ↓">
+            <span class="label blank-frame">Frame {String(work.length + 1).padStart(2, '0')}</span>
+            <span class="blank-title">Unexposed.</span>
+            <span class="blank-cta">This one could be yours.</span>
+          </a>
+        </div>
+        <figcaption class="print-label">
+          <span class="label">No. {String(work.length + 1).padStart(2, '0')}</span>
+          <span class="print-name">Your project</span>
+          <span class="print-meta">Booking from {site.availability}</span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,40 @@
+---
+const onHome = Astro.url.pathname === '/';
+const href = (id: string) => (onHome ? `#${id}` : `/#${id}`);
+const links = [
+  { id: 'work', label: 'Work', no: '02' },
+  { id: 'services', label: 'Services', no: '03' },
+  { id: 'about', label: 'About', no: '05' },
+  { id: 'contact', label: 'Contact', no: '06' },
+];
+interface Props {
+  stage?: string;
+}
+const { stage = 'Develop' } = Astro.props;
+---
+
+<header class="nav" data-nav>
+  <a class="nav-mark" href="/" aria-label="OKARAF, home">OKARAF</a>
+  <span class="nav-stage label" data-stage-label aria-hidden="true">{stage}</span>
+  <nav class="nav-primary" aria-label="Primary">
+    <ul class="nav-links">
+      {links.map((l) => <li><a href={href(l.id)}>{l.label}</a></li>)}
+    </ul>
+  </nav>
+  <button class="nav-theme" type="button" data-theme-toggle aria-pressed="false" aria-label="Safelight: turn the lights on (light theme)">
+    <span class="nav-light" aria-hidden="true"></span>
+    <span class="nav-theme-label label" data-theme-label>Safelight</span>
+  </button>
+  <button class="nav-menu label" type="button" data-menu-toggle aria-expanded="false" aria-controls="menu">Menu</button>
+</header>
+
+<div class="menu" id="menu" data-menu hidden>
+  <nav aria-label="Menu">
+    <ol class="menu-links">
+      <li><a href="/"><span class="label">01</span>Develop</a></li>
+      {links.map((l) => <li><a href={href(l.id)}><span class="label">{l.no}</span>{l.label}</a></li>)}
+      <li><a href="/archive"><span class="label">07</span>Archive</a></li>
+    </ol>
+  </nav>
+  <p class="menu-foot label">Nalchik · <span data-clock>--:--:--</span></p>
+</div>

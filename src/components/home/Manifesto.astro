@@ -1,0 +1,21 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  work: CollectionEntry<'work'>[];
+}
+const { work } = Astro.props;
+const [a, b, c] = work;
+---
+
+<section class="manifesto" id="manifesto" data-manifesto data-stage-name="Latent" aria-label="Manifesto">
+  <p class="label manifesto-label"><span class="idx">{'{01}'}</span> The latent image</p>
+  <p class="sr-only">Every business has a latent image: the clearer, faster, better-run version of itself. It's already there. It just needs developing.</p>
+  <p class="manifesto-text" data-manifesto-text aria-hidden="true">
+    Every business {a && <span class="thumb"><Image src={a.data.cover} alt="" width={180} loading="lazy" /></span>} has a latent image:
+    the clearer, faster, better-run {b && <span class="thumb"><Image src={b.data.cover} alt="" width={180} loading="lazy" /></span>} version
+    of itself. It's already there. It just needs {c && <span class="thumb"><Image src={c.data.cover} alt="" width={180} loading="lazy" /></span>}
+    <em>developing.</em>
+  </p>
+</section>

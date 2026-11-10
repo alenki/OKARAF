@@ -1,46 +1,42 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+Guidance for Claude Code when working in this repository.
 
-## Project Overview
+## What this is
 
-OKARAF is a portfolio website for web developer Omar Karaf (okaraf.ru), built with React + TypeScript + Vite. The hero section features an interactive WebGL dithered wave animation using Three.js with custom GLSL shaders. Deployed on Netlify.
+OKARAF, the portfolio of Omar Karaf (websites, automations, AI). The concept is a **darkroom**: a *developer* is also the chemical that turns a latent image into a visible one. Things on the page *develop*: the hero name out of the old site's dither noise, project screenshots out of blank paper, the contact section when the lights come on. English only.
 
 ## Commands
 
-- `npm run dev` — Start dev server on port 7777
-- `npm run build` — TypeScript check + Vite production build
-- `npm run lint` — ESLint across the project
-- `npm run preview` — Preview production build locally
+- `npm run dev` — dev server on http://localhost:7777
+- `npm run build` — `astro check` (types + templates) then static build to `dist/`
+- `npm run preview` — serve the built site
+
+Astro is pinned to **7.3.x** because 7.4+ requires Node ≥ 22.23.4 (this machine has 22.21). TypeScript is pinned to 6.x for `@astrojs/check`.
 
 ## Architecture
 
-**Hybrid app**: The main site is a React+Three.js app mounted into a mostly static HTML page. Only the hero background (`#background` div) is React-rendered; the rest of `index.html` (nav, project grid, contacts) is plain HTML/CSS/JS.
+- **Astro, static output.** Pages: `src/pages/index.astro`, `work/[slug].astro`, `archive.astro`, `404.astro`. Layout: `src/layouts/Base.astro` (SEO, theme bootstrap, canvas, nav, footer).
+- **Content:** projects are a content collection (`src/content.config.ts`, `src/content/work/*.md`). Everything else (contacts, values, credentials, services, steps) is in `src/data/site.ts`.
+- **One WebGL canvas** (OGL) sits *behind* the page (`.stage`, z-index 0). DOM content is above it, so anything drawn in WebGL needs a transparent DOM "window" (e.g. print borders are CSS borders, the `<img>` inside is `opacity: 0` when `html.gl`).
+  - `src/scripts/stage/Stage.ts`: renderer, ortho camera in CSS px (meshes at `(x, -y)`).
+  - `Tray.ts`: the hero. Old wave field → ripple sim (half-float) → composite. Latent text from `latent.ts`.
+  - `Develop.ts`: any image that develops (prints, demos, case shots). Owners write screen geometry + progress each frame; `trackImage()` handles plain `img[data-develop]`.
+  - Shaders in `stage/shaders/`; `common.glsl` is the noise + Bayer dither ported from the old `Dither.tsx`.
+- **Motion:** GSAP (ScrollTrigger, SplitText) + Lenis (`src/scripts/motion/scroll.ts`). One ticker loop in `src/scripts/app.ts`: page frame callbacks, then `stage.render`.
+- **Per-page entry scripts:** `src/scripts/pages/{home,case,archive}.ts`, all starting with `boot()` from `app.ts`.
+- **Themes:** `html[data-theme="safelight"|"lights"]` (visitor choice, persisted in localStorage) and `html[data-lights="on"]` (contact section moment). WebGL colours for both live in `src/scripts/theme.ts` (`LOOKS`); CSS tokens in `src/styles/tokens.css`.
+- **Page transitions:** native cross-document view transitions (`@view-transition` in `global.css`). On the home page, `pageswap` gives the clicked print `view-transition-name: print-cover` so it morphs into the case-study cover.
 
-**Dual entry points** (configured in `vite.config.ts`):
-- `index.html` — Main portfolio page
-- `certificates/index.html` — Certificates showcase (standalone HTML, no React)
+## Conventions and gotchas
 
-**React scope is narrow**: `src/main.tsx` mounts a single `<Dither>` component into the `#background` element. There is no router, no global state management, no API calls.
+- Placeholders are bracketed (`[Jan 2027]`) and listed in `PLACEHOLDERS.md`. Keep that file current.
+- Don't use `data-lights` as a hook on elements: `[data-lights]` matches `<html>`. The contact section uses `data-contact`.
+- `compressHTML: true` in `astro.config.mjs` is deliberate: Astro 7's default JSX-style whitespace stripping eats spaces between inline elements.
+- YAML in `src/content/work/*.md`: quote list items that contain `: `.
+- Everything must work without WebGL (`html.no-gl`) and with `prefers-reduced-motion` (no pinning, no physics, images shown developed).
+- GitHub Desktop stashes uncommitted work when switching branches. Work lives on `new-portfolio`.
 
-### Key component: `src/components/Dither.tsx`
+## Deployment
 
-This is the only React component. It contains:
-- Two inline GLSL shaders (vertex + fragment) for animated noise-based waves
-- A dithering post-processing effect using an 8x8 Bayer matrix
-- Mouse interaction that distorts the wave field via shader uniforms
-- Uses `@react-three/fiber` Canvas, `useFrame` for the animation loop, and `@react-three/postprocessing` EffectComposer
-
-### Non-React code
-
-- `src/js/script.js` — Loading screen, music toggle (mute/unmute), navbar hide-on-scroll
-- `src/js/lenis.js` — Smooth scrolling via Lenis library
-- `src/css/main.css` — Animations (loading counter), custom Fenice font, layout
-- `src/sass/BootstrapSASS.scss` — Bootstrap customization (compiled to `src/css/BootstrapSASS.css`)
-
-### Deployment
-
-Netlify with redirects in `netlify.toml`:
-- `/certificates` → `/certificates/index.html`
-- Domain redirect from `okaraf.netlify.app` → `okaraf.ru`
-- SPA fallback `/*` → `/index.html`
+Netlify (`netlify.toml`): build `npm run build`, publish `dist`, `/certificates` → `/archive/` (301), immutable caching for `/_astro/*` and `/fonts/*`. The contact form uses Netlify Forms (`name="contact"`).

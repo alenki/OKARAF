@@ -1,41 +1,4 @@
 # OKARAF
 
-Portfolio website for web developer **Omar Karaf** ([okaraf.ru](https://okaraf.ru)).
-
-Built with **React + TypeScript + Vite**. The hero section features an interactive
-WebGL "dithered wave" animation rendered with Three.js and custom GLSL shaders.
-Deployed on **Netlify**.
-
-## Architecture
-
-A hybrid app: the page is mostly static HTML/CSS/JS, and React renders **only** the
-animated hero background (the `#background` element). There is no router and no
-global state.
-
-- `index.html` — main portfolio page (loader, music toggle, hero, project grid, footer)
-- `certificates/index.html` — standalone certificates page (no React)
-- `src/main.tsx` — mounts the `<Dither>` background into `#background`
-- `src/components/Dither.tsx` — the WebGL dithered-wave component (the only React component)
-- `src/js/script.js` — music toggle + navbar hide-on-scroll
-- `src/js/lenis.js` — smooth scrolling via [Lenis](https://github.com/darkroomengineering/lenis)
-- `src/css/main.css` — custom styles, fonts, animations
-- `src/sass/BootstrapSASS.scss` — Bootstrap customization (compiled to `src/css/BootstrapSASS.css`)
-
-Both HTML pages are configured as separate Vite entry points in `vite.config.ts`.
-
-## Commands
-
-| Command | Description |
-| --- | --- |
-| `npm run dev` | Start the dev server on port **7777** |
-| `npm run build` | Type-check (`tsc -b`) and build for production |
-| `npm run preview` | Preview the production build locally |
-| `npm run lint` | Run ESLint over the project |
-
-## Deployment
-
-Netlify, configured in `netlify.toml`:
-
-- `/certificates` is served from `certificates/index.html`
-- The `okaraf.netlify.app` subdomain is 301-redirected to `okaraf.ru`
-- Security headers are applied to all routes; hashed assets are cached immutably
+## Frontend aesthetics
+You tend to converge toward generic, "on distribution" outputs. In frontend design, this creates what users call the "AI slop" aesthetic. Avoid this: make creative, distinctive frontends that surprise and delight. Focus on: Typography: Choose fonts that are beautiful, unique, and interesting. Avoid generic fonts like Arial and Inter; opt instead for distinctive choices that elevate the frontend's aesthetics. Color & Theme: Commit to a cohesive aesthetic. Use CSS variables for consistency. Dominant colors with sharp accents outperform timid, evenly-distributed palettes. Draw from IDE themes and cultural aesthetics for inspiration. Motion: Use animations for effects and micro-interactions. Prioritize CSS-only solutions for HTML. Use Motion library for React when available. Focus on high-impact moments: one well-orchestrated page load with staggered reveals (animation-delay) creates more delight than scattered micro-interactions. Backgrounds: Create atmosphere and depth rather than defaulting to solid colors. Layer CSS gradients, use geometric patterns, or add contextual effects that match the overall aesthetic. Avoid generic AI-generated aesthetics:- Overused font families (Inter, Roboto, Arial, system fonts)- Clichéd color schemes (particularly purple gradients on white backgrounds)- Predictable layouts and component patterns- Cookie-cutter design that lacks context-specific character Interpret creatively and make unexpected choices that feel genuinely designed for the context. Vary between light and dark themes, different fonts, different aesthetics. You still tend to converge on common choices (Space Grotesk, for example) across generations. Avoid this: it is critical that you think outside the box!

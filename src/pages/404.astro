@@ -1,0 +1,43 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+---
+
+<Base title={`Overexposed — ${site.name}`} description="This frame didn't develop." stage="Overexposed" noindex>
+  <section class="overexposed">
+    <p class="label">Error 404 · frame not found</p>
+    <h1 class="overexposed-title">Overexposed.</h1>
+    <p class="overexposed-text">This frame didn't develop. The page you're looking for isn't on the line, or it never existed.</p>
+    <p><a class="btn" href="/">Back to the darkroom</a></p>
+  </section>
+</Base>
+
+<style>
+  .overexposed {
+    min-height: 100svh;
+    display: grid;
+    align-content: center;
+    gap: 22px;
+    padding: 140px var(--margin) 80px;
+  }
+  .overexposed-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(4rem, 16vw, 16rem);
+    line-height: 0.85;
+    letter-spacing: -0.04em;
+    color: var(--fg);
+    opacity: 0.16;
+    filter: blur(1.5px);
+  }
+  .overexposed-text {
+    max-width: 44ch;
+    font-size: 1.15rem;
+  }
+</style>
+
+<script>
+  import { boot } from '../scripts/app';
+  document.documentElement.dataset.lights = 'on';
+  boot();
+</script>

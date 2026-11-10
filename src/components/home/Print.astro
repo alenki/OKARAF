@@ -1,0 +1,37 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import Peg from './Peg.astro';
+
+interface Props {
+  entry: CollectionEntry<'work'>;
+  index: number;
+}
+const { entry, index } = Astro.props;
+const d = entry.data;
+const no = String(index + 1).padStart(2, '0');
+---
+
+<figure class="print" data-print style={`--drop:${d.drop}px; --tilt:${d.tilt}`}>
+  <div class="print-swing" data-swing>
+    <Peg />
+    <a class="print-paper" data-paper data-print-link href={`/work/${entry.id}/`} data-cursor="Open the print ↗">
+      <Image
+        class="print-img"
+        src={d.cover}
+        alt={d.alt}
+        widths={[640, 960, 1280, 1600]}
+        sizes="(min-width: 1024px) 36vw, 88vw"
+        loading="eager"
+        fetchpriority="low"
+        decoding="async"
+      />
+      <span class="sr-only">Read the case study: {d.title}</span>
+    </a>
+  </div>
+  <figcaption class="print-label">
+    <span class="label">No. {no}</span>
+    <span class="print-name">{d.title}</span>
+    <span class="print-meta">{d.type} · {d.year}</span>
+  </figcaption>
+</figure>

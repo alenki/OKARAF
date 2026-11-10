@@ -1,27 +1,37 @@
-# Serve the certificates page for the pretty URL (no trailing slash).
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  # Astro 7.3 needs Node 22.12+.
+  NODE_VERSION = "22"
+
+# The old site's certificates page now lives in the archive.
 [[redirects]]
   from = "/certificates"
-  to = "/certificates/index.html"
-  status = 200
-
-# Canonical-domain redirect: send the Netlify subdomain to the primary domain.
-[[redirects]]
-  from = "https://okaraf.netlify.app/*"
-  to = "https://okaraf.ru/:splat"
+  to = "/archive/"
   status = 301
-  force = true
 
-# Security headers for every response.
+[[redirects]]
+  from = "/certificates/index.html"
+  to = "/archive/"
+  status = 301
+
+# Fingerprinted build output and fonts never change under the same URL.
+[[headers]]
+  for = "/_astro/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
 [[headers]]
   for = "/*"
   [headers.values]
     X-Content-Type-Options = "nosniff"
-    X-Frame-Options = "SAMEORIGIN"
+    X-Frame-Options = "DENY"
     Referrer-Policy = "strict-origin-when-cross-origin"
-    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
-
-# Long-term immutable caching for hashed build assets.
-[[headers]]
-  for = "/assets/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), interest-cohort=()"

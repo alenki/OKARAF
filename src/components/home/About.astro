@@ -1,0 +1,63 @@
+---
+import { certificateUrl, credentials, site } from '../../data/site';
+
+// A test strip doubles the exposure on every band.
+const exposures = ['2 s', '4 s', '8 s', '16 s', '32 s', '64 s'];
+---
+
+<section class="about" id="about" data-stage-name="Safelight" aria-labelledby="about-title">
+  <div class="about-grid">
+    <figure class="portrait">
+      <div class="portrait-sheet" role="img" aria-label="Portrait of Omar Karaf, not yet added">
+        <span class="label">Frame 07</span>
+        <span class="portrait-note">Portrait<br />to be developed</span>
+        <span class="label portrait-todo">[Add a photo]</span>
+      </div>
+      <figcaption class="label">{site.name} · {site.location.city}</figcaption>
+    </figure>
+
+    <div class="about-copy">
+      <p class="label"><span class="idx">{'{05}'}</span> Behind the safelight</p>
+      <h2 class="section-title" id="about-title">Omar Karaf,<br />developer.</h2>
+      <p class="about-lede">
+        I build websites, automations and AI tools for businesses that want to look sharp and run smoothly. I'm based in Nalchik, at the foot of Elbrus,
+        and I work with clients anywhere.
+      </p>
+      <p class="about-text">
+        I came to the web through competitive programming and AI olympiads, so I care as much about the parts nobody sees as the parts everybody does.
+        <span class="todo">[Two or three more sentences, in your own words.]</span>
+      </p>
+      <dl class="facts">
+        <div><dt class="label">Based in</dt><dd>{site.location.city}, {site.location.country} · {site.location.tzLabel}</dd></div>
+        <div><dt class="label">Works</dt><dd>Remotely, worldwide</dd></div>
+        <div><dt class="label">Languages</dt><dd><span class="todo">[Russian, English]</span></dd></div>
+        <div><dt class="label">Russian AI Cup 2023</dt><dd>21st of 8,292 · finalist</dd></div>
+        <div><dt class="label">Codeforces</dt><dd><a href={site.links.codeforces} target="_blank" rel="noopener">Alenki_ ↗</a></dd></div>
+      </dl>
+    </div>
+  </div>
+
+  <div class="strips" aria-labelledby="strips-title">
+    <div class="strips-head">
+      <p class="label">Test strip</p>
+      <h3 class="strips-title" id="strips-title">The exposures that taught me.</h3>
+      <a class="label strips-all" href="/archive">All credentials →</a>
+    </div>
+    <ol class="strip">
+      {
+        credentials.map((c, i) => (
+          <li class="strip-band" style={`--i:${i}`}>
+            <a class="strip-link" href={certificateUrl(c.file, 'pdf')} target="_blank" rel="noopener" data-cursor="Open PDF ↗">
+              <span class="strip-exposure label">{exposures[i]}</span>
+              <span class="strip-title">{c.title}</span>
+              <span class="strip-detail">
+                {c.issuer} · {c.detail}
+              </span>
+              <img class="strip-preview" src={certificateUrl(c.file, 'webp')} alt="" loading="lazy" decoding="async" width="320" height="226" />
+            </a>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

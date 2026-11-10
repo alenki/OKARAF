@@ -1,0 +1,79 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { certificateUrl, credentials, site } from '../data/site';
+import '../styles/archive.css';
+
+const work = (await getCollection('work')).sort((a, b) => a.data.order - b.data.order);
+// Grease-pencil picks on the contact sheet.
+const picks = new Set([0, 1]);
+---
+
+<Base title={`Archive — ${site.name}`} description="Every print and every credential: the contact sheet and test strips behind Omar Karaf's work." stage="Archive">
+  <div class="archive">
+    <header class="archive-head">
+      <p class="label" data-reveal><span class="idx">{'{07}'}</span> Archive</p>
+      <h1 class="archive-title" data-reveal>Contact sheet<br />&amp; test strips.</h1>
+      <p class="archive-lede" data-reveal>Every frame from the darkroom so far, and the training behind them. Hover the sheet with the loupe.</p>
+    </header>
+
+    <section class="sheet" aria-labelledby="sheet-title" data-stage-name="Contact sheet">
+      <h2 class="sr-only" id="sheet-title">Contact sheet</h2>
+      <p class="sheet-edge label" aria-hidden="true">OKARAF 400 · SAFETY FILM · {work.length + 1} EXP.</p>
+      <ol class="sheet-grid" data-sheet-grid>
+        {
+          work.map((entry, i) => (
+            <li class="frame" data-frame>
+              <a href={`/work/${entry.id}/`} class="frame-link">
+                <span class="frame-no label">▸ {i + 1}{i % 2 ? 'A' : ''}</span>
+                <Image src={entry.data.cover} alt={entry.data.alt} widths={[480, 720, 960]} sizes="(min-width: 900px) 30vw, 90vw" loading="lazy" />
+                <span class="frame-title">{entry.data.title}</span>
+                <span class="frame-meta label">{entry.data.type} · {entry.data.year}</span>
+              </a>
+              {picks.has(i) && (
+                <svg class="grease" viewBox="0 0 200 140" preserveAspectRatio="none" aria-hidden="true">
+                  <path data-grease d="M30 18C80 2 168 4 188 40c18 34-4 82-60 92-58 10-118-6-122-52C2 40 40 14 98 10" />
+                </svg>
+              )}
+            </li>
+          ))
+        }
+        <li class="frame frame--blank">
+          <a href="/#contact" class="frame-link">
+            <span class="frame-no label">▸ {work.length + 1}</span>
+            <span class="frame-empty">Unexposed</span>
+            <span class="frame-title">Your project</span>
+            <span class="frame-meta label">Booking from {site.availability}</span>
+          </a>
+        </li>
+      </ol>
+      <div class="loupe" data-loupe aria-hidden="true"></div>
+    </section>
+
+    <section class="creds" aria-labelledby="creds-title" data-stage-name="Test strips">
+      <p class="label"><span class="idx">{'{08}'}</span> Test strips</p>
+      <h2 class="creds-title" id="creds-title">Credentials</h2>
+      <ol class="creds-list">
+        {
+          credentials.map((c) => (
+            <li class="cred">
+              <a class="cred-link" href={certificateUrl(c.file, 'pdf')} target="_blank" rel="noopener">
+                <img class="cred-img" src={certificateUrl(c.file, 'webp')} alt={`${c.title} certificate`} loading="lazy" decoding="async" width="480" height="339" />
+                <span class="cred-title">{c.title}</span>
+                <span class="cred-meta label">
+                  {c.issuer} · {c.detail} · {c.year}
+                </span>
+                <span class="cred-open label">Open PDF ↗</span>
+              </a>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+  </div>
+</Base>
+
+<script>
+  import '../scripts/pages/archive';
+</script>

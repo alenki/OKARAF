@@ -1,0 +1,47 @@
+---
+import Suit from './Suit.astro';
+import { site, values } from '../data/site';
+
+const year = new Date().getFullYear();
+// Film edge print: frame numbers run along the strip like on real negatives.
+const frames = values.map((v, i) => ({ ...v, frame: `${12 + Math.floor(i / 2)}${i % 2 ? 'A' : ''}` }));
+---
+
+<footer class="footer" data-stage-name="Dry">
+  <div class="film" aria-hidden="true">
+    <div class="film-track" data-marquee>
+      {
+        [0, 1].map(() => (
+          <div class="film-run">
+            <span class="film-brand">OKARAF 400</span>
+            {frames.map((v) => (
+              <span class="film-item">
+                <span class="film-frame">▸ {v.frame}</span>
+                {v.word.toUpperCase()}
+                <Suit name={v.suit} size={15} />
+              </span>
+            ))}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+  <p class="sr-only">Values: {values.map((v) => v.word).join(', ')}.</p>
+
+  <div class="footer-body">
+    <p class="footer-sign">when in doubt, look intelligent.</p>
+    <ul class="footer-links">
+      <li><a href={`mailto:${site.email}`}>Email</a></li>
+      <li><a href={site.links.whatsapp} target="_blank" rel="noopener">WhatsApp ↗</a></li>
+      <li><a href={site.links.github} target="_blank" rel="noopener">GitHub ↗</a></li>
+      <li><a href={site.links.codeforces} target="_blank" rel="noopener">Codeforces ↗</a></li>
+      <li><a href="/archive">Archive</a></li>
+    </ul>
+    <p class="footer-meta label">
+      <span>© {year} {site.name}</span>
+      <span>{site.location.city} <span data-clock>--:--:--</span></span>
+      <a href="#main" data-rewind>Rewind ↑</a>
+    </p>
+  </div>
+  <p class="footer-mark" aria-hidden="true"></p>
+</footer>

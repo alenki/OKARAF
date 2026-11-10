@@ -1,0 +1,95 @@
+/* Design tokens.
+   Components only use the semantic tokens (--bg, --fg, --accent...).
+   The visitor's theme (html[data-theme]) or the contact section's
+   "lights on" moment (html[data-lights]) remaps them. */
+
+@font-face {
+  font-family: 'Fenice';
+  src:
+    url('/fonts/Fenice-Regular.woff2') format('woff2'),
+    url('/fonts/Fenice-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* palette */
+  --ink: #0d0c0b;
+  --ink-2: #171513;
+  --paper: #efeae1;
+  --paper-2: #e2dcd1;
+  --silver: #8e8981;
+  --silver-dark: #6b665f;
+  --graphite: #3a3632;
+  --safelight: #e5321e;
+  --safelight-on-ink: #ff5a44;
+  --safelight-on-paper: #c42614;
+
+  /* type */
+  --font-display: 'Fenice', 'Bodoni 72', Didot, 'Times New Roman', serif;
+  --font-sans: 'Schibsted Grotesk Variable', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'Fragment Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --fs-label: 0.75rem;
+  --fs-display-l: clamp(3rem, 7vw, 7.75rem);
+  --fs-display-m: clamp(2.25rem, 4.6vw, 4.75rem);
+  --fs-display-s: clamp(1.75rem, 2.6vw, 2.6rem);
+
+  /* space */
+  --margin: clamp(16px, 3.5vw, 56px);
+  --gutter: clamp(16px, 2vw, 28px);
+  --section: clamp(112px, 16vw, 220px);
+
+  /* motion */
+  --ease-develop: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-pull: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* semantic: safelight (default) */
+  --bg: var(--ink);
+  --bg-2: var(--ink-2);
+  --fg: var(--paper);
+  --fg-2: var(--silver);
+  --rule: var(--graphite);
+  --accent: var(--safelight);
+  --accent-text: var(--safelight-on-ink);
+  --wire: #4d4642;
+  --peg: #1c1918;
+  --peg-edge: #5e5650;
+  --print-shadow: 0 34px 60px -26px rgb(0 0 0 / 0.75);
+  --print-latent: #8f2c20; /* a print's paper under the safelight, before it develops */
+  --print-paper: #f3efe7; /* the same paper once developed */
+  --fallback-paper: #b8402f;
+  --fallback-ink: #160504;
+  --grain-opacity: 0.085;
+
+  color-scheme: dark;
+}
+
+/* The room with the lights on: chosen by the visitor, or reached at the contact section. */
+html[data-theme='lights'],
+html[data-lights='on'] {
+  --bg: var(--paper);
+  --bg-2: var(--paper-2);
+  --fg: var(--ink);
+  --fg-2: var(--silver-dark);
+  --rule: #cfc8bc;
+  --accent-text: var(--safelight-on-paper);
+  --grain-opacity: 0.045;
+  color-scheme: light;
+}
+
+/* Lights as a theme also changes how prints look before they develop. */
+html[data-theme='lights'] {
+  --wire: #9a948b;
+  --peg: #f7f4ee;
+  --peg-edge: #aaa397;
+  --print-shadow: 0 26px 50px -26px rgb(40 30 20 / 0.38);
+  --print-latent: #f9f7f2;
+  --print-paper: #f9f7f2;
+  --fallback-paper: #f8f6f1;
+  --fallback-ink: var(--ink);
+}
+
+html[data-theme='lights'][data-lights='on'] {
+  --bg: #fbfaf7;
+}

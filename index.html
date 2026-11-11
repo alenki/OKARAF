@@ -1,300 +1,247 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/okaraf.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="keywords" content="omar karaf, omar, karaf, omar karaf nalchik, karaf nalchik, nalchik, karaf company, web developer, portfolio">
-    <meta
-      name="description"
-      content="Official OKARAF website — Omar Karaf's developer portfolio.">
+    <!-- @include head.html title="OKARAF — Omar Karaf, web developer" description="Portfolio of Omar Karaf, a web developer from Nalchik. Websites for a shopping mall, a car service, a café and a musician, plus one coffee shop he made up." path="/" robots="index, follow" -->
+    <meta name="keywords" content="omar karaf, omar, karaf, omar karaf nalchik, karaf nalchik, nalchik, karaf company, web developer, portfolio" />
 
-      <!-- SEO: Robots & Locale -->
-      <meta name="robots" content="index, follow">
-      <meta http-equiv="Content-Language" content="en">
-
-      <!-- Open Graph -->
-      <meta property="og:type" content="website">
-      <meta property="og:site_name" content="OKARAF">
-      <meta property="og:locale" content="en_US">
-      <meta property="og:title" content="OKARAF">
-      <meta property="og:description" content="Official OKARAF website — Omar Karaf's developer portfolio.">
-      <meta property="og:image" content="/okaraf.png">
-      <!-- Twitter -->
-      <meta name="twitter:card" content="/okaraf.png">
-      <meta name="twitter:title" content="OKARAF">
-      <meta name="twitter:description" content="Official OKARAF website — Omar Karaf's developer portfolio.">
-      <meta name="twitter:image" content="/okaraf.png">
-      <!-- Schema -->
-      <script type="application/ld+json">
+    <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "Omar Karaf",
-        "image": "/okaraf.png",
+        "jobTitle": "Web developer",
+        "url": "{{site}}/",
+        "image": "{{site}}/og.png",
         "email": "mailto:okaraf07@gmail.com",
-        "sameAs": [
-          "https://t.me/karafco",
-          "https://github.com/alenki",
-          "https://codeforces.com/profile/Alenki_"
-        ]
+        "address": { "@type": "PostalAddress", "addressLocality": "Nalchik", "addressCountry": "RU" },
+        "sameAs": ["https://github.com/alenki", "https://codeforces.com/profile/Alenki_"]
       }
-      </script>
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="/src/css/BootstrapSASS.css">
-    <link rel="stylesheet" href="/src/css/main.css">
-    <title>OKARAF</title>
-  </head>
-  <body style="margin: 0; height: 100%; overflow: hidden">
-
-    <!-- Loading screen -->
-    <div class="loadingScreen text-light fenice"><span class="loader">0</span>%</div>
-    <script>
-      (function() {
-        var images = ['/harmony.webp','/galereya.webp','/masterauto.webp','/melty.webp','/esoes.webp'];
-        var loaded = 0;
-        var total = images.length;
-        var counterEl = document.querySelector('.loader');
-        var loadingScreen = document.querySelector('.loadingScreen');
-        var currentDisplay = 0;
-        var targetPercent = 0;
-
-        function animateCounter() {
-          if (currentDisplay < targetPercent) {
-            currentDisplay = Math.min(currentDisplay + 2, targetPercent);
-            counterEl.textContent = currentDisplay;
-            requestAnimationFrame(animateCounter);
-          } else if (loaded === total && currentDisplay >= 100) {
-            setTimeout(function() {
-              loadingScreen.classList.add('loaded');
-              setTimeout(function() {
-                loadingScreen.style.display = 'none';
-                document.body.style.overflow = 'auto';
-              }, 500);
-            }, 200);
-          }
-        }
-
-        images.forEach(function(src) {
-          var img = new Image();
-          img.onload = img.onerror = function() {
-            loaded++;
-            targetPercent = Math.round((loaded / total) * 100);
-            animateCounter();
-          };
-          img.src = src;
-        });
-
-        // Fallback: hide after 8s no matter what
-        setTimeout(function() {
-          if (loadingScreen.style.display !== 'none') {
-            loadingScreen.classList.add('loaded');
-            setTimeout(function() {
-              loadingScreen.style.display = 'none';
-              document.body.style.overflow = 'auto';
-            }, 500);
-          }
-        }, 8000);
-      })();
     </script>
+  </head>
+  <body>
+    <!-- @include icons.html -->
+    <!-- @include veil.html note="Portfolio" -->
+    <!-- @include nav.html home="" -->
 
-    <!-- Header -->
-    <header class="d-flex justify-content-center">
-      <nav class="navbar" aria-label="Primary">
-        <a href="#projects" class="nav_link">projects</a>
-        <a href="/certificates/" class="nav_link">certificates</a>
-        <a href="#contacts" class="nav_link">contacts</a>
-      </nav>
-    </header>
+    <main id="main">
+      <!-- Hero: the name over the field. It stays put while the sheet slides over it. -->
+      <section class="hero" aria-label="Omar Karaf">
+        <canvas class="field" data-field="hero" aria-hidden="true"></canvas>
+        <h1 class="hero__name" aria-label="Omar Karaf"><span class="hero__word" aria-hidden="true"><span class="ch">O</span><span class="ch">M</span><span class="ch">A</span><span class="ch">R</span></span><span class="hero__word" aria-hidden="true"><span class="ch">K</span><span class="ch">A</span><span class="ch">R</span><span class="ch">A</span><span class="ch">F</span></span></h1>
+      </section>
 
-    <!-- Hero -->
-    <section class="hero">
-      <h1 class="hero_text fenice">OMAR KARAF</h1>
-      <h1 class="mobile_hero_text fenice"><span class="mobile_omar">OMAR</span> KARAF</h1>
-      <div id="background"></div>
-    </section>
-    
-    <!-- Projects -->
-    <section class="container" id="projects">
-      <!-- HARMONY COFFEE -->
-      <div class="project_container pb-3">
-          <!-- Image -->
-          <div class="project_image">
-            <a href="https://harmonycoffee.netlify.app" target="_blank" rel="noopener">
-              <img src="/harmony.webp" alt="HARMONY COFFEE coffee shop concept website screenshot" width="1607" height="1283" decoding="async">
-            </a>
-          </div>
-          <!-- Text -->
-          <div class="project_text_block ps-lg-5 ms-lg-3 ps-4">
-            <h2 class="project_heading fenice text-light">HARMONY COFFEE</h2>
-            <p class="project_description text-light">Concept website for the "HARMONY COFFEE" coffee shop</p>
-          </div>
-      </div>
-      <hr class="my-5 pb-3 text-light">
+      <div class="sheet">
+        <div class="sheet__edge" aria-hidden="true"></div>
 
-      <!-- GALEREYA -->
-      <div class="project_container pb-3">
-          <!-- Image -->
-          <div class="project_image">
-            <a href="https://galereya-mall.netlify.app" target="_blank" rel="noopener">
-              <img src="/galereya.webp" alt="GALEREYA shopping mall official website screenshot" width="1421" height="993" decoding="async">
-            </a>
-          </div>
-          <!-- Text -->
-          <div class="project_text_block ps-lg-5 ms-lg-3 ps-4">
-            <h2 class="project_heading fenice text-light">GALEREYA</h2>
-            <p class="project_description text-light">Official website of the "GALEREYA" shopping mall</p>
-          </div>
-      </div>
-      <hr class="my-5 pb-3 text-light">
-
-      <!-- MASTER AUTO -->
-      <div class="project_container pb-3">
-          <!-- Image -->
-          <div class="project_image">
-            <a href="https://masterauto-07.ru/" target="_blank" rel="noopener">
-              <img src="/masterauto.webp" alt="MASTER AUTO car service official website screenshot" width="1104" height="916" decoding="async">
-            </a>
-          </div>
-          <!-- Text -->
-          <div class="project_text_block ps-lg-5 ms-lg-3 ps-4">
-            <h2 class="project_heading fenice text-light">MASTER AUTO</h2>
-            <p class="project_description text-light">Official website of the "MASTER AUTO" car service</p>
-          </div>
-      </div>
-      <hr class="my-5 pb-3 text-light">
-
-      <!-- MELTY -->
-      <div class="project_container pb-3">
-          <!-- Image -->
-          <div class="project_image">
-            <a href="https://melty-cafe.ru" target="_blank" rel="noopener">
-              <img src="/melty.webp" alt="MELTY cafe official website screenshot" width="1727" height="1349" decoding="async">
-            </a>
-          </div>
-          <!-- Text -->
-          <div class="project_text_block ps-lg-5 ms-lg-3 ps-4">
-            <h2 class="project_heading fenice text-light">MELTY</h2>
-            <p class="project_description text-light">Official website of the "MELTY" cafe</p>
-          </div>
-      </div>
-      <hr class="my-5 pb-3 text-light">
-
-      <!-- ESOES -->
-      <div class="project_container pb-5">
-          <!-- Image -->
-          <div class="project_image">
-            <a href="https://esoesmusic.ru" target="_blank" rel="noopener">
-              <img src="/esoes.webp" alt="ESOES artist official website screenshot" width="1920" height="1172" decoding="async">
-            </a>
-          </div>
-          <!-- Text -->
-          <div class="project_text_block ps-lg-5 ms-lg-3 ps-4">
-            <h2 class="project_heading fenice text-light">ESOES</h2>
-            <p class="project_description text-light">Official website of the artist "ESOES"</p>
-          </div>
-      </div>
-
-    </section>
-
-    <!-- footer -->
-    <footer id="contacts">
-
-      <!-- Marquee -->
-      <div class="marquee-text my-5 pt-5 text-light">
-        <hr>
-        <div class="marquee-text-track align-items-center fenice">
-          <p>FLUIDITY</p> <p style="font-size: 1.5rem;">♡</p>
-          <p>STRATEGY</p> <p style="font-size: 1.5rem;">♤</p>
-          <p>INTENTIONALITY</p> <p style="font-size: 1.5rem;">♧</p>
-          <p>STRENGTH</p> <p style="font-size: 1.5rem;">♢</p>
-          <p>EMPATHY</p> <p style="font-size: 1.5rem;">♡</p>
-          <p>SKILLS</p> <p style="font-size: 1.5rem;">♤</p>
-          <p>INTELLIGENCE</p> <p style="font-size: 1.5rem;">♧</p>
-          <p>POWER</p> <p style="font-size: 1.5rem;">♢</p>
-          <p>PERFECTION</p> <p style="font-size: 1.5rem;">♡</p>
-          <p>CLASS</p> <p style="font-size: 1.5rem;">♤</p>
-          <p>FOCUS</p> <p style="font-size: 1.5rem;">♧</p>
-          <p>COMMITMENT</p> <p style="font-size: 1.5rem;">♢</p>
-          <p>WILL</p> <p style="font-size: 1.5rem;">♡</p>
-          <p>INTEGRITY</p> <p style="font-size: 1.5rem;">♤</p>
-          <p>COURAGE</p> <p style="font-size: 1.5rem;">♧</p>
-          <p>RESILIENCE</p> <p style="font-size: 1.5rem;">♢</p>
-          <p>FAITH</p> <p style="font-size: 1.5rem;">☾⋆</p>
-          <p>KARAF</p> <p style="font-size: 1.5rem;">♔</p>
-          <p aria-hidden="true">FLUIDITY</p> <p aria-hidden="true" style="font-size: 1.5rem;">♡</p>
-          <p aria-hidden="true">STRATEGY</p> <p aria-hidden="true" style="font-size: 1.5rem;">♤</p>
-          <p aria-hidden="true">INTENTIONALITY</p> <p aria-hidden="true" style="font-size: 1.5rem;">♧</p>
-          <p aria-hidden="true">STRENGTH</p> <p aria-hidden="true" style="font-size: 1.5rem;">♢</p>
-          <p aria-hidden="true">EMPATHY</p> <p aria-hidden="true" style="font-size: 1.5rem;">♡</p>
-          <p aria-hidden="true">SKILLS</p> <p aria-hidden="true" style="font-size: 1.5rem;">♤</p>
-          <p aria-hidden="true">INTELLIGENCE</p> <p aria-hidden="true" style="font-size: 1.5rem;">♧</p>
-          <p aria-hidden="true">POWER</p> <p aria-hidden="true" style="font-size: 1.5rem;">♢</p>
-          <p aria-hidden="true">PERFECTION</p> <p aria-hidden="true" style="font-size: 1.5rem;">♡</p>
-          <p aria-hidden="true">CLASS</p> <p aria-hidden="true" style="font-size: 1.5rem;">♤</p>
-          <p aria-hidden="true">FOCUS</p> <p aria-hidden="true" style="font-size: 1.5rem;">♧</p>
-          <p aria-hidden="true">COMMITMENT</p> <p aria-hidden="true" style="font-size: 1.5rem;">♢</p>
-          <p aria-hidden="true">WILL</p> <p aria-hidden="true" style="font-size: 1.5rem;">♡</p>
-          <p aria-hidden="true">INTEGRITY</p> <p aria-hidden="true" style="font-size: 1.5rem;">♤</p>
-          <p aria-hidden="true">COURAGE</p> <p aria-hidden="true" style="font-size: 1.5rem;">♧</p>
-          <p aria-hidden="true">RESILIENCE</p> <p aria-hidden="true" style="font-size: 1.5rem;">♢</p>
-          <p aria-hidden="true">FAITH</p> <p aria-hidden="true" style="font-size: 1.5rem;">☾⋆</p>
-          <p aria-hidden="true">KARAF</p> <p aria-hidden="true" style="font-size: 1.5rem;">♔</p>
-        </div>
-        <hr>
-      </div>
-
-      <div class="footer-container container pt-3 d-flex text-light" style="height: 100%;">
-        <!-- Wide version -->
-        <!-- Left part -->
-        <div class="footer_l_part d-flex flex-column ps-3" style="height: 65%;">
-          <h3 class="fenice pb-3"><b>when in doubt, look intelligent</b></h3>
-          <p class="fenice" style="white-space:pre-wrap;">OMAR KARAF © 2026</p>
-        </div>
-        <!-- Contacts -->
-        <div class="footer_m_part d-flex flex-column ms-auto">
-          <b class="footer_subheading fenice">contacts</b>
-          <div class="mt-4"><a href="mailto:okaraf07@gmail.com" class="footer-link" target="_blank" rel="noopener">Email</a></div>
-          <div class="mt-3"><a href="https://api.whatsapp.com/send?phone=79289996640" class="footer-link" target="_blank" rel="noopener">Whatsapp</a></div>
-        </div>
-        <!-- Info -->
-        <div class="footer_r_part d-flex flex-column ms-5 me-sm-5 me-3">
-          <b class="footer_subheading fenice">info</b>
-          <div class="mt-4"><a href="https://codeforces.com/profile/Alenki_" class="footer-link" target="_blank" rel="noopener">Codeforces</a></div>
-          <div class="mt-3"><a href="https://github.com/alenki" class="footer-link" target="_blank" rel="noopener">Github</a></div>
+        <div class="hero-meta">
+          <p class="label" data-hero-meta>Web developer</p>
+          <p class="label hero-meta__scroll" data-hero-meta aria-hidden="true">Scroll <svg class="i"><use href="#i-arrow-s" /></svg></p>
+          <p class="label" data-hero-meta>Nalchik<span class="hero-meta__coords">, 43.48° N 43.62° E</span></p>
         </div>
 
-        <!-- Mobile version -->
-        <div class="footer_m_link_container d-flex">
-          <!-- Contacts -->
-          <div class="footer_lm_part d-none flex-column">
-            <b class="footer_subheading fenice">contacts</b>
-            <div class="mt-4"><a href="mailto:okaraf07@gmail.com" class="footer-link" target="_blank" rel="noopener">Email</a></div>
-            <div class="mt-3"><a href="https://api.whatsapp.com/send?phone=79289996640" class="footer-link" target="_blank" rel="noopener">Whatsapp</a></div>
+        <!-- About -->
+        <section class="intro wrap" aria-labelledby="about-label">
+          <div class="intro__grid">
+            <h2 class="label intro__label" id="about-label" data-din><svg class="i"><use href="#i-spade" /></svg> About</h2>
+            <p class="intro__statement" data-words>I’m Omar Karaf, a web developer from Nalchik, in the foothills of the Caucasus. I build websites for a shopping mall, a car service, a café and a musician. The coffee shop I made up.</p>
+            <dl class="facts">
+              <div data-din><dt class="label">Based in</dt><dd>Nalchik, North Caucasus</dd></div>
+              <div data-din><dt class="label">Local time</dt><dd><time data-clock>GMT+3</time></dd></div>
+              <div data-din><dt class="label">On this page</dt><dd>Five websites</dd></div>
+              <div data-din><dt class="label">AI Olympiad 2023</dt><dd>Finalist</dd></div>
+            </dl>
           </div>
-          <!-- Info -->
-          <div class="footer_rm_part d-none flex-column">
-            <b class="footer_subheading fenice">info</b>
-            <div class="mt-4"><a href="https://codeforces.com/profile/Alenki_" class="footer-link" target="_blank" rel="noopener">Codeforces</a></div>
-            <div class="mt-3"><a href="https://github.com/alenki" class="footer-link" target="_blank" rel="noopener">Github</a></div>
-          </div>
-        </div>
-        <!-- Bottom part -->
-        <div class="footer_bm_part d-none flex-column">
-          <h3 class="fenice pb-3"><b>when in doubt, look intelligent</b></h3>
-          <p class="fenice" style="white-space:pre-wrap;">OMAR KARAF © 2026</p>
-        </div>
-        
-      </div>
-    </footer>
+        </section>
 
-    <!-- CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js" integrity="sha512-NcZdtrT77bJr4STcmsGAESr06BYGE8woZdSdEgqnpyqac7sugNO+Tr4bGwGF3MsnEkGKhU2KL2xh6Ec+BqsaHA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js" integrity="sha512-P2IDYZfqSwjcSjX0BKeNhwRUH8zRPGlgcWl5n6gBLzdi4Y5/0O4zaXrtO4K9TZK6Hn1BenYpKowuCavNandERg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <!-- script -->
-    <script type="module" src="/src/main.tsx"></script>
-    <script type="module" src="/src/js/script.js"></script>
-    <script type="module" src="/src/js/lenis.js"></script>
+        <!-- Projects -->
+        <section class="work" id="projects" aria-labelledby="projects-label">
+          <div class="wrap">
+            <div class="section-head">
+              <h2 class="label" id="projects-label" data-din><svg class="i"><use href="#i-heart" /></svg> Projects</h2>
+              <p class="label muted" data-din>05</p>
+            </div>
+
+            <!-- HARMONY COFFEE -->
+            <article class="project">
+              <header class="project__head">
+                <p class="label" data-din>01 <svg class="i"><use href="#i-heart" /></svg></p>
+                <h3 class="project__title" data-title>Harmony Coffee</h3>
+              </header>
+              <a class="plate" href="https://harmonycoffee.netlify.app" target="_blank" rel="noopener" data-plate data-cursor="Visit" style="--ar: 1607 / 1283" aria-label="Visit Harmony Coffee (opens in a new tab)">
+                <img src="/harmony.webp" width="1607" height="1283" alt="Harmony Coffee homepage: a quiet café interior with armchairs under the headline “Кофе, созданный с намерением”" decoding="async" fetchpriority="high" />
+              </a>
+              <div class="project__info">
+                <p class="project__lede" data-din>Concept website for the Harmony Coffee coffee shop.</p>
+                <dl class="meta label" data-din>
+                  <div><dt>Type</dt><dd>Coffee shop</dd></div>
+                  <div><dt>Status</dt><dd>Concept</dd></div>
+                  <div><dt>Languages</dt><dd>RU / EN</dd></div>
+                  <div><dt>Site</dt><dd><a href="https://harmonycoffee.netlify.app" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">harmonycoffee.netlify.app <svg class="i"><use href="#i-arrow-ne" /></svg></a></dd></div>
+                </dl>
+              </div>
+            </article>
+
+            <!-- GALEREYA -->
+            <article class="project project--flip">
+              <header class="project__head">
+                <p class="label" data-din>02 <svg class="i"><use href="#i-spade" /></svg></p>
+                <h3 class="project__title" data-title>Galereya</h3>
+              </header>
+              <a class="plate" href="https://galereya-mall.netlify.app" target="_blank" rel="noopener" data-plate data-cursor="Visit" style="--ar: 1421 / 993" aria-label="Visit Galereya (opens in a new tab)">
+                <img src="/galereya.webp" width="1421" height="993" alt="Galereya mall homepage: green buttons for opening hours and directions above a brand banner and the shop categories" loading="lazy" decoding="async" />
+              </a>
+              <div class="project__info">
+                <p class="project__lede" data-din>Official website of the Galereya shopping mall.</p>
+                <dl class="meta label" data-din>
+                  <div><dt>Type</dt><dd>Shopping mall</dd></div>
+                  <div><dt>Status</dt><dd>Official site</dd></div>
+                  <div><dt>Languages</dt><dd>RU / EN</dd></div>
+                  <div><dt>Site</dt><dd><a href="https://galereya-mall.netlify.app" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">galereya-mall.netlify.app <svg class="i"><use href="#i-arrow-ne" /></svg></a></dd></div>
+                </dl>
+              </div>
+            </article>
+
+            <!-- MASTER AUTO -->
+            <article class="project">
+              <header class="project__head">
+                <p class="label" data-din>03 <svg class="i"><use href="#i-club" /></svg></p>
+                <h3 class="project__title" data-title>Master Auto</h3>
+              </header>
+              <a class="plate" href="https://masterauto-07.ru/" target="_blank" rel="noopener" data-plate data-cursor="Visit" style="--ar: 1104 / 916" aria-label="Visit Master Auto (opens in a new tab)">
+                <img src="/masterauto.webp" width="1104" height="916" alt="Master Auto homepage: a red off-road car under a poster-sized black MASTER AUTO headline" loading="lazy" decoding="async" />
+              </a>
+              <div class="project__info">
+                <p class="project__lede" data-din>Official website of the Master Auto car service.</p>
+                <dl class="meta label" data-din>
+                  <div><dt>Type</dt><dd>Car service</dd></div>
+                  <div><dt>Status</dt><dd>Official site</dd></div>
+                  <div><dt>Site</dt><dd><a href="https://masterauto-07.ru/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">masterauto-07.ru <svg class="i"><use href="#i-arrow-ne" /></svg></a></dd></div>
+                </dl>
+              </div>
+            </article>
+
+            <!-- MELTY -->
+            <article class="project project--flip">
+              <header class="project__head">
+                <p class="label" data-din>04 <svg class="i"><use href="#i-diamond" /></svg></p>
+                <h3 class="project__title" data-title>Melty</h3>
+              </header>
+              <a class="plate" href="https://melty-cafe.ru" target="_blank" rel="noopener" data-plate data-cursor="Visit" style="--ar: 1727 / 1349" aria-label="Visit Melty (opens in a new tab)">
+                <img src="/melty.webp" width="1727" height="1349" alt="Melty café homepage: the Melty wordmark with a chocolate drip, the line “A World of Flavor &amp; Comfort” and a View Menu button" loading="lazy" decoding="async" />
+              </a>
+              <div class="project__info">
+                <p class="project__lede" data-din>Official website of the Melty café.</p>
+                <dl class="meta label" data-din>
+                  <div><dt>Type</dt><dd>Café</dd></div>
+                  <div><dt>Status</dt><dd>Official site</dd></div>
+                  <div><dt>City</dt><dd>Nalchik</dd></div>
+                  <div><dt>Site</dt><dd><a href="https://melty-cafe.ru" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">melty-cafe.ru <svg class="i"><use href="#i-arrow-ne" /></svg></a></dd></div>
+                </dl>
+              </div>
+            </article>
+
+            <!-- ESOES -->
+            <article class="project">
+              <header class="project__head">
+                <p class="label" data-din>05 <svg class="i"><use href="#i-heart" /></svg></p>
+                <h3 class="project__title" data-title>ESOES</h3>
+              </header>
+              <a class="plate" href="https://esoesmusic.ru" target="_blank" rel="noopener" data-plate data-cursor="Visit" style="--ar: 1920 / 1172" aria-label="Visit ESOES (opens in a new tab)">
+                <img src="/esoes.webp" width="1920" height="1172" alt="ESOES &amp; ÉLI release page: a turntable with the single «Гаснет свет» on the platter and a play button below" loading="lazy" decoding="async" />
+              </a>
+              <div class="project__info">
+                <p class="project__lede" data-din>Official website of the artist ESOES.</p>
+                <dl class="meta label" data-din>
+                  <div><dt>Type</dt><dd>Musician</dd></div>
+                  <div><dt>Status</dt><dd>Official site</dd></div>
+                  <div><dt>Release</dt><dd>2026</dd></div>
+                  <div><dt>Site</dt><dd><a href="https://esoesmusic.ru" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">esoesmusic.ru <svg class="i"><use href="#i-arrow-ne" /></svg></a></dd></div>
+                </dl>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- Record -->
+        <section class="record" id="certificates" aria-labelledby="record-label">
+          <div class="wrap">
+            <div class="section-head">
+              <h2 class="label" id="record-label" data-din><svg class="i"><use href="#i-club" /></svg> Certificates</h2>
+              <p class="label muted" data-din>06</p>
+            </div>
+
+            <div class="record__lead">
+              <p class="record__stat"><span class="visually-hidden">21st</span><span class="record__figure" data-figure aria-hidden="true"><span class="ch">2</span><span class="ch">1</span><sup>st</sup></span></p>
+              <p class="record__note" data-lines>of 8,292 in the qualifying stage of the 2023 Russian AI Olympiad. Then 40th of 462 in the main stage, and a seat among the final fifty.</p>
+            </div>
+
+            <ol class="ledger">
+              <li>
+                <a class="ledger__row" href="/certificates/stepik_c++.pdf" target="_blank" rel="noopener" data-peek="/certificates/stepik_c++.webp" data-w="1401" data-h="989" data-din>
+                  <span class="label ledger__year">2023</span>
+                  <span class="ledger__title">Introduction to Programming (C++)</span>
+                  <span class="label muted ledger__issuer">Stepik · Yandex Academy</span>
+                  <span class="label ledger__result">100%, with distinction</span>
+                  <span class="label ledger__go">PDF <svg class="i"><use href="#i-arrow-ne" /></svg></span>
+                </a>
+              </li>
+              <li>
+                <a class="ledger__row" href="/certificates/sirius_algo.pdf" target="_blank" rel="noopener" data-peek="/certificates/sirius_algo.webp" data-w="958" data-h="666" data-din>
+                  <span class="label ledger__year">2023</span>
+                  <span class="ledger__title">Introduction to Algorithms: C++ Implementation</span>
+                  <span class="label muted ledger__issuer">Sirius</span>
+                  <span class="label ledger__result">Course certificate</span>
+                  <span class="label ledger__go">PDF <svg class="i"><use href="#i-arrow-ne" /></svg></span>
+                </a>
+              </li>
+              <li>
+                <a class="ledger__row" href="/certificates/ai_qualifying_stage.pdf" target="_blank" rel="noopener" data-peek="/certificates/ai_qualifying_stage.webp" data-w="1293" data-h="878" data-din>
+                  <span class="label ledger__year">2023</span>
+                  <span class="ledger__title">Russian AI Cup, qualifying stage</span>
+                  <span class="label muted ledger__issuer">Russian AI Olympiad</span>
+                  <span class="label ledger__result">21st of 8,292</span>
+                  <span class="label ledger__go">PDF <svg class="i"><use href="#i-arrow-ne" /></svg></span>
+                </a>
+              </li>
+              <li>
+                <a class="ledger__row" href="/certificates/ai_main_stage.pdf" target="_blank" rel="noopener" data-peek="/certificates/ai_main_stage.webp" data-w="1293" data-h="879" data-din>
+                  <span class="label ledger__year">2023</span>
+                  <span class="ledger__title">Russian AI Cup, main stage</span>
+                  <span class="label muted ledger__issuer">Russian AI Olympiad</span>
+                  <span class="label ledger__result">40th of 462</span>
+                  <span class="label ledger__go">PDF <svg class="i"><use href="#i-arrow-ne" /></svg></span>
+                </a>
+              </li>
+              <li>
+                <a class="ledger__row" href="/certificates/ai_final_stage.pdf" target="_blank" rel="noopener" data-peek="/certificates/ai_final_stage.webp" data-w="1292" data-h="881" data-din>
+                  <span class="label ledger__year">2023</span>
+                  <span class="ledger__title">Russian AI Cup, final stage</span>
+                  <span class="label muted ledger__issuer">Russian AI Olympiad</span>
+                  <span class="label ledger__result">45th of 50</span>
+                  <span class="label ledger__go">PDF <svg class="i"><use href="#i-arrow-ne" /></svg></span>
+                </a>
+              </li>
+              <li>
+                <a class="ledger__row" href="/certificates/vk_product.pdf" target="_blank" rel="noopener" data-peek="/certificates/vk_product.webp" data-w="1348" data-h="950" data-din>
+                  <span class="label ledger__year">2025</span>
+                  <span class="ledger__title">Product Management</span>
+                  <span class="label muted ledger__issuer">VK Education</span>
+                  <span class="label ledger__result">Course certificate</span>
+                  <span class="label ledger__go">PDF <svg class="i"><use href="#i-arrow-ne" /></svg></span>
+                </a>
+              </li>
+            </ol>
+
+            <p class="record__more" data-din>
+              <a class="label link link--on" href="/certificates/">See the certificates <svg class="i"><use href="#i-arrow-e" /></svg></a>
+            </p>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- @include footer.html -->
+
+    <script type="module" src="/src/ts/home.ts"></script>
   </body>
 </html>

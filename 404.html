@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- @include head.html title="Page not found — OKARAF" description="This page does not exist. The portfolio of Omar Karaf is one click away." path="/404" robots="noindex" -->
+  </head>
+  <body>
+    <!-- @include icons.html -->
+    <!-- @include veil.html note="Not found" -->
+    <!-- @include nav.html home="/" contacts="/" -->
+
+    <main id="main" class="lost">
+      <h1 class="visually-hidden">Page not found</h1>
+      <div class="window" aria-hidden="true">
+        <canvas class="field" data-field="window"></canvas>
+        <div class="window__mask"><span class="window__word window__word--404">404</span></div>
+      </div>
+      <div class="lost__foot wrap">
+        <p class="lost__line" data-din>When in doubt, go home.</p>
+        <a class="label link link--on" href="/" data-din>Back to the portfolio <svg class="i"><use href="#i-arrow-e" /></svg></a>
+      </div>
+    </main>
+
+    <div class="cursor" data-cursor-el aria-hidden="true"><span class="cursor__label" data-cursor-label></span></div>
+
+    <script type="module" src="/src/ts/notfound.ts"></script>
+  </body>
+</html>

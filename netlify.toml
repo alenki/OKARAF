@@ -8,7 +8,15 @@
   to = "https://okaraf.ru"
   status = 200
 
+# Anything that is not a real file gets the designed 404 page (and a real 404 status,
+# so search engines do not index mistyped addresses as copies of the home page).
 [[redirects]]
   from = "/*"
-  to = "/index.html"
-  status = 200
+  to = "/404.html"
+  status = 404
+
+# Vite fingerprints everything in /assets, so those files can be cached for good.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

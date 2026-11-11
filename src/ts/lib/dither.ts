@@ -1,12 +1,12 @@
 /**
  * The one material the whole site is made of: an 8×8 ordered (Bayer) dither.
  *
- * This file owns the matrix and the two things the DOM needs from it:
- *  - mask tiles, so any element can appear or leave through the dither instead of fading;
- *  - a dithered gradient, used as the leading edge of the sheet that slides over the hero.
+ * This file owns the matrix and what the DOM needs from it: mask tiles, so any element can
+ * appear or leave through the dither instead of fading.
  *
- * The WebGL field (field.ts), the image plates (plate.ts) and the veil (veil.ts) use the
- * same matrix, so every dot on the page belongs to the same grid.
+ * The WebGL field (field.ts), the sheet's edge over it (edge.ts), the image plates
+ * (plate.ts) and the veil (veil.ts) use the same matrix, so every dot on the page belongs
+ * to the same grid.
  */
 import { gsap } from 'gsap'
 
@@ -137,37 +137,4 @@ export function ditherTo(targets: HTMLElement | HTMLElement[], opts: DitherTween
     tl.to(state, { v: to, duration, ease, onStart: apply, onUpdate: apply, onComplete: apply }, i * stagger)
   })
   return tl
-}
-
-/* The dithered gradient -------------------------------------------------------- */
-
-/**
- * Publishes --dither-rise: a strip that goes from empty at the top to solid ink at the
- * bottom, one matrix level at a time. Tiled sideways it becomes the edge of the sheet.
- */
-export function publishRise(rows = 176) {
-  const px = cellDevicePx()
-  const [r, g, b] = token('--ink')
-
-  const c = document.createElement('canvas')
-  c.width = 8 * px
-  c.height = rows * px
-  const ctx = c.getContext('2d')!
-  ctx.fillStyle = `rgb(${r} ${g} ${b})`
-  for (let y = 0; y < rows; y++) {
-    // Eased, so the edge gathers slowly and closes quickly.
-    const t = y / (rows - 1)
-    const density = t * t * (3 - 2 * t)
-    const level = density * LEVELS
-    for (let x = 0; x < 8; x++) {
-      if (BAYER8[(y & 7) * 8 + x] < level) ctx.fillRect(x * px, y * px, px, px)
-    }
-  }
-
-  const root = document.documentElement.style
-  const w = (8 * px) / dpr()
-  const h = (rows * px) / dpr()
-  root.setProperty('--dither-rise', `url(${c.toDataURL('image/png')})`)
-  root.setProperty('--dither-rise-size', `${w}px ${h}px`)
-  root.setProperty('--edge', `${h}px`)
 }

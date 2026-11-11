@@ -154,7 +154,8 @@ export class Plate {
       this.canvas.style.visibility = 'hidden'
       return
     }
-    this.canvas.style.visibility = 'visible'
+    // Cleared, not set to `visible`: that would keep the copy painted inside a hidden parent.
+    this.canvas.style.visibility = ''
 
     const { on, off } = this
     const lead = p * (1 + SWEEP) * 64

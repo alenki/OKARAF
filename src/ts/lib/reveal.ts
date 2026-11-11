@@ -13,23 +13,33 @@ import { CELL, LEVELS, ditherTo, setMask, tile, cellDevicePx, dpr } from './dith
 
 gsap.registerPlugin(SplitText)
 
-/** Wrap every word in a span, keeping the sentence intact for readers and screen readers. */
+/**
+ * Wrap every word in a span, keeping the sentence intact for readers and screen readers.
+ * A link inside the sentence stays a link: its words are wrapped where they stand.
+ */
 export function splitWords(el: HTMLElement): HTMLElement[] {
   const words: HTMLElement[] = []
-  const text = el.textContent ?? ''
-  el.textContent = ''
-  // Only break on ordinary spaces: a non-breaking space keeps its two words in one span.
-  text
-    .trim()
-    .split(/[ \n\t]+/)
-    .forEach((word, i) => {
-      if (i > 0) el.appendChild(document.createTextNode(' '))
+  const texts: Text[] = []
+  const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT)
+  while (walker.nextNode()) texts.push(walker.currentNode as Text)
+
+  for (const text of texts) {
+    const pieces = document.createDocumentFragment()
+    // Only break on ordinary spaces: a non-breaking space keeps its two words in one span.
+    for (const part of text.data.split(/([ \n\t]+)/)) {
+      if (!part) continue
+      if (/^[ \n\t]/.test(part)) {
+        pieces.appendChild(document.createTextNode(' '))
+        continue
+      }
       const span = document.createElement('span')
       span.className = 'w'
-      span.textContent = word
-      el.appendChild(span)
+      span.textContent = part
+      pieces.appendChild(span)
       words.push(span)
-    })
+    }
+    text.replaceWith(pieces)
+  }
   return words
 }
 

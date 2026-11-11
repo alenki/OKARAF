@@ -3,7 +3,6 @@
  * notfound.ts) calls boot() and adds its particulars through the hooks.
  */
 import { gsap } from 'gsap'
-import { publishRise } from './lib/dither'
 import { Field } from './lib/field'
 import { Plate } from './lib/plate'
 import { fillOnHover, initReveals } from './lib/reveal'
@@ -63,21 +62,6 @@ function initWindows(calm: boolean) {
   })
 }
 
-/** The dithered edge of the sheet is sized to the window, so it never swallows the name. */
-function initRise() {
-  const publish = () => publishRise(Math.round(Math.min(352, window.innerHeight * 0.38) / 2))
-  publish()
-  let width = window.innerWidth
-  let timer = 0
-  window.addEventListener('resize', () => {
-    // Mobile browsers fire resize as their toolbars slide; only a real change matters.
-    if (window.innerWidth === width) return
-    width = window.innerWidth
-    window.clearTimeout(timer)
-    timer = window.setTimeout(publish, 200)
-  })
-}
-
 export function boot(hooks: Hooks = {}) {
   const root = document.documentElement
   const page: Page = {
@@ -87,7 +71,6 @@ export function boot(hooks: Hooks = {}) {
 
   window.clearTimeout(window.__veilFallback)
 
-  initRise()
   initScroll(page.calm)
 
   const veilEl = document.querySelector<HTMLElement>('[data-veil]')

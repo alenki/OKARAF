@@ -46,22 +46,15 @@ export function initCursor() {
   const el = document.querySelector<HTMLElement>('[data-cursor-el]')
   if (!el || !finePointer()) return
   const label = el.querySelector<HTMLElement>('[data-cursor-label]')!
+  // The companion is the only pointer: hide the system one wherever it is active.
+  document.documentElement.classList.add('has-cursor')
 
-  const xTo = gsap.quickTo(el, 'x', { duration: 0.32, ease: 'power3.out' })
-  const yTo = gsap.quickTo(el, 'y', { duration: 0.32, ease: 'power3.out' })
-  let placed = false
-
+  // No easing: the companion is the pointer, so it sits exactly where the mouse is.
   window.addEventListener(
     'pointermove',
     (e) => {
       if (e.pointerType !== 'mouse') return
-      if (!placed) {
-        // First sighting: appear under the pointer instead of flying in from the corner.
-        gsap.set(el, { x: e.clientX, y: e.clientY })
-        placed = true
-      }
-      xTo(e.clientX)
-      yTo(e.clientY)
+      el.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`
       el.classList.add('is-on')
     },
     { passive: true },
@@ -73,6 +66,7 @@ export function initCursor() {
     const link = target?.closest('a, button') ?? null
     if (labelled) label.textContent = labelled.dataset.cursor ?? ''
     el.classList.toggle('is-label', !!labelled)
+    el.classList.toggle('is-plate', !!labelled?.matches('[data-plate]'))
     el.classList.toggle('is-link', !labelled && !!link)
   })
 

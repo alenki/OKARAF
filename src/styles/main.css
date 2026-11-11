@@ -53,10 +53,6 @@
   --z-cursor: 90;
   --z-veil: 100;
   --z-skip: 110;
-
-  /* Filled in by script: dithered gradient tiles (see src/ts/lib/dither.ts). */
-  --dither-rise: none;
-  --dither-rise-size: 16px 320px;
 }
 
 /* 2. Base ------------------------------------------------------------------ */
@@ -497,6 +493,15 @@ a {
   mix-blend-mode: normal;
 }
 
+/* Over a picture the label circle is ink, with the label in paper. */
+.cursor.is-plate {
+  background: var(--ink);
+}
+
+.cursor.is-plate .cursor__label {
+  color: var(--paper);
+}
+
 .cursor__label {
   position: absolute;
   inset: 0;
@@ -518,6 +523,12 @@ a {
 @media (hover: hover) and (pointer: fine) {
   .js .cursor {
     display: block;
+  }
+
+  /* Set by initCursor(): the companion replaces the system pointer everywhere. */
+  .has-cursor,
+  .has-cursor * {
+    cursor: none !important;
   }
 }
 
@@ -542,13 +553,18 @@ a {
 }
 
 /* The field: one fragment per dither cell, scaled up without smoothing. Its size is set
-   by script so every cell lands on whole device pixels. */
-.field {
+   by script so every cell lands on whole device pixels.
+   The sheet's leading edge lies over the hero on the very same cells: the dots stay put and
+   only their coverage follows the scroll, so it never slides across the field's dither. */
+.field,
+.hero__edge {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  /* May run a fraction of a cell past its box (which clips it) rather than be squeezed. */
+  max-width: none;
   image-rendering: pixelated;
   pointer-events: none;
 }
@@ -624,19 +640,6 @@ a {
   background: var(--ink);
 }
 
-/* Its leading edge is not a line but a dithered gradient: ink arriving dot by dot. */
-.sheet__edge {
-  position: absolute;
-  inset: auto 0 100% 0;
-  height: var(--edge, 320px);
-  background-image: var(--dither-rise);
-  background-size: var(--dither-rise-size);
-  background-repeat: repeat-x;
-  background-position: left bottom;
-  image-rendering: pixelated;
-  pointer-events: none;
-}
-
 .hero-meta {
   position: absolute;
   inset: auto 0 100% 0;
@@ -646,11 +649,6 @@ a {
   gap: var(--gap);
   padding: 0 var(--gutter) calc(var(--gutter) * 0.9);
   padding-bottom: max(calc(var(--gutter) * 0.9), env(safe-area-inset-bottom));
-}
-
-.hero-meta > :last-child {
-  justify-self: end;
-  text-align: right;
 }
 
 .hero-meta__scroll {
@@ -682,8 +680,7 @@ a {
     grid-template-columns: 1fr auto;
   }
 
-  .hero-meta__scroll,
-  .hero-meta__coords {
+  .hero-meta__scroll {
     display: none;
   }
 }
@@ -694,7 +691,6 @@ a {
   justify-content: space-between;
   gap: var(--gap);
   padding-block: 1.1rem;
-  border-top: 1px solid var(--line);
 }
 
 .intro {
@@ -728,23 +724,20 @@ a {
   margin: -0.08em -0.03em;
 }
 
-.facts {
-  grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(1.5rem, 3vw, 2.5rem) var(--gap);
+/* The link in the statement. The rule is drawn on the word itself (an inline-block does not
+   inherit its parent's underline), so it sharpens through the same dither as the letters. */
+.intro__statement a,
+.intro__statement a .w {
+  text-decoration: underline;
+  text-decoration-thickness: 0.04em;
+  text-underline-offset: 0.11em;
 }
 
-.facts dt {
-  margin-bottom: 0.5rem;
-  color: var(--muted);
-}
-
-.facts dd {
-  font-family: var(--font-display);
-  font-size: clamp(1.25rem, 1rem + 0.9vw, 1.75rem);
-  line-height: 1.15;
-  letter-spacing: -0.01em;
+.intro__statement a:hover,
+.intro__statement a:hover .w,
+.intro__statement a:focus-visible,
+.intro__statement a:focus-visible .w {
+  text-decoration-thickness: 0.085em;
 }
 
 @media (min-width: 56rem) {
@@ -754,11 +747,6 @@ a {
 
   .intro__statement {
     grid-column: 4 / -1;
-  }
-
-  .facts {
-    grid-column: 4 / -1;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
@@ -773,7 +761,6 @@ a {
   grid-template-columns: repeat(12, minmax(0, 1fr));
   column-gap: var(--gap);
   padding-block: clamp(2.75rem, 6vw, 6rem) clamp(3.5rem, 8vw, 8rem);
-  border-top: 1px solid var(--line);
 }
 
 .project__head {
@@ -814,7 +801,6 @@ a {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 1.4s var(--ease-out);
 }
 
 /* The 1-bit copy of the picture. Script sizes it so its cells sit on whole device pixels. */
@@ -830,12 +816,6 @@ a {
 /* Until its 1-bit copy is drawn, the colour picture stays out of sight. */
 .js:not(.is-calm):not(.is-stuck) .plate:not(.is-ready) img {
   visibility: hidden;
-}
-
-@media (hover: hover) {
-  a.plate:hover img {
-    transform: scale(1.035);
-  }
 }
 
 /* The title stands on the plate: with this line-height Fenice's baseline sits 0.059em above
@@ -1323,67 +1303,16 @@ html:not(.js) .values__track {
   color: var(--paper);
 }
 
-.footer__base {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 0.75rem var(--gap);
-  padding-block: 1.25rem;
-  padding-bottom: max(1.25rem, env(safe-area-inset-bottom));
-  border-top: 1px solid var(--line);
-}
-
-.footer__copy {
-  font-family: var(--font-display);
-  font-size: 1rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-}
-
-.footer__place {
-  color: var(--muted);
-}
-
-.footer__place time {
-  font-variant-numeric: tabular-nums;
-}
-
-.footer__top {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5em;
-  min-height: 44px;
-}
-
-.footer__top .i {
-  transition: transform 0.45s var(--ease-out);
-}
-
-.footer__top:hover .i {
-  transform: translateY(-0.2em);
-}
-
 /* 10. Certificates page ---------------------------------------------------- */
 
 .page-head {
   padding-top: clamp(7rem, 16vw, 13rem);
 }
 
-.page-head__row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 0.75rem var(--gap);
-  padding-block: 1.1rem;
-}
-
 .certs {
   display: grid;
   gap: clamp(3rem, 6vw, 6rem) var(--gap);
   padding-block: clamp(2rem, 5vw, 4rem) var(--section);
-  border-top: 1px solid var(--line);
 }
 
 @media (min-width: 56rem) {
@@ -1402,14 +1331,6 @@ html:not(.js) .values__track {
   display: grid;
   gap: 1.1rem;
   align-content: start;
-}
-
-.cert__no {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 1px solid var(--line);
 }
 
 .cert__title {

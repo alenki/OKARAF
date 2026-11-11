@@ -2,6 +2,7 @@
 import { gsap } from 'gsap'
 import { boot } from './app'
 import { ditherTo } from './lib/dither'
+import { Edge } from './lib/edge'
 import { Field } from './lib/field'
 import { initPeek } from './lib/peek'
 import { fillOnHover, scrubWords, splitWords } from './lib/reveal'
@@ -27,6 +28,8 @@ boot({
       still: calm,
       gain: density.arrival,
     })
+    // The sheet's leading edge, on the same cells as the field.
+    new Edge(hero.querySelector<HTMLCanvasElement>('canvas[data-edge]')!, sheet)
 
     if (!calm) {
       // The field thins out as the sheet climbs over it…

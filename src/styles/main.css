@@ -677,10 +677,11 @@ a {
 
 @media (max-width: 40rem) {
   .hero-meta {
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 1fr;
+    justify-items: center;
   }
 
-  .hero-meta__scroll {
+  .hero-meta > :not(.hero-meta__scroll) {
     display: none;
   }
 }

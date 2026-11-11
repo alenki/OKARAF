@@ -410,7 +410,7 @@ a {
   position: absolute;
   inset: 0;
   display: grid;
-  grid-template: "brand note" auto "count count" 1fr / 1fr auto;
+  grid-template: ". note" auto "count count" 1fr / 1fr auto;
   align-items: start;
   padding: var(--gutter);
   padding-bottom: calc(var(--gutter) * 0.6);
@@ -418,13 +418,6 @@ a {
 
 .is-return .veil__ui {
   display: none;
-}
-
-.veil__brand {
-  grid-area: brand;
-  font-family: var(--font-display);
-  font-size: 1rem;
-  letter-spacing: 0.22em;
 }
 
 .veil__note {

@@ -1,0 +1,567 @@
+- generic [active] [ref=f1e1]:
+  - link "Skip to content" [ref=f1e2] [cursor=pointer]:
+    - /url: "#main"
+  - banner:
+    - generic:
+      - navigation "Main navigation" [ref=f1e3]:
+        - link "Menu" [ref=f1e4] [cursor=pointer]:
+          - /url: /kakdela/menu
+        - link "About us" [ref=f1e5] [cursor=pointer]:
+          - /url: /kakdela/about
+        - link "Cafés" [ref=f1e6] [cursor=pointer]:
+          - /url: /kakdela/locations
+        - link "Feedback" [ref=f1e7] [cursor=pointer]:
+          - /url: /kakdela/feedback
+      - generic [ref=f1e8]:
+        - link "Русская версия" [ref=f1e9] [cursor=pointer]:
+          - /url: /kakdela/ru
+          - text: RU
+        - button "Sections" [ref=f1e10] [cursor=pointer]
+  - main [ref=f1e14]:
+    - 'region "Kak dela? Cafés in Nalchik and Vladikavkaz: specialty coffee and breakfast all day" [ref=f1e15]':
+      - 'heading "Kak dela? Cafés in Nalchik and Vladikavkaz: specialty coffee and breakfast all day" [level=1] [ref=f1e16]'
+      - generic [ref=f1e17]:
+        - generic [ref=f1e18]:
+          - paragraph [ref=f1e53]: How are you? Tear one off, honestly
+          - group "How are you? Pick an answer" [ref=f1e55]:
+            - generic [ref=f1e58]:
+              - generic [ref=f1e59]:
+                - radio "Never better" [checked]
+                - generic [ref=f1e60]: Never better
+              - generic [ref=f1e62]:
+                - radio "Like a dream"
+                - generic [ref=f1e63]: Like a dream
+              - generic [ref=f1e65]:
+                - radio "All peachy"
+                - generic [ref=f1e66]: All peachy
+              - generic [ref=f1e68]:
+                - radio "10 out of 10"
+                - generic [ref=f1e69]: 10 out of 10
+              - generic [ref=f1e71]:
+                - radio "Starving"
+                - generic [ref=f1e72]: Starving
+              - generic [ref=f1e74]:
+                - radio "Fine"
+                - generic [ref=f1e75]: Fine
+              - generic [ref=f1e77]:
+                - radio "Sleepy"
+                - generic [ref=f1e78]: Sleepy
+              - generic [ref=f1e80]:
+                - radio "So-so"
+                - generic [ref=f1e81]: So-so
+        - 'article "Never better: Breakfast “Never Better”" [ref=f1e85]':
+          - paragraph [ref=f1e86]:
+            - generic [ref=f1e87]: Never better
+          - figure [ref=f1e88]:
+            - 'img "The “Never Better” breakfast: fried eggs, homemade sausages, fresh vegetables and mushroom sauce" [ref=f1e89]'
+          - generic [ref=f1e90]:
+            - paragraph [ref=f1e91]: Same here! Fried eggs, homemade sausages, fresh vegetables and mushroom sauce. That’s the “Never Better” breakfast.
+            - paragraph [ref=f1e92]: 670 ₽
+        - generic [ref=f1e93]:
+          - link "See the menu" [ref=f1e94] [cursor=pointer]:
+            - /url: /kakdela/menu
+            - generic [aria-hidden]:
+              - generic: See the menu
+          - link "Nearest café" [ref=f1e96] [cursor=pointer]:
+            - /url: "#gde"
+            - generic [aria-hidden]:
+              - generic: Nearest café
+      - paragraph [ref=f1e98]
+    - region "Team" [ref=f1e99]:
+      - generic [ref=f1e100]:
+        - heading "Every good meeting, every heart-to-heart starts with “kak dela?”, Russian for “how are you?”. We wanted our cafés to be the place for exactly those meetings." [level=2] [ref=f1e102]
+        - list "The team and our guests answer" [ref=f1e104]:
+          - listitem [ref=f1e105]:
+            - figure [ref=f1e106]:
+              - img "A barista pours filter coffee from a flask into a branded mug" [ref=f1e107]
+            - paragraph [ref=f1e109]:
+              - generic [ref=f1e110]: Never better
+            - paragraph
+            - paragraph [ref=f1e111]: There’s a new Ethiopian on filter today. Come in, I’ll pour you a taste.
+            - paragraph [ref=f1e112]:
+              - link "Breakfast “Never Better”" [ref=f1e113] [cursor=pointer]:
+                - /url: /kakdela/menu#luchshe-vseh
+          - listitem [ref=f1e114]:
+            - figure [ref=f1e115]:
+              - img "Cold coffee poured from a bottle into a branded “Kak dela?” cup with ice" [ref=f1e116]
+            - paragraph [ref=f1e118]:
+              - generic [ref=f1e119]: Like a dream
+            - paragraph
+            - paragraph [ref=f1e120]: The first cappuccino at 07:30, the first blitz game in the evening.
+            - paragraph [ref=f1e121]:
+              - link "Breakfast “Like a Dream”" [ref=f1e122] [cursor=pointer]:
+                - /url: /kakdela/menu#kak-v-skazke
+          - listitem [ref=f1e123]:
+            - figure [ref=f1e124]:
+              - img "A barista in an apron holds a portafilter of fresh ground coffee by the grinder" [ref=f1e125]
+            - paragraph [ref=f1e127]:
+              - generic [ref=f1e128]: All peachy
+            - paragraph
+            - paragraph [ref=f1e129]: We train every barista so a cup tastes the same in any of the nine cafés.
+            - paragraph [ref=f1e130]:
+              - link "Breakfast “Peachy”" [ref=f1e131] [cursor=pointer]:
+                - /url: /kakdela/menu#shik
+          - listitem [ref=f1e132]:
+            - figure [ref=f1e133]:
+              - img "A guest in a green sweater holds a branded “Kak dela?” cup" [ref=f1e134]
+            - paragraph [ref=f1e136]:
+              - generic [ref=f1e137]: 10 out of 10
+            - paragraph
+            - paragraph [ref=f1e138]: They remember what coffee I drink and ask how I am. And mean it.
+            - paragraph [ref=f1e139]:
+              - link "Breakfast “10 out of 10”" [ref=f1e140] [cursor=pointer]:
+                - /url: /kakdela/menu#10-iz-10
+    - region "What’s for breakfast?" [ref=f1e141]:
+      - generic [ref=f1e142]:
+        - heading "What’s for breakfast?" [level=2] [ref=f1e144]
+        - generic [ref=f1e146]:
+          - generic [ref=f1e147]:
+            - paragraph [ref=f1e148]: Prices
+            - radiogroup "Prices" [ref=f1e149]:
+              - radio "Nalchik" [checked] [ref=f1e150] [cursor=pointer]
+              - radio "Vladikavkaz" [ref=f1e153] [cursor=pointer]
+          - generic [ref=f1e155]:
+            - list [ref=f1e156]:
+              - listitem [ref=f1e157]:
+                - heading [level=3] [ref=f1e158]:
+                  - link "Never Better" [ref=f1e159] [cursor=pointer]:
+                    - /url: /kakdela/menu
+                - paragraph [ref=f1e160]: 670 ₽
+                - paragraph [ref=f1e161]: Fried eggs, smoked homemade sausages, fresh vegetables, mushroom sauce.
+                - paragraph [ref=f1e162]: 646 kcal · protein 37.6 g · fat 36.8 g · carbs 34.6 g
+              - listitem [ref=f1e163]:
+                - heading [level=3] [ref=f1e164]:
+                  - link "Like a Dream" [ref=f1e165] [cursor=pointer]:
+                    - /url: /kakdela/menu
+                - paragraph [ref=f1e166]: 730 ₽
+                - paragraph [ref=f1e167]: Scrambled eggs with shrimp, warm toast and fresh herbs.
+              - listitem [ref=f1e168]:
+                - heading [level=3] [ref=f1e169]:
+                  - link "Excellent" [ref=f1e170] [cursor=pointer]:
+                    - /url: /kakdela/menu
+                - paragraph [ref=f1e171]: 670 ₽
+                - paragraph [ref=f1e172]: Omelette with mozzarella, avocado toast, fresh salad and sauce.
+              - listitem [ref=f1e173]:
+                - heading [level=3] [ref=f1e174]:
+                  - link "Peachy" [ref=f1e175] [cursor=pointer]:
+                    - /url: /kakdela/menu
+                - paragraph [ref=f1e176]: 730 ₽
+                - paragraph [ref=f1e177]: Brown and wild rice, chicken in cream sauce, our signature sauce.
+              - listitem [ref=f1e178]:
+                - heading [level=3] [ref=f1e179]:
+                  - link "10 out of 10" [ref=f1e180] [cursor=pointer]:
+                    - /url: /kakdela/menu
+                - paragraph [ref=f1e181]: 840 ₽
+                - paragraph [ref=f1e182]: Brioche with salmon, cream cheese and avocado under our own hollandaise.
+              - listitem [ref=f1e183]:
+                - heading [level=3] [ref=f1e184]:
+                  - link "Hearty" [ref=f1e185] [cursor=pointer]:
+                    - /url: /kakdela/menu
+                - paragraph [ref=f1e186]: 670 ₽
+                - paragraph [ref=f1e187]: Eggs, croutons, hummus, mozzarella, frisée and cherry tomatoes.
+            - paragraph [ref=f1e189]:
+              - link "See the menu" [ref=f1e190] [cursor=pointer]:
+                - /url: /kakdela/menu
+          - complementary [aria-hidden] [ref=f1e191]:
+            - generic [ref=f1e192]:
+              - generic [ref=f1e193]:
+                - figure [ref=f1e195]
+                - figure [ref=f1e198]
+                - figure [ref=f1e201]
+                - figure [ref=f1e204]
+                - figure [ref=f1e207]
+                - figure [ref=f1e210]
+              - generic [ref=f1e213]:
+                - paragraph [ref=f1e214]: Never Better
+                - paragraph [ref=f1e215]: 646 kcal · protein 37.6 g · fat 36.8 g · carbs 34.6 g
+    - region "And coffee? Coffee is no joke." [ref=f1e216]:
+      - generic [ref=f1e217]:
+        - heading "And coffee? Coffee is no joke." [level=2] [ref=f1e218]:
+          - generic [ref=f1e219]: And coffee?
+          - generic [ref=f1e220]: Coffee is no joke.
+        - paragraph [ref=f1e221]: Espresso, filter, alternative brews and our own signature drinks. We buy our beans from roasters we trust.
+        - img [aria-hidden] [ref=f1e227]:
+          - generic [ref=f1e239]: kak dela?
+        - generic [ref=f1e243]:
+          - generic [ref=f1e244]:
+            - generic [ref=f1e245]: 01 / Signature
+            - generic [ref=f1e246]: Prices · Nalchik
+          - list "Signature" [ref=f1e247]:
+            - listitem [ref=f1e248]:
+              - generic [ref=f1e249]:
+                - generic [ref=f1e250]:
+                  - heading [level=3] [ref=f1e251]:
+                    - link "Cappuccino" [ref=f1e254] [cursor=pointer]:
+                      - /url: /kakdela/menu#kapuchino
+                  - paragraph [ref=f1e256]: 240 / 270 ₽
+                - paragraph [aria-hidden] [ref=f1e257]:
+                  - generic [ref=f1e258]: a classic?
+                  - generic [ref=f1e259]: cappuccino 240
+              - figure [ref=f1e263]:
+                - img "Cappuccino with latte art" [ref=f1e265]
+            - listitem [ref=f1e266]:
+              - generic [ref=f1e267]:
+                - generic [ref=f1e268]:
+                  - heading [level=3] [ref=f1e269]:
+                    - link "“Clover”" [ref=f1e272] [cursor=pointer]:
+                      - /url: /kakdela/menu#klever
+                  - paragraph [ref=f1e274]: 280 ₽
+                - paragraph [ref=f1e275]: Alternative brew.
+                - paragraph [aria-hidden] [ref=f1e276]:
+                  - generic [ref=f1e277]: something new?
+                  - generic [ref=f1e278]: clover 280
+              - figure [ref=f1e282]:
+                - img "“Clover” coffee in a glass carafe" [ref=f1e284]
+            - listitem [ref=f1e285]:
+              - generic [ref=f1e286]:
+                - generic [ref=f1e287]:
+                  - heading [level=3] [ref=f1e288]:
+                    - link "V60 pour-⁠over" [ref=f1e291] [cursor=pointer]:
+                      - /url: /kakdela/menu#v60
+                  - paragraph [ref=f1e293]: 280 ₽
+                - paragraph [ref=f1e294]: Hand-brewed, one cup at a time.
+                - paragraph [aria-hidden] [ref=f1e295]:
+                  - generic [ref=f1e296]: no rush?
+                  - generic [ref=f1e297]: V60 280
+            - listitem [ref=f1e305]:
+              - generic [ref=f1e306]:
+                - generic [ref=f1e307]:
+                  - heading [level=3] [ref=f1e308]:
+                    - link "“Mir Station”" [ref=f1e311] [cursor=pointer]:
+                      - /url: /kakdela/menu#stanciya-mir
+                  - paragraph [ref=f1e313]: 280 ₽
+                - paragraph [ref=f1e314]: Filter coffee with our own mountain-herb syrup.
+                - paragraph [aria-hidden] [ref=f1e315]:
+                  - generic [ref=f1e316]: to the hills?
+                  - generic [ref=f1e317]: mir station 280
+              - figure [ref=f1e321]:
+                - img "Our “Mir Station” filter coffee with a creamy top" [ref=f1e323]
+            - listitem [ref=f1e324]:
+              - generic [ref=f1e325]:
+                - generic [ref=f1e326]:
+                  - heading [level=3] [ref=f1e327]:
+                    - link "“Sweeter Still”" [ref=f1e330] [cursor=pointer]:
+                      - /url: /kakdela/menu#dalshe-slashe
+                  - paragraph [ref=f1e332]: 350 ₽
+                - paragraph [ref=f1e333]: Our own, with grapefruit.
+                - paragraph [aria-hidden] [ref=f1e334]:
+                  - generic [ref=f1e335]: sweet tooth?
+                  - generic [ref=f1e336]: sweeter still 350
+              - figure [ref=f1e340]:
+                - img "Our own “Sweeter Still” drink with grapefruit" [ref=f1e342]
+            - listitem [ref=f1e343]:
+              - generic [ref=f1e344]:
+                - generic [ref=f1e345]:
+                  - heading [level=3] [ref=f1e346]:
+                    - link "Espresso tonic" [ref=f1e349] [cursor=pointer]:
+                      - /url: /kakdela/menu#espresso-tonik
+                  - paragraph [ref=f1e351]: 290 ₽
+                - paragraph [ref=f1e352]: Espresso, tonic, ice, citrus.
+                - paragraph [aria-hidden] [ref=f1e353]:
+                  - generic [ref=f1e354]: hot out?
+                  - generic [ref=f1e355]: espresso tonic 290
+              - figure [ref=f1e359]:
+                - img "Espresso tonic with ice and citrus" [ref=f1e361]
+        - paragraph [ref=f1e362]:
+          - link "Full drinks menu" [ref=f1e363] [cursor=pointer]:
+            - /url: /kakdela/menu
+          - link "Delivery via Yandex Eats" [ref=f1e364] [cursor=pointer]:
+            - /url: /kakdela/delivery
+    - region "Closer than you think." [ref=f1e365]:
+      - generic [ref=f1e366]:
+        - heading "Closer than you think." [level=2] [ref=f1e368]
+        - generic [ref=f1e370]:
+          - radiogroup "City" [ref=f1e371]:
+            - radio "Nalchik" [checked] [ref=f1e372] [cursor=pointer]:
+              - generic [aria-hidden] [ref=f1e375]: "7"
+            - radio "Vladikavkaz" [ref=f1e376] [cursor=pointer]:
+              - generic [aria-hidden] [ref=f1e378]: "2"
+          - button "Which one is nearest?" [ref=f1e379] [cursor=pointer]:
+            - generic [aria-hidden]:
+              - generic: Which one is nearest?
+          - status
+        - generic [ref=f1e381]:
+          - paragraph [ref=f1e382]: Nalchik · 7 cafés
+          - list "Nalchik · 7 cafés" [ref=f1e383]:
+            - listitem [ref=f1e384]:
+              - generic [ref=f1e385]:
+                - heading "Baysultanova St, 1" [level=3] [ref=f1e386]
+                - generic [ref=f1e387]: flagship
+              - paragraph [ref=f1e388]:
+                - generic [ref=f1e389]: 07:30–23:00
+              - paragraph [ref=f1e390]: All breakfasts · summer terrace
+              - paragraph [ref=f1e391]:
+                - 'link "Call: +7 (928) 082-61-11" [ref=f1e392] [cursor=pointer]':
+                  - /url: tel:+79280826111
+                  - generic [ref=f1e393]: "Call:"
+                  - text: +7 (928) 082-61-11
+                - link "Directions (opens in a new tab)" [ref=f1e394] [cursor=pointer]:
+                  - /url: https://yandex.ru/maps/?rtext=~43.478967,43.585515&rtt=auto
+                  - text: Directions
+                  - generic [aria-hidden] [ref=f1e395]: ↗
+                  - generic [ref=f1e396]: (opens in a new tab)
+            - listitem [ref=f1e397]:
+              - generic [ref=f1e398]:
+                - heading "Lermontova St, 4" [level=3] [ref=f1e399]
+                - generic [ref=f1e400]: “Saralp”
+              - paragraph [ref=f1e401]:
+                - generic [ref=f1e402]: 07:30–23:00
+              - paragraph [ref=f1e403]: Kids’ room · summer and winter terraces · all breakfasts
+              - paragraph [ref=f1e404]:
+                - 'link "Call: +7 (938) 082-07-82" [ref=f1e405] [cursor=pointer]':
+                  - /url: tel:+79380820782
+                  - generic [ref=f1e406]: "Call:"
+                  - text: +7 (938) 082-07-82
+                - link "Directions (opens in a new tab)" [ref=f1e407] [cursor=pointer]:
+                  - /url: https://yandex.ru/maps/?rtext=~43.476805,43.603682&rtt=auto
+                  - text: Directions
+                  - generic [aria-hidden] [ref=f1e408]: ↗
+                  - generic [ref=f1e409]: (opens in a new tab)
+            - listitem [ref=f1e410]:
+              - generic [ref=f1e411]:
+                - heading "Shogentsukova Ave, 19" [level=3] [ref=f1e412]
+                - generic [ref=f1e413]: new
+              - paragraph [ref=f1e414]:
+                - generic [ref=f1e415]: 07:30–23:00
+              - paragraph [ref=f1e416]: Blitz chess · summer terrace · light menu
+              - paragraph [ref=f1e417]:
+                - 'link "Call: +7 (938) 077-35-25" [ref=f1e418] [cursor=pointer]':
+                  - /url: tel:+79380773525
+                  - generic [ref=f1e419]: "Call:"
+                  - text: +7 (938) 077-35-25
+                - link "Directions (opens in a new tab)" [ref=f1e420] [cursor=pointer]:
+                  - /url: https://yandex.ru/maps/?rtext=~43.481052,43.606337&rtt=auto
+                  - text: Directions
+                  - generic [aria-hidden] [ref=f1e421]: ↗
+                  - generic [ref=f1e422]: (opens in a new tab)
+            - listitem [ref=f1e423]:
+              - heading "Lermontova St, 59" [level=3] [ref=f1e425]
+              - paragraph [ref=f1e426]:
+                - generic [ref=f1e427]: 07:30–00:00
+              - paragraph [ref=f1e428]: All breakfasts · summer terrace
+              - paragraph [ref=f1e429]:
+                - 'link "Call: +7 (938) 077-39-08" [ref=f1e430] [cursor=pointer]':
+                  - /url: tel:+79380773908
+                  - generic [ref=f1e431]: "Call:"
+                  - text: +7 (938) 077-39-08
+                - link "Directions (opens in a new tab)" [ref=f1e432] [cursor=pointer]:
+                  - /url: https://yandex.ru/maps/?rtext=~43.48576,43.590532&rtt=auto
+                  - text: Directions
+                  - generic [aria-hidden] [ref=f1e433]: ↗
+                  - generic [ref=f1e434]: (opens in a new tab)
+            - listitem [ref=f1e435]:
+              - heading "Lenina Ave, 32" [level=3] [ref=f1e437]
+              - paragraph [ref=f1e438]:
+                - generic [ref=f1e439]: 07:30–00:00
+              - paragraph [ref=f1e440]: Light menu · downtown
+              - paragraph [ref=f1e441]:
+                - 'link "Call: +7 (938) 077-35-32" [ref=f1e442] [cursor=pointer]':
+                  - /url: tel:+79380773532
+                  - generic [ref=f1e443]: "Call:"
+                  - text: +7 (938) 077-35-32
+                - link "Directions (opens in a new tab)" [ref=f1e444] [cursor=pointer]:
+                  - /url: https://yandex.ru/maps/?rtext=~43.484104,43.607886&rtt=auto
+                  - text: Directions
+                  - generic [aria-hidden] [ref=f1e445]: ↗
+                  - generic [ref=f1e446]: (opens in a new tab)
+            - listitem [ref=f1e447]:
+              - generic [ref=f1e448]:
+                - heading "Shogentsukova Ave, 14" [level=3] [ref=f1e449]
+                - generic [ref=f1e450]: Dolinsk
+              - paragraph [ref=f1e451]:
+                - generic [ref=f1e452]: 07:30–00:00
+              - paragraph [ref=f1e453]: Light menu · ice cream
+              - paragraph [ref=f1e454]:
+                - 'link "Call: +7 (938) 077-34-62" [ref=f1e455] [cursor=pointer]':
+                  - /url: tel:+79380773462
+                  - generic [ref=f1e456]: "Call:"
+                  - text: +7 (938) 077-34-62
+                - link "Directions (opens in a new tab)" [ref=f1e457] [cursor=pointer]:
+                  - /url: https://yandex.ru/maps/?rtext=~43.456158,43.584882&rtt=auto
+                  - text: Directions
+                  - generic [aria-hidden] [ref=f1e458]: ↗
+                  - generic [ref=f1e459]: (opens in a new tab)
+            - listitem [ref=f1e460]:
+              - heading "Atazhukina St, 10V" [level=3] [ref=f1e462]
+              - paragraph [ref=f1e463]:
+                - generic [ref=f1e464]: 07:30–00:00
+              - paragraph [ref=f1e465]: Light menu · terrace
+              - paragraph [ref=f1e466]:
+                - 'link "Call: +7 (938) 077-34-87" [ref=f1e467] [cursor=pointer]':
+                  - /url: tel:+79380773487
+                  - generic [ref=f1e468]: "Call:"
+                  - text: +7 (938) 077-34-87
+                - link "Directions (opens in a new tab)" [ref=f1e469] [cursor=pointer]:
+                  - /url: https://yandex.ru/maps/?rtext=~43.476047,43.569247&rtt=auto
+                  - text: Directions
+                  - generic [aria-hidden] [ref=f1e470]: ↗
+                  - generic [ref=f1e471]: (opens in a new tab)
+        - generic [ref=f1e472]:
+          - paragraph [ref=f1e473]: "In every café: halal and a prayer room, Wi‑Fi and sockets, laptops welcome, an English menu."
+          - link "All cafés" [ref=f1e474] [cursor=pointer]:
+            - /url: /kakdela/locations
+    - region "Reviews" [ref=f1e475]:
+      - generic [ref=f1e476]:
+        - generic [ref=f1e477]:
+          - heading "How do you like it here?" [level=2] [ref=f1e478]
+          - paragraph [aria-hidden] [ref=f1e480]:
+            - generic [ref=f1e481]: "5.0"
+          - paragraph [ref=f1e482]: "Baysultanova St, 1: 5.0 on Yandex Maps"
+        - list [ref=f1e484]:
+          - listitem [ref=f1e485]:
+            - blockquote [ref=f1e489]:
+              - paragraph [ref=f1e490]: «We were passing through Nalchik on the way to Elbrus… The breakfast place made an impression… On the way back we came again on purpose.»
+          - listitem [ref=f1e491]:
+            - blockquote [ref=f1e495]
+          - listitem [ref=f1e496]:
+            - blockquote [ref=f1e500]
+        - paragraph [ref=f1e501]:
+          - link "All reviews, in Russian (opens in a new tab)" [ref=f1e502] [cursor=pointer]:
+            - /url: https://yandex.ru/maps/30/nalchik/chain/kak_dela_/35254358097/
+            - text: All reviews, in Russian
+            - generic [aria-hidden] [ref=f1e503]: ↗
+            - generic [ref=f1e504]: (opens in a new tab)
+      - paragraph [ref=f1e505]
+    - 'region "Evening: desserts" [ref=f1e506]':
+      - generic [ref=f1e507]:
+        - heading "It only gets sweeter." [level=2] [ref=f1e509]
+        - list [ref=f1e511]:
+          - listitem [ref=f1e512]:
+            - figure [ref=f1e513]:
+              - img "Medovik honey cake on a dark plate" [ref=f1e514]
+            - generic [ref=f1e515]:
+              - generic [ref=f1e516]:
+                - heading "Medovik" [level=3] [ref=f1e517]
+                - paragraph [ref=f1e518]: 280 ₽
+              - paragraph [ref=f1e519]: "Honey cake: honey layers, custard, salted caramel, walnut."
+          - listitem [ref=f1e520]:
+            - figure [ref=f1e521]:
+              - img "Brownie with pecans" [ref=f1e522]
+            - generic [ref=f1e523]:
+              - generic [ref=f1e524]:
+                - heading "Brownie" [level=3] [ref=f1e525]
+                - paragraph [ref=f1e526]: 360 ₽
+              - paragraph [ref=f1e527]: Dark chocolate and pecan.
+          - listitem [ref=f1e528]:
+            - figure [ref=f1e529]:
+              - img "San Sebastián cheesecake with chocolate sauce" [ref=f1e530]
+            - generic [ref=f1e531]:
+              - generic [ref=f1e532]:
+                - heading "San Sebastián" [level=3] [ref=f1e533]
+                - paragraph [ref=f1e534]: 440 ₽
+              - paragraph [ref=f1e535]: Basque cheesecake with a dark crust.
+        - link "All desserts" [ref=f1e537] [cursor=pointer]:
+          - /url: /kakdela/menu
+    - region "Puzzle of the week." [ref=f1e538]:
+      - generic [ref=f1e539]:
+        - generic [ref=f1e540]:
+          - heading "Puzzle of the week." [level=2] [ref=f1e541]
+          - paragraph [ref=f1e543]: White to play and mate in two. A new puzzle every Monday.
+        - generic [ref=f1e544]:
+          - 'img "White: king g2, rook c7, bishop c4, pawn a2, pawn f2, pawn f3, pawn h3. Black: king g8, rook b4, rook f7, bishop f6, pawn a5, pawn g7, pawn h7. Black’s last move: rook from f8 takes on f7." [ref=f1e546]':
+            - generic [aria-hidden]:
+              - generic: a
+              - generic: b
+              - generic: c
+              - generic: d
+              - generic: e
+              - generic: f
+              - generic: g
+              - generic: h
+              - generic: "8"
+              - generic: "7"
+              - generic: "6"
+              - generic: "5"
+              - generic: "4"
+              - generic: "3"
+              - generic: "2"
+              - generic: "1"
+          - list [ref=f1e548]:
+            - listitem [ref=f1e549]:
+              - generic [aria-hidden] [ref=f1e550]: "1."
+              - generic [aria-hidden] [ref=f1e551]: "?"
+              - generic [ref=f1e552]: "Move 1: your move"
+        - article [ref=f1e553]:
+          - heading "Solved it? Come to the blitz." [level=3] [ref=f1e554]
+          - paragraph [ref=f1e555]: Several rounds, games of up to ten minutes. The winner gets a 5,000 ₽ gift card. We announce the dates on Telegram.
+          - paragraph [ref=f1e556]:
+            - link "Vote for the tournament date (opens in a new tab)" [ref=f1e557] [cursor=pointer]:
+              - /url: https://t.me/kakdelaKD
+              - generic [ref=f1e558]:
+                - text: Vote for the tournament date
+                - generic [aria-hidden] [ref=f1e559]: ↗
+              - generic [aria-hidden]:
+                - generic:
+                  - text: Vote for the tournament date
+                  - generic [aria-hidden]: ↗
+              - generic [ref=f1e560]: (opens in a new tab)
+    - region "The cup game." [ref=f1e561]:
+      - generic [ref=f1e562]:
+        - heading "The cup game." [level=2] [ref=f1e564]
+        - generic [ref=f1e566]:
+          - application "Playing field" [ref=f1e568] [cursor=pointer]
+          - paragraph [ref=f1e592]
+  - contentinfo [ref=f1e593]:
+    - generic [ref=f1e595]:
+      - navigation "Sections" [ref=f1e596]:
+        - paragraph [ref=f1e597]: Sections
+        - list [ref=f1e598]:
+          - listitem [ref=f1e599]:
+            - link "Home" [ref=f1e600] [cursor=pointer]:
+              - /url: /kakdela
+          - listitem [ref=f1e601]:
+            - link "Menu" [ref=f1e602] [cursor=pointer]:
+              - /url: /kakdela/menu
+          - listitem [ref=f1e603]:
+            - link "About us" [ref=f1e604] [cursor=pointer]:
+              - /url: /kakdela/about
+          - listitem [ref=f1e605]:
+            - link "Cafés" [ref=f1e606] [cursor=pointer]:
+              - /url: /kakdela/locations
+          - listitem [ref=f1e607]:
+            - link "Feedback" [ref=f1e608] [cursor=pointer]:
+              - /url: /kakdela/feedback
+      - navigation "Services" [ref=f1e609]:
+        - paragraph [ref=f1e610]: Services
+        - list [ref=f1e611]:
+          - listitem [ref=f1e612]:
+            - link "Delivery" [ref=f1e613] [cursor=pointer]:
+              - /url: /kakdela/delivery
+          - listitem [ref=f1e614]:
+            - link "Catering" [ref=f1e615] [cursor=pointer]:
+              - /url: /kakdela/catering
+          - listitem [ref=f1e616]:
+            - link "Bonus card" [ref=f1e617] [cursor=pointer]:
+              - /url: /kakdela/bonus
+          - listitem [ref=f1e618]:
+            - link "Gift cards" [ref=f1e619] [cursor=pointer]:
+              - /url: /kakdela/bonus#sertifikaty
+          - listitem [ref=f1e620]:
+            - link "Careers" [ref=f1e621] [cursor=pointer]:
+              - /url: /kakdela/careers
+      - generic [ref=f1e622]:
+        - generic [ref=f1e623]:
+          - paragraph [ref=f1e624]: Phone · Nalchik
+          - link "+7 (928) 082-61-11" [ref=f1e626] [cursor=pointer]:
+            - /url: tel:+79280826111
+          - list [ref=f1e627]:
+            - listitem [ref=f1e628]:
+              - link "Telegram (opens in a new tab)" [ref=f1e629] [cursor=pointer]:
+                - /url: https://t.me/kakdelaKD
+                - text: Telegram
+                - generic [aria-hidden] [ref=f1e630]: ↗
+                - generic [ref=f1e631]: (opens in a new tab)
+            - listitem [ref=f1e632]:
+              - link "Instagram (opens in a new tab)" [ref=f1e633] [cursor=pointer]:
+                - /url: https://www.instagram.com/kakdela.coffee/
+                - text: Instagram
+                - generic [aria-hidden] [ref=f1e634]: ↗
+                - generic [ref=f1e635]: (opens in a new tab)
+        - paragraph [ref=f1e636]: Halal and a prayer room in every café · Wi‑Fi · English menu · open daily from 07:30
+        - paragraph [ref=f1e637]: © 2026 “Kak dela?” · Nalchik · Vladikavkaz
+        - paragraph [ref=f1e638]:
+          - link "Privacy policy" [ref=f1e639] [cursor=pointer]:
+            - /url: /kakdela/privacy
+          - text: ·
+          - link "Русская версия" [ref=f1e640] [cursor=pointer]:
+            - /url: /kakdela/ru

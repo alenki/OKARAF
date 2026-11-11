@@ -8,6 +8,28 @@
   to = "https://okaraf.ru"
   status = 200
 
+# Project sites, served whole from public/<name>/. Real files win over these rules;
+# an unknown path inside a project gets that project's own 404 (or its app shell).
+[[redirects]]
+  from = "/kakdela/*"
+  to = "/kakdela/404.html"
+  status = 404
+
+[[redirects]]
+  from = "/alfaprint/*"
+  to = "/alfaprint/404.html"
+  status = 404
+
+[[redirects]]
+  from = "/harmonycoffee/*"
+  to = "/harmonycoffee/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/biblioteka/*"
+  to = "/biblioteka/index.html"
+  status = 200
+
 # Anything that is not a real file gets the designed 404 page (and a real 404 status,
 # so search engines do not index mistyped addresses as copies of the home page).
 [[redirects]]

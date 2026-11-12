@@ -15,6 +15,23 @@
   to = "/kakdela/404.html"
   status = 404
 
+# Alfa Print was translated to English and its pages renamed; the old
+# transliterated addresses move permanently to the new ones.
+[[redirects]]
+  from = "/alfaprint/kontakty/*"
+  to = "/alfaprint/contact/"
+  status = 301
+
+[[redirects]]
+  from = "/alfaprint/raschet/*"
+  to = "/alfaprint/order/"
+  status = 301
+
+[[redirects]]
+  from = "/alfaprint/soglasie/*"
+  to = "/alfaprint/consent/"
+  status = 301
+
 [[redirects]]
   from = "/alfaprint/*"
   to = "/alfaprint/404.html"

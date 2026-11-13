@@ -337,13 +337,11 @@ a {
   align-items: center;
   justify-content: center;
   gap: clamp(0.5rem, 2.4vw, 1.9rem);
-  /* The Russian labels run about 40% longer than the English ones, so the pill is wider
-     and, on narrow phones, both its padding and the labels step down to fit. */
-  width: min(30rem, calc(100vw - 2rem));
+  width: min(25rem, calc(100vw - 2rem));
   height: 3.7rem;
   margin-top: 10px;
   margin-top: max(10px, env(safe-area-inset-top));
-  padding-inline: clamp(0.5rem, 2.6vw, 1rem);
+  padding-inline: 1rem;
   border: 1px solid rgb(120 119 115 / 0.34);
   border-radius: 2.5rem;
   background: rgb(84 83 80 / 0.46);
@@ -377,7 +375,7 @@ a {
   min-height: 44px;
   padding-inline: 0.35rem;
   font-family: var(--font-display);
-  font-size: clamp(0.8125rem, 3.55vw, 1rem);
+  font-size: 1rem;
   letter-spacing: 0.06em;
   color: #fff;
 }
@@ -409,14 +407,6 @@ a {
 .navbar__link:focus-visible {
   outline-offset: -2px;
   border-radius: 2rem;
-}
-
-/* The smallest phones (320px): «сертификаты» needs the last few pixels. */
-@media (max-width: 21.25rem) {
-  .navbar__link {
-    padding-inline: 0.2rem;
-    font-size: 0.75rem;
-  }
 }
 
 /* The veil */
@@ -1072,8 +1062,6 @@ a {
   font-size: clamp(1.3rem, 1.05rem + 1.1vw, 2rem);
   line-height: 1.1;
   letter-spacing: -0.012em;
-  /* On the smallest phones the column is ~150px; the long Russian words carry soft hyphens. */
-  overflow-wrap: break-word;
 }
 
 .ledger__issuer {
@@ -1358,7 +1346,6 @@ html:not(.js) .values__track {
 
 .certs {
   display: grid;
-  grid-template-columns: minmax(0, 1fr);
   gap: clamp(3rem, 6vw, 6rem) var(--gap);
   padding-block: clamp(2rem, 5vw, 4rem) var(--section);
 }
@@ -1377,7 +1364,6 @@ html:not(.js) .values__track {
 
 .cert {
   display: grid;
-  grid-template-columns: minmax(0, 1fr);
   gap: 1.1rem;
   align-content: start;
 }
@@ -1390,9 +1376,6 @@ html:not(.js) .values__track {
   letter-spacing: -0.012em;
   text-transform: uppercase;
   text-wrap: balance;
-  /* «ПРОГРАММИРОВАНИЕ» alone is wider than a small phone's column: the long words carry
-     a soft hyphen at a proper break (not every browser hyphenates Russian by itself). */
-  overflow-wrap: break-word;
 }
 
 .cert__foot {

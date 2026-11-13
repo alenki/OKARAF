@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 OKARAF is the personal portfolio of Omar Karaf: a static, multi-page site built with Vite and TypeScript (no framework). This branch (`main`) is the Russian version; the English version of the same site lives on the `english` branch. Keep the two in step: same projects, links and pictures, with the copy translated.
 
-As on the earlier Russian site, some parts stay in English, word for word as on the `english` branch: the nav, the project titles, the certificate titles (certificates page and home ledger), the values marquee, the motto "when in doubt, look intelligent" and its 404 echo "When in doubt, go home.", and the footer headings "contacts" and "info". They carry `lang="en"` where they sit in Russian pages. Everything else is Russian.
+As on the earlier Russian site, some parts stay in English, word for word as on the `english` branch: the nav, the project titles, the certificate titles on the certificates page (the home page's ledger stays Russian), the values marquee, the motto "when in doubt, look intelligent" and its 404 echo "When in doubt, go home.", and the footer headings "contacts" and "info". They carry `lang="en"` where they sit in Russian pages. Everything else is Russian.
 
 The design rule: **two inks, one material.** The page is ink (`--ink`) and paper (`--paper`), everything textured is an 8×8 ordered (Bayer) dither, and the only colour is the work itself. Project screenshots sit on the page as 1-bit plates and resolve into colour as they are scrolled to. Nothing fades in: text, hover fills, the loader and page transitions all arrive through the same dither.
 

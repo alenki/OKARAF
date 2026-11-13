@@ -1062,6 +1062,16 @@ a {
   font-size: clamp(1.3rem, 1.05rem + 1.1vw, 2rem);
   line-height: 1.1;
   letter-spacing: -0.012em;
+  /* The long Russian words carry soft hyphens for phones, where the column can be ~150px.
+     Wider than that they are switched off, so a word moves to the next line whole. */
+  hyphens: none;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 30rem) {
+  .ledger__title {
+    hyphens: manual;
+  }
 }
 
 .ledger__issuer {

@@ -1,6 +1,6 @@
 import { defineConfig, type Plugin } from 'vite'
-import { readFileSync } from 'node:fs'
-import { resolve } from 'node:path'
+import { existsSync, readFileSync } from 'node:fs'
+import { resolve, sep } from 'node:path'
 
 /** Public address of this build. Used for canonical and social-card URLs. */
 const SITE = 'https://okaraf.ru'
@@ -48,9 +48,42 @@ function htmlPartials(): Plugin {
   }
 }
 
+/**
+ * The project sites are whole static builds in public/<name>/. Netlify serves
+ * /<name>/ and /<name>/page from their index.html (or page.html); the dev server
+ * only knows public/ file by file, so it would answer with the home page instead.
+ * Point folder-style addresses at the file Netlify would serve.
+ */
+function publicSites(): Plugin {
+  return {
+    name: 'okaraf-public-sites',
+    configureServer(server) {
+      const pub = resolve(server.config.publicDir)
+      server.middlewares.use((req, _res, next) => {
+        const [path, query = ''] = (req.url ?? '/').split(/(?=\?)/)
+        if (path === '/' || /\.\w+$/.test(path)) return next()
+        const candidates = path.endsWith('/') ? [`${path}index.html`] : [`${path}/index.html`, `${path}.html`]
+        for (const url of candidates) {
+          let file: string
+          try {
+            file = resolve(pub, `.${decodeURIComponent(url)}`)
+          } catch {
+            return next()
+          }
+          if (file.startsWith(pub + sep) && existsSync(file)) {
+            req.url = url + query
+            break
+          }
+        }
+        next()
+      })
+    },
+  }
+}
+
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [htmlPartials()],
+  plugins: [htmlPartials(), publicSites()],
   server: {
     port: 7777,
   },

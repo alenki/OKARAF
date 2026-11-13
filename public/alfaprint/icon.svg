@@ -1,40 +1,40 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
   <!--
-    TAB ICON. The same mark as in the header, with the same paths: the letter on
-    plate K, the tick on plate R. The paths are copied from
-    src/components/chrome/Mark.tsx (MARK_K and MARK_R) and must match it exactly:
-    this file is static and cannot import anything, so the copy is edited by
-    hand together with it.
+    ИКОНКА ВКЛАДКИ. Тот же знак, что и в шапке, теми же путями: буква формой K,
+    галочка формой R. Пути скопированы из src/components/chrome/Mark.tsx
+    (MARK_K и MARK_R) и обязаны совпадать с ним знак в знак: файл статический,
+    импортировать сюда нечего, поэтому копия правится вручную вместе с ним.
 
-    Square, not 120x100 as before: tabs, bookmarks and desktop tiles show the
-    icon in a square field, and each of them pads a non-square file its own way.
+    Квадрат, а не 120×100 как прежде: вкладка, закладка и плитка на рабочем
+    столе показывают иконку в квадратном поле, и несквадратный файл они
+    доводят сами, каждый по-своему.
 
-    THE FIELD IS EMPTY, THERE IS NO TILE. The mark is cut to its ink and sits
-    directly on whatever the browser puts under it: the tab strip, bookmarks,
-    the list of frequent sites. The tile's rounded corners went with the tile;
-    the ink has its own outline. A desktop tile supplies its own field.
+    ПОЛЕ ПУСТОЕ, ПЛАШКИ НЕТ. Знак вырезан по краске и стоит прямо на том, что
+    подложит браузер: на панели вкладок, в закладках, в списке частых сайтов.
+    Вместе с плашкой ушли и её скруглённые углы — скруглять стало нечего,
+    у краски свой абрис. Плитка на рабочем столе поле себе подставит сама.
 
-    THE LETTER CHANGES INK WITH THE WINDOW THEME. Without a tile one ink is not
-    enough: ash would vanish on a light tab strip, ink on a dark one. So the
-    letter prints in ink by default and in ash under prefers-color-scheme: dark,
-    the same move currentColor makes for it in the header. A browser that does
-    not read the query gets the light case, which is the default tab strip. The
-    tick needs no adjustment: rubine shows on both fields, as on paper.
+    БУКВА МЕНЯЕТ КРАСКУ ПО ТЕМЕ ОКНА. Без плашки одной краски букве не хватает:
+    пепел утонул бы в светлой панели, тушь — в тёмной. Поэтому буква печатается
+    тушью по умолчанию и пеплом при prefers-color-scheme: dark, тем же ходом,
+    которым в шапке ей служит currentColor. Браузер, который запрос не читает,
+    получает светлый случай: он и есть панель вкладок по умолчанию. Галочке
+    поправка не нужна — рубин виден на обоих полях, как и на бумаге.
 
-    SHIFTED RIGHT BY 3.91 INSTEAD OF EQUAL MARGINS. The mark's box (MARK_VIEWBOX,
-    0 0 120 90.47) hugs the ink, but the ink inside it is uneven: a heavy letter
-    on the left, and on the right only the thin, nearly weightless tip of the
-    tick holds the box. Centred by its box, the mark looked shifted left. Here
-    it is set by the CENTRE OF MASS of the ink: coverage measured on a
-    1024x1024 grid puts it at x=60.09 against a field centre of 64, so the left
-    margin is 13.91 and the right 6.1. By the box the mark is now asymmetric; to
-    the eye it sits straight.
+    СДВИГ ВПРАВО НА 3,91 ВМЕСТО РОВНОГО ПОЛЯ. Габарит знака (MARK_VIEWBOX,
+    0 0 120 90.47) обнимает краску вплотную, но краска внутри него лежит
+    неровно: слева стоит тяжёлая буква, а справа рамку держит одно остриё
+    галочки, тонкое и почти невесомое. Поставленный по рамке знак ровно
+    поэтому и уезжал влево на глаз. Здесь он выставлен по ЦЕНТРУ ТЯЖЕСТИ
+    краски: доля закрашенного посчитана по сетке 1024×1024, центр тяжести
+    вышел на x=60,09 при середине поля 64, и поле слева стало 13,91 против
+    6,1 справа. По рамке знак теперь несимметричен, на глаз — стоит ровно.
 
-    The colours are written as numbers on purpose: this file lives outside CSS
-    and cannot see the tokens. #121110 is ink, #EDEBE6 is chalk, #D12A26 is
-    rubine, the same three inks as in @theme. (Token names appear here without
-    their leading dashes: two dashes in a row inside a comment make the XML
-    invalid, and the file stops being an image.)
+    Краски заданы числами намеренно: файл лежит вне CSS и токенов не видит.
+    #121110 это ink, #EDEBE6 это chalk, #D12A26 это rubine, те же три краски,
+    что в @theme. (Имена токенов здесь без ведущих дефисов: две чёрточки
+    подряд внутри комментария делают XML невалидным, и файл перестаёт быть
+    картинкой.)
   -->
   <style>
     .letter { fill: #121110 }

@@ -1,0 +1,43 @@
+# okaraf.ru on reg.ru shared hosting (Apache behind nginx).
+# Mirrors netlify.toml: the same pages answer, unknown paths get the designed 404.
+
+AddDefaultCharset utf-8
+Options -Indexes
+DirectoryIndex index.html
+
+# Anything that is not a real file gets the designed 404 page, with a real 404 status.
+# The project sites set their own in their folders' .htaccess.
+ErrorDocument 404 /404.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Pages without an extension: /kakdela/menu serves menu.html.
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+  RewriteRule ^(.+?)/?$ /$1.html [L]
+
+  # Single-page project sites: every unknown address inside them gets their app shell.
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(harmonycoffee|biblioteka)/ /$1/index.html [L]
+</IfModule>
+
+# Vite fingerprints everything in /assets, so those files can be cached for good.
+<IfModule mod_headers.c>
+  <If "%{REQUEST_URI} =~ m#^/assets/#">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </If>
+  # The pages point at those fingerprinted names, so they must be fresh after every upload.
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/javascript application/json application/xml image/svg+xml
+</IfModule>
+
+AddType font/woff2 .woff2
+AddType image/webp .webp

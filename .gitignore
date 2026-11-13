@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# reg.ru upload archive
+okaraf-ru.zip

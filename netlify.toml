@@ -1,26 +1,65 @@
-# Serve the certificates page for the pretty URL (no trailing slash).
 [[redirects]]
   from = "/certificates"
   to = "/certificates/index.html"
   status = 200
 
-# Canonical-domain redirect: send the Netlify subdomain to the primary domain.
 [[redirects]]
-  from = "https://okaraf.netlify.app/*"
-  to = "https://okaraf.ru/:splat"
+  from = "https://okaraf.netlify.app"
+  to = "https://okaraf.ru"
+  status = 200
+
+# Project sites, served whole from public/<name>/. Real files win over these rules;
+# an unknown path inside a project gets that project's own 404 (or its app shell).
+[[redirects]]
+  from = "/kakdela/*"
+  to = "/kakdela/404.html"
+  status = 404
+
+# Alfa Print was translated to English and its pages renamed; the old
+# transliterated addresses move permanently to the new ones.
+[[redirects]]
+  from = "/alfaprint/kontakty/*"
+  to = "/alfaprint/contact/"
   status = 301
-  force = true
 
-# Security headers for every response.
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Content-Type-Options = "nosniff"
-    X-Frame-Options = "SAMEORIGIN"
-    Referrer-Policy = "strict-origin-when-cross-origin"
-    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+[[redirects]]
+  from = "/alfaprint/raschet/*"
+  to = "/alfaprint/order/"
+  status = 301
 
-# Long-term immutable caching for hashed build assets.
+[[redirects]]
+  from = "/alfaprint/soglasie/*"
+  to = "/alfaprint/consent/"
+  status = 301
+
+[[redirects]]
+  from = "/alfaprint/*"
+  to = "/alfaprint/404.html"
+  status = 404
+
+[[redirects]]
+  from = "/harmonycoffee/*"
+  to = "/harmonycoffee/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/biblioteka/*"
+  to = "/biblioteka/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/masterauto/*"
+  to = "/masterauto/404.html"
+  status = 404
+
+# Anything that is not a real file gets the designed 404 page (and a real 404 status,
+# so search engines do not index mistyped addresses as copies of the home page).
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404
+
+# Vite fingerprints everything in /assets, so those files can be cached for good.
 [[headers]]
   for = "/assets/*"
   [headers.values]

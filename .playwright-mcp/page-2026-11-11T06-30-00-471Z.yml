@@ -1,0 +1,211 @@
+- generic [active] [ref=e1]:
+  - generic [aria-hidden]:
+    - generic:
+      - generic: OKARAF
+      - generic: Portfolio
+      - generic:
+        - generic:
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+  - link "Skip to content" [ref=e2] [cursor=pointer]:
+    - /url: "#main"
+  - banner:
+    - navigation "Primary" [ref=e3]:
+      - link "projects" [ref=e4] [cursor=pointer]:
+        - /url: "#projects"
+      - link "certificates" [ref=e6] [cursor=pointer]:
+        - /url: /certificates/
+      - link "contacts" [ref=e8] [cursor=pointer]:
+        - /url: "#contacts"
+  - main [ref=e10]:
+    - region "Omar Karaf" [ref=e11]:
+      - heading "Omar Karaf" [level=1]
+    - generic [ref=e12]:
+      - region "About" [ref=e14]:
+        - paragraph [ref=e16]:
+          - generic [ref=e17]: I’m
+          - generic [ref=e18]: Omar
+          - generic [ref=e19]: Karaf,
+          - generic [ref=e20]: a
+          - generic [ref=e21]: web
+          - generic [ref=e22]: developer
+          - generic [ref=e23]: from
+          - generic [ref=e24]: Nalchik,
+          - generic [ref=e25]: in
+          - generic [ref=e26]: the
+          - generic [ref=e27]: foothills
+          - generic [ref=e28]: of
+          - generic [ref=e29]: the
+          - generic [ref=e30]: Caucasus.
+          - generic [ref=e31]: I
+          - generic [ref=e32]: build
+          - generic [ref=e33]: websites
+          - generic [ref=e34]: for
+          - generic [ref=e35]: a
+          - generic [ref=e36]: shopping
+          - generic [ref=e37]: mall,
+          - generic [ref=e38]: a
+          - generic [ref=e39]: car
+          - generic [ref=e40]: service,
+          - generic [ref=e41]: a
+          - generic [ref=e42]: café
+          - generic [ref=e43]: and
+          - generic [ref=e44]: a
+          - generic [ref=e45]: musician.
+          - generic [ref=e46]: The
+          - generic [ref=e47]: coffee
+          - generic [ref=e48]: shop
+          - generic [ref=e49]: I
+          - generic [ref=e50]: made
+          - generic [ref=e51]: up.
+      - region "Projects" [ref=e53]:
+        - generic [ref=e54]:
+          - article [ref=e56]:
+            - generic:
+              - heading [level=3]
+            - link "Visit Harmony Coffee (opens in a new tab)" [ref=e57] [cursor=pointer]:
+              - /url: https://harmonycoffee.netlify.app
+              - 'img "Harmony Coffee homepage: a quiet café interior with armchairs under the headline “Кофе, созданный с намерением”" [ref=e58]'
+          - article [ref=e60]:
+            - generic:
+              - heading [level=3]
+            - link "Visit Galereya (opens in a new tab)" [ref=e61] [cursor=pointer]:
+              - /url: https://galereya-mall.netlify.app
+          - article [ref=e63]:
+            - generic:
+              - heading [level=3]
+            - link "Visit Master Auto (opens in a new tab)" [ref=e64] [cursor=pointer]:
+              - /url: https://masterauto-07.ru/
+          - article [ref=e66]:
+            - generic:
+              - heading [level=3]
+            - link "Visit Melty (opens in a new tab)" [ref=e67] [cursor=pointer]:
+              - /url: https://melty-cafe.ru
+          - article [ref=e69]:
+            - generic:
+              - heading [level=3]
+            - link "Visit ESOES (opens in a new tab)" [ref=e70] [cursor=pointer]:
+              - /url: https://esoesmusic.ru
+      - region "Certificates" [ref=e72]:
+        - generic [ref=e73]:
+          - paragraph [ref=e76]:
+            - generic [ref=e77]: 21st
+            - generic [aria-hidden] [ref=e78]:
+              - generic [ref=e79]: "2"
+              - generic [ref=e80]: "1"
+          - list [ref=e81]:
+            - listitem [ref=e82]
+            - listitem [ref=e83]
+            - listitem [ref=e84]
+            - listitem [ref=e85]
+            - listitem [ref=e86]
+            - listitem [ref=e87]
+  - contentinfo [ref=e88]:
+    - generic "Values" [ref=e89]:
+      - generic [ref=e90]:
+        - list [ref=e91]:
+          - listitem [ref=e92]: Fluidity
+          - listitem [ref=e93]
+          - listitem [ref=e96]: Strategy
+          - listitem [ref=e97]
+          - listitem [ref=e100]: Intentionality
+          - listitem [ref=e101]
+          - listitem [ref=e104]: Strength
+          - listitem [ref=e105]
+          - listitem [ref=e108]: Empathy
+          - listitem [ref=e109]
+          - listitem [ref=e112]: Skills
+          - listitem [ref=e113]
+          - listitem [ref=e116]: Intelligence
+          - listitem [ref=e117]
+          - listitem [ref=e120]: Power
+          - listitem [ref=e121]
+          - listitem [ref=e124]: Perfection
+          - listitem [ref=e125]
+          - listitem [ref=e128]: Class
+          - listitem [ref=e129]
+          - listitem [ref=e132]: Focus
+          - listitem [ref=e133]
+          - listitem [ref=e136]: Commitment
+          - listitem [ref=e137]
+          - listitem [ref=e140]: Will
+          - listitem [ref=e141]
+          - listitem [ref=e144]: Integrity
+          - listitem [ref=e145]
+          - listitem [ref=e148]: Courage
+          - listitem [ref=e149]
+          - listitem [ref=e152]: Resilience
+          - listitem [ref=e153]
+          - listitem [ref=e156]: Faith
+          - listitem [ref=e157]
+          - listitem [ref=e160]: Karaf
+          - listitem [ref=e161]
+        - list [aria-hidden] [ref=e164]:
+          - listitem [ref=e165]: Fluidity
+          - listitem [ref=e166]
+          - listitem [ref=e169]: Strategy
+          - listitem [ref=e170]
+          - listitem [ref=e173]: Intentionality
+          - listitem [ref=e174]
+          - listitem [ref=e177]: Strength
+          - listitem [ref=e178]
+          - listitem [ref=e181]: Empathy
+          - listitem [ref=e182]
+          - listitem [ref=e185]: Skills
+          - listitem [ref=e186]
+          - listitem [ref=e189]: Intelligence
+          - listitem [ref=e190]
+          - listitem [ref=e193]: Power
+          - listitem [ref=e194]
+          - listitem [ref=e197]: Perfection
+          - listitem [ref=e198]
+          - listitem [ref=e201]: Class
+          - listitem [ref=e202]
+          - listitem [ref=e205]: Focus
+          - listitem [ref=e206]
+          - listitem [ref=e209]: Commitment
+          - listitem [ref=e210]
+          - listitem [ref=e213]: Will
+          - listitem [ref=e214]
+          - listitem [ref=e217]: Integrity
+          - listitem [ref=e218]
+          - listitem [ref=e221]: Courage
+          - listitem [ref=e222]
+          - listitem [ref=e225]: Resilience
+          - listitem [ref=e226]
+          - listitem [ref=e229]: Faith
+          - listitem [ref=e230]
+          - listitem [ref=e233]: Karaf
+          - listitem [ref=e234]
+    - generic [ref=e238]:
+      - list [ref=e240]:
+        - listitem [ref=e241]:
+          - link "Email Write to me" [ref=e242] [cursor=pointer]:
+            - /url: mailto:okaraf07@gmail.com
+            - generic [ref=e243]: Email
+            - generic [ref=e244]: Write to me
+        - listitem [ref=e247]:
+          - link "Whatsapp Message me" [ref=e248] [cursor=pointer]:
+            - /url: https://api.whatsapp.com/send?phone=79289996640
+            - generic [ref=e249]: Whatsapp
+            - generic [ref=e250]: Message me
+      - list [ref=e254]:
+        - listitem [ref=e255]:
+          - link "Codeforces Alenki_" [ref=e256] [cursor=pointer]:
+            - /url: https://codeforces.com/profile/Alenki_
+            - generic [ref=e257]: Codeforces
+            - generic [ref=e258]: Alenki_
+        - listitem [ref=e261]:
+          - link "Github alenki" [ref=e262] [cursor=pointer]:
+            - /url: https://github.com/alenki
+            - generic [ref=e263]: Github
+            - generic [ref=e264]: alenki
+    - generic [ref=e268]: OKARAF
+    - generic [ref=e270]:
+      - paragraph [ref=e271]: Omar Karaf © 2026
+      - paragraph [ref=e272]:
+        - text: Nalchik
+        - time [ref=e273]: 09:30 GMT+3
+      - link "Back to top" [ref=e274] [cursor=pointer]:
+        - /url: "#top"

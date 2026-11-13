@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OKARAF — three directions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Jost:wght@300;400;500;600&family=Silkscreen&display=swap" rel="stylesheet">
+<style>
+  @font-face { font-family: "Fenice"; src: url("/files/Fenice_Regular.ttf") format("truetype"); font-display: swap; }
+  :root { --ink:#0a0a0b; --chalk:#ece8df; --mute:#8b877f; --line:#2a2927; --tape:#f0c63c; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { background: #111110; color: var(--chalk); }
+  body { font-family: "Jost", sans-serif; font-weight: 400; line-height: 1.5; padding: 48px 28px 120px; }
+  .sym { font-family: "Segoe UI Symbol", "Noto Sans Symbols 2", "Apple Symbols", serif; font-variant-emoji: text; }
+  .shell { max-width: 1280px; margin: 0 auto; }
+  .intro { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: end; padding-bottom: 36px; border-bottom: 1px solid var(--line); margin-bottom: 44px; }
+  .intro h1 { font-family: "Fenice", serif; font-weight: 400; font-size: clamp(40px, 5.2vw, 76px); line-height: .95; letter-spacing: -.03em; }
+  .intro p { color: #bdb8ae; font-size: 17px; max-width: 54ch; }
+  .intro p + p { margin-top: 10px; }
+  .kicker { font-size: 11px; letter-spacing: .28em; text-transform: uppercase; color: var(--mute); margin-bottom: 14px; }
+  kbd { font-family: "Courier Prime", monospace; font-size: .9em; border: 1px solid var(--line); border-radius: 4px; padding: 1px 6px; color: var(--chalk); }
+
+  .card { display: block; margin-bottom: 72px; cursor: pointer; }
+  .card .head { display: flex; align-items: baseline; gap: 18px; margin-bottom: 14px; }
+  .card .letter { font-family: "Fenice", serif; font-size: 44px; line-height: 1; }
+  .card .name { font-family: "Fenice", serif; font-size: 30px; letter-spacing: .02em; }
+  .card .rec { font-size: 10px; letter-spacing: .24em; text-transform: uppercase; background: var(--chalk); color: var(--ink); padding: 4px 9px 3px; }
+  .card .pick { margin-left: auto; font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--mute); border: 1px solid var(--line); padding: 7px 14px 6px; transition: all .2s; }
+  .card:hover .pick { color: var(--chalk); border-color: var(--chalk); }
+  .card.selected .pick { background: var(--tape); border-color: var(--tape); color: var(--ink); }
+  .card.selected .frame { outline: 2px solid var(--tape); outline-offset: 6px; }
+  .notes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; margin-top: 20px; }
+  .notes h4 { font-size: 10px; letter-spacing: .24em; text-transform: uppercase; color: var(--mute); font-weight: 500; margin-bottom: 7px; }
+  .notes p { font-size: 15px; color: #cfcabf; line-height: 1.45; }
+
+  .frame { position: relative; aspect-ratio: 16 / 9; container-type: inline-size; overflow: hidden; background: var(--ink); isolation: isolate; }
+  .frame canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .bar { position: absolute; left: 2.6cqw; right: 2.6cqw; top: 2cqw; display: flex; align-items: center; justify-content: space-between; z-index: 3; }
+  .bar .logo { font-family: "Fenice", serif; font-size: 1.75cqw; letter-spacing: .06em; }
+  .bar nav { display: flex; gap: 2.6cqw; font-size: .82cqw; letter-spacing: .26em; text-transform: uppercase; }
+  .bar .right { font-size: .82cqw; letter-spacing: .26em; text-transform: uppercase; display: flex; gap: 1.4cqw; align-items: center; }
+  .wordmark { position: absolute; left: 0; right: 0; text-align: center; font-family: "Fenice", serif; font-weight: 400; white-space: nowrap; color: #fff; z-index: 2; pointer-events: none; line-height: .8; }
+
+  /* ---------- A: Four Suits ---------- */
+  #A .wordmark { top: 19.5cqw; font-size: 14.6cqw; letter-spacing: -.06em; mix-blend-mode: difference; padding-right: 2cqw; }
+  #A .bar { right: 5cqw; }
+  #A .lede { position: absolute; left: 2.6cqw; bottom: 3cqw; z-index: 3; max-width: 34cqw; }
+  #A .lede p { font-size: 1.5cqw; line-height: 1.32; font-weight: 300; }
+  #A .lede b { font-weight: 500; }
+  #A .cta { display: inline-block; margin-top: 1.6cqw; font-size: .82cqw; letter-spacing: .26em; text-transform: uppercase; padding-bottom: .5cqw; border-bottom: 1px dashed var(--chalk); }
+  #A .meta { position: absolute; left: 50%; transform: translateX(-50%); bottom: 3cqw; z-index: 3; font-family: "Courier Prime", monospace; font-size: .85cqw; color: #b9b4aa; white-space: nowrap; }
+  .tag { position: absolute; right: 6.4cqw; bottom: 3cqw; z-index: 4; width: 23cqw; padding: 1.5cqw 1.7cqw 1.3cqw; background: #efe9dc; color: var(--ink); transform: rotate(-2.2deg); box-shadow: 0 1.2cqw 3cqw rgba(0,0,0,.55); }
+  .tag::before { content: ""; position: absolute; inset: .55cqw; border: 1px dashed rgba(10,10,11,.55); pointer-events: none; }
+  .tag-top { display: flex; justify-content: space-between; font-family: "Fenice", serif; font-size: 1.25cqw; letter-spacing: .14em; }
+  .tag-mid { margin-top: .9cqw; font-family: "Courier Prime", monospace; font-style: italic; font-size: .95cqw; }
+  .tag-in { width: 100%; border: 0; border-bottom: 1px solid var(--ink); background: transparent; font-family: "Fenice", serif; font-size: 2.1cqw; color: var(--ink); padding: .2cqw 0 .1cqw; outline: none; letter-spacing: .01em; }
+  .tag-in::placeholder { color: rgba(10,10,11,.32); }
+  .tag-bot { display: flex; justify-content: space-between; margin-top: .8cqw; font-family: "Courier Prime", monospace; font-size: .8cqw; }
+  .tape { position: absolute; right: 0; top: 0; bottom: 0; width: 2.5cqw; z-index: 5; background-color: var(--tape); color: var(--ink);
+    background-image: repeating-linear-gradient(180deg, #0a0a0b 0, #0a0a0b 1px, transparent 1px, transparent .56cqw), repeating-linear-gradient(180deg, #0a0a0b 0, #0a0a0b 1px, transparent 1px, transparent 2.8cqw);
+    background-size: 32% 100%, 62% 100%; background-repeat: no-repeat; }
+  .tape span { position: absolute; right: .32cqw; font-family: "Courier Prime", monospace; font-weight: 700; font-size: .78cqw; transform: rotate(90deg); transform-origin: right top; }
+  .tape i { position: absolute; left: -1.1cqw; top: 16%; width: 1.1cqw; height: 1px; background: var(--tape); }
+  .tape i::after { content: "9 cm"; position: absolute; right: 1.5cqw; top: -.6cqw; font: 700 .78cqw "Courier Prime", monospace; color: var(--tape); white-space: nowrap; font-style: normal; }
+
+  /* ---------- B: Full Deck ---------- */
+  #B .wordmark { top: 6.6cqw; font-size: 8.4cqw; letter-spacing: -.05em; }
+  #B .lede { position: absolute; left: 2.6cqw; bottom: 3cqw; z-index: 6; max-width: 22cqw; }
+  #B .lede p { font-size: 1.3cqw; line-height: 1.35; font-weight: 300; }
+  #B .hint { position: absolute; right: 2.6cqw; bottom: 3cqw; z-index: 6; text-align: right; font-size: .82cqw; letter-spacing: .26em; text-transform: uppercase; line-height: 2; }
+  .hand { position: absolute; left: 50%; bottom: 3.4cqw; width: 0; height: 0; z-index: 5; }
+  .pc { position: absolute; width: 13.4cqw; height: 19cqw; left: -6.7cqw; bottom: 0; border-radius: .8cqw; background: #f1ede4; color: var(--ink); transform-origin: 50% 190%; transform: rotate(var(--r)); transition: transform .4s cubic-bezier(.2,.9,.2,1); box-shadow: 0 1cqw 3cqw rgba(0,0,0,.65); }
+  .pc:hover { transform: rotate(var(--r)) translateY(-2.6cqw); }
+  .pc::before { content: ""; position: absolute; inset: .55cqw; border: 1px solid var(--ink); border-radius: .45cqw; }
+  .pc .ix { position: absolute; left: 1.05cqw; top: .9cqw; text-align: center; font-family: "Fenice", serif; font-size: 2.3cqw; line-height: .9; }
+  .pc .ix small { display: block; font-size: 1.35cqw; margin-top: .25cqw; }
+  .pc .ix.b { left: auto; top: auto; right: 1.05cqw; bottom: .9cqw; transform: rotate(180deg); }
+  .pc .pip { position: absolute; inset: 0; display: grid; place-items: center; font-size: 6.6cqw; }
+  .pc .nm { position: absolute; left: 0; right: 0; bottom: 4.6cqw; text-align: center; font-size: .66cqw; letter-spacing: .3em; text-transform: uppercase; font-weight: 500; }
+  .pc.king .pip { font-family: "Fenice", serif; font-size: 3cqw; letter-spacing: .05em; line-height: .95; text-align: center; }
+  .pc.king .pip .sym { display: block; font-size: 3.4cqw; }
+  .pc.back { background: var(--ink) radial-gradient(#f1ede4 24%, transparent 27%) 0 0 / .62cqw .62cqw; border: .55cqw solid #f1ede4; }
+  .pc.back::before { display: none; }
+
+  /* ---------- C: One Bit ---------- */
+  #C { font-family: "Silkscreen", monospace; }
+  #C .wordmark { top: 19.5cqw; font-size: 14.6cqw; letter-spacing: -.06em; mix-blend-mode: difference; }
+  #C .bar .logo { font-family: "Silkscreen", monospace; font-size: 1cqw; letter-spacing: .1em; }
+  #C .bar nav, #C .bar .right { font-size: .78cqw; letter-spacing: .12em; }
+  #C .px { background: var(--ink); padding: .25cqw .6cqw; }
+  #C .lede { position: absolute; left: 2.6cqw; bottom: 3cqw; z-index: 3; }
+  #C .lede p { font-size: .95cqw; line-height: 2.1; letter-spacing: .06em; }
+  #C .panel { position: absolute; right: 2.6cqw; bottom: 3cqw; z-index: 3; font-size: .8cqw; letter-spacing: .08em; line-height: 2.2; text-align: right; }
+  #C .dial { display: inline-block; letter-spacing: .12em; }
+
+  /* ---------- shared: the work is the only colour ---------- */
+  .common { border-top: 1px solid var(--line); padding-top: 40px; display: grid; grid-template-columns: 1fr 1.25fr; gap: 48px; align-items: center; }
+  .common h2 { font-family: "Fenice", serif; font-weight: 400; font-size: clamp(30px, 3.4vw, 50px); line-height: 1; letter-spacing: -.02em; margin-bottom: 16px; }
+  .common p { color: #bdb8ae; font-size: 17px; max-width: 46ch; }
+  .plate { position: relative; aspect-ratio: 1607 / 1283; overflow: hidden; background: #000; cursor: crosshair; }
+  .plate img, .plate canvas { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .plate canvas { image-rendering: pixelated; }
+  .plate span { position: absolute; left: 14px; bottom: 12px; font: 400 12px "Courier Prime", monospace; background: var(--ink); color: var(--chalk); padding: 3px 8px; }
+  @media (max-width: 900px) { .intro, .common { grid-template-columns: 1fr; } .notes { grid-template-columns: 1fr 1fr; } }
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <header class="intro">
+    <div>
+      <div class="kicker">OKARAF &middot; new portfolio &middot; step 1 of 3</div>
+      <h1>Three directions,<br>one black-and-white house.</h1>
+    </div>
+    <div>
+      <p>Each frame below is a live hero sketch, not a finished design. All three keep what is already yours: the 1-bit dither, Fenice, the four suits and &ldquo;when in doubt, look intelligent&rdquo;. They differ in the <em>idea</em> that carries the whole site.</p>
+      <p>Move your mouse over each frame. Click one to select it, then answer in the terminal. Mixing is fine: &ldquo;A, with C&rsquo;s lens&rdquo;.</p>
+    </div>
+  </header>
+
+  <main class="cards">
+
+    <!-- ============ A ============ -->
+    <article class="card" data-choice="A-four-suits" onclick="toggleSelect(this)">
+      <div class="head"><span class="letter">A</span><span class="name">Four Suits</span><span class="rec">My recommendation</span><span class="pick">Select A</span></div>
+      <div class="frame" id="A">
+        <canvas></canvas>
+        <div class="bar">
+          <span class="logo">OKARAF</span>
+          <nav><span>Collection</span><span>Suits</span><span>House</span><span>Fitting</span></nav>
+          <span class="right"><span class="sym">&spades; &hearts; &diams; &clubs;</span><span>Sound off</span></span>
+        </div>
+        <div class="wordmark">OMAR KARAF</div>
+        <div class="lede">
+          <p><b>Developer.</b> Websites, automations and AI, made to measure.</p>
+          <span class="cta">See the collection &darr;</span>
+        </div>
+        <div class="meta">N 43.49&deg; &nbsp;E 43.61&deg; &nbsp;&middot;&nbsp; Nalchik 14:32 GMT+3</div>
+        <div class="tag">
+          <div class="tag-top"><span>OKARAF</span><span class="sym">&#9812;</span><span>NALCHIK</span></div>
+          <div class="tag-mid">Made expressly for</div>
+          <input class="tag-in" placeholder="your name here" maxlength="20" onclick="event.stopPropagation()">
+          <div class="tag-bot"><span>No. 2026 / 11 / 10</span><span class="sym">&spades; &hearts; &diams; &clubs;</span></div>
+        </div>
+        <div class="tape"><i></i><span style="top:5.2cqw">10</span><span style="top:10.8cqw">20</span><span style="top:16.4cqw">30</span><span style="top:22cqw">40</span><span style="top:27.6cqw">50</span><span style="top:33.2cqw">60</span><span style="top:38.8cqw">70</span><span style="top:44.4cqw">80</span><span style="top:50cqw">90</span></div>
+      </div>
+      <div class="notes">
+        <div><h4>The idea</h4><p>Your card suits become a tailor&rsquo;s suits. Websites, automations and AI are cut to measure, and the site is the atelier. The dither becomes the weave of the cloth.</p></div>
+        <div><h4>What you play with</h4><p>A pinstripe cloth you can grab. A label that stitches in the visitor&rsquo;s name (<kbd>?for=Stripe</kbd> on job applications). A tape measure that tracks scroll. A swatch book that re-weaves the whole site.</p></div>
+        <div><h4>Why it is yours</h4><p>&ldquo;Class&rdquo;, &ldquo;look intelligent&rdquo; and the suits were already on your site. This takes them literally. The old values marquee returns as the selvedge woven along the cloth&rsquo;s edge.</p></div>
+        <div><h4>Watch out</h4><p>The metaphor has to stay light: headings and details only, plain language everywhere else, or it turns into costume.</p></div>
+      </div>
+    </article>
+
+    <!-- ============ B ============ -->
+    <article class="card" data-choice="B-full-deck" onclick="toggleSelect(this)">
+      <div class="head"><span class="letter">B</span><span class="name">Full Deck</span><span class="pick">Select B</span></div>
+      <div class="frame" id="B">
+        <canvas></canvas>
+        <div class="bar">
+          <span class="logo">OKARAF</span>
+          <nav><span>Spades</span><span>Clubs</span><span>Diamonds</span><span>Hearts</span></nav>
+          <span class="right"><span>52 cards</span><span>Sound off</span></span>
+        </div>
+        <div class="wordmark">OMAR KARAF</div>
+        <div class="lede"><p>A developer playing with a full deck: websites, automations and AI.</p></div>
+        <div class="hint">Drag &middot; flip &middot; throw<br>Draw a card &darr;</div>
+        <div class="hand">
+          <div class="pc" style="--r:-26deg"><div class="ix">A<small class="sym">&spades;</small></div><div class="pip sym">&spades;</div><div class="nm">Websites</div><div class="ix b">A<small class="sym">&spades;</small></div></div>
+          <div class="pc" style="--r:-13deg"><div class="ix">A<small class="sym">&clubs;</small></div><div class="pip sym">&clubs;</div><div class="nm">Automations</div><div class="ix b">A<small class="sym">&clubs;</small></div></div>
+          <div class="pc king" style="--r:0deg"><div class="ix">K<small class="sym">&hearts;</small></div><div class="pip"><div><span class="sym">&#9812;</span>KARAF</div></div><div class="ix b">K<small class="sym">&hearts;</small></div></div>
+          <div class="pc" style="--r:13deg"><div class="ix">A<small class="sym">&diams;</small></div><div class="pip sym">&diams;</div><div class="nm">AI</div><div class="ix b">A<small class="sym">&diams;</small></div></div>
+          <div class="pc back" style="--r:26deg"></div>
+        </div>
+      </div>
+      <div class="notes">
+        <div><h4>The idea</h4><p>The portfolio is a deck of engraved 1-bit cards. &ldquo;Full stack&rdquo; becomes &ldquo;full deck&rdquo;. Every project, service and fact is a card you hold.</p></div>
+        <div><h4>What you play with</h4><p>Real card physics: drag, flip, throw and shuffle. Spades are your sites, clubs your automations, diamonds your AI. The king is you.</p></div>
+        <div><h4>Why it is yours</h4><p>Suits and the king come straight from your old marquee. It is the most direct reading of them, and the most toy-like of the three.</p></div>
+        <div><h4>Watch out</h4><p>Playing-card portfolios are a known genre, and the mood drifts toward games and gambling, which may sit oddly beside &ldquo;faith&rdquo; in your values.</p></div>
+      </div>
+    </article>
+
+    <!-- ============ C ============ -->
+    <article class="card" data-choice="C-one-bit" onclick="toggleSelect(this)">
+      <div class="head"><span class="letter">C</span><span class="name">One Bit</span><span class="pick">Select C</span></div>
+      <div class="frame" id="C">
+        <canvas></canvas>
+        <div class="bar">
+          <span class="logo px">OKARAF</span>
+          <nav><span class="px">Work</span><span class="px">Method</span><span class="px">Info</span><span class="px">Contact</span></nav>
+          <span class="right"><span class="px">1 bit</span><span class="px">Sound off</span></span>
+        </div>
+        <div class="wordmark">OMAR KARAF</div>
+        <div class="lede"><p><span class="px">When in doubt, look intelligent.</span><br><span class="px">Two colours. Everything else is technique.</span></p></div>
+        <div class="panel"><span class="px">Threshold <span class="dial">&#9646;&#9646;&#9646;&#9646;&#9646;&#9647;&#9647;&#9647;</span> 0.62</span><br><span class="px">Bayer 8&times;8 &nbsp;&middot;&nbsp; move to resolve</span></div>
+      </div>
+      <div class="notes">
+        <div><h4>The idea</h4><p>Your motto as a rendering rule. Dithering makes two colours look like a million: it is the art of looking intelligent. The whole site obeys it.</p></div>
+        <div><h4>What you play with</h4><p>A lens that resolves 1-bit into full detail. A threshold dial. A dither lab that turns any photo into a 1-bit portrait card to keep.</p></div>
+        <div><h4>Why it is yours</h4><p>The closest to the current site: a direct evolution of the dithered hero, pushed until it is the entire identity.</p></div>
+        <div><h4>Watch out</h4><p>Dither and retro-computing are a visible trend right now. With no story on top, it has to win on craft alone.</p></div>
+      </div>
+    </article>
+
+  </main>
+
+  <section class="common">
+    <div>
+      <div class="kicker">True in all three</div>
+      <h2>The site is black and white, so the work is the only colour on it.</h2>
+      <p>Project screens sit on the page as 1-bit plates and resolve into full colour when you reach them. Hover the plate to see the idea (this is Harmony Coffee).</p>
+    </div>
+    <div class="plate" id="plate"><img src="/files/harmony.png" alt=""><canvas></canvas><span>hover to resolve</span></div>
+  </section>
+
+</div>
+
+<script>
+(function () {
+  const VERT = 'attribute vec2 a;void main(){gl_Position=vec4(a,0.,1.);}';
+  const FRAG = `
+precision highp float;
+uniform vec2 uRes; uniform float uTime; uniform vec2 uMouse; uniform float uMode; uniform float uPx;
+float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1,311.7))) * 43758.5453); }
+float noise(vec2 p){ vec2 i=floor(p), f=fract(p); f=f*f*(3.-2.*f);
+  return mix(mix(hash(i),hash(i+vec2(1.,0.)),f.x), mix(hash(i+vec2(0.,1.)),hash(i+vec2(1.,1.)),f.x), f.y); }
+float fbm(vec2 p){ float v=0., a=.5; for(int i=0;i<5;i++){ v+=a*noise(p); p=p*2.03+vec2(1.7,9.2); a*=.5; } return v; }
+float bayer2(vec2 a){ a=floor(a); return fract(a.x/2. + a.y*a.y*.75); }
+#define bayer4(a) (bayer2(.5*(a))*.25 + bayer2(a))
+#define bayer8(a) (bayer4(.5*(a))*.25 + bayer2(a))
+// The cloth: x = position across the bolt, y = how much that point faces the light, z = pointer bulge.
+vec3 cloth(vec2 p, vec2 m, float t){
+  float ca = cos(.2), sa = sin(.2);
+  vec2 c  = vec2(ca*p.x - sa*p.y, sa*p.x + ca*p.y);
+  vec2 cm = vec2(ca*m.x - sa*m.y, sa*m.x + ca*m.y);
+  float y = c.y;
+  float ph1 = 2.2*sin(y*.9 + t*.15) + 4.0*fbm(vec2(y*.5 + 2., t*.03));
+  float ph2 = 1.4*sin(y*1.7 - t*.2) + 3.0*fbm(vec2(y*.8 + 7., t*.04));
+  float k1 = 7.5, k2 = 15., a1 = .058, a2 = .016;
+  vec2 dm = c - cm; float md = length(dm); float bul = exp(-md*md*9.);
+  float u  = c.x + a1*sin(k1*c.x+ph1) + a2*sin(k2*c.x+ph2) - .05*bul*dm.x/(md+.09);
+  float sl = a1*k1*cos(k1*c.x+ph1) + a2*k2*cos(k2*c.x+ph2);
+  return vec3(u, clamp(.5 + .5*sl/.675, 0., 1.), bul);
+}
+void main(){
+  vec2 fc = gl_FragCoord.xy;
+  vec2 cell = floor(fc / uPx);
+  vec2 p  = (fc - .5*uRes) / uRes.y;                       // full resolution
+  vec2 pc = ((cell + .5)*uPx - .5*uRes) / uRes.y;          // snapped to the dither grid
+  vec2 m  = (uMouse - .5*uRes) / uRes.y;
+  float t = uTime, th = bayer8(cell), c = 0.;
+  if (uMode < .5) {                      // A: pinstripe cloth. Hairlines at full resolution, shading as stipple.
+    vec3 hi = cloth(p, m, t), lo = cloth(pc, m, t);
+    float fade = pow(smoothstep(-.56, -.04, p.y), 1.5);    // calm ground for the copy
+    float lum = (.15*pow(lo.y, 3.2) + .09*lo.z) * fade;
+    float dots = lum > th + .008 ? 1. : 0.;
+    float SP = 15.*uPx;
+    float d = abs(mod(hi.x*uRes.y + SP*.5, SP) - SP*.5);
+    float vis = smoothstep(.14, .62, hi.y + .5*hi.z) * fade;
+    float w = .42*uPx*vis;
+    float line = (1. - smoothstep(w - .6, w + .6, d)) * step(.03, vis);
+    c = max(dots, line);
+  } else if (uMode < 1.5) {              // B: table light
+    float v = 1. - length((pc - vec2(0., -.25))*vec2(.8, 1.25));
+    float tone = .004 + .13*smoothstep(0., 1., v)*(.6 + .8*fbm(pc*2.2 + t*.03));
+    c = tone > th + .008 ? 1. : 0.;
+  } else {                               // C: the old field, one bit, with a resolving lens
+    vec2 q = pc*1.35, qh = p*1.35;
+    float f  = fbm(q  - fbm(q  + fbm(q*1.2  - t*.04)));  f  = smoothstep(.3, .92, f)*.6;
+    float fh = fbm(qh - fbm(qh + fbm(qh*1.2 - t*.04)));  fh = smoothstep(.3, .92, fh)*.6;
+    float d = length(p - m), r = .2;
+    float inside = 1. - smoothstep(r - .003, r, d);
+    float ring = 1. - smoothstep(.001, .004, abs(d - r));
+    float bit = f > th + .008 ? 1. : 0.;
+    c = max(mix(bit, fh, inside), ring);
+  }
+  gl_FragColor = vec4(mix(vec3(.04), vec3(.93,.91,.87), c), 1.);
+}`;
+
+  function mount(frame, mode) {
+    const cv = frame.querySelector('canvas');
+    const gl = cv.getContext('webgl', { antialias: false });
+    if (!gl) return;
+    const sh = (type, src) => { const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s);
+      if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) console.error(gl.getShaderInfoLog(s)); return s; };
+    const pr = gl.createProgram();
+    gl.attachShader(pr, sh(gl.VERTEX_SHADER, VERT)); gl.attachShader(pr, sh(gl.FRAGMENT_SHADER, FRAG));
+    gl.linkProgram(pr); gl.useProgram(pr);
+    gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 3,-1, -1,3]), gl.STATIC_DRAW);
+    const loc = gl.getAttribLocation(pr, 'a'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+    const U = n => gl.getUniformLocation(pr, n);
+    const uRes = U('uRes'), uTime = U('uTime'), uMouse = U('uMouse'), uMode = U('uMode'), uPx = U('uPx');
+    const DPR = Math.min(window.devicePixelRatio || 1, 2);
+    let hover = false, mx = -9999, my = -9999, sx = -9999, sy = -9999;
+    const size = () => { cv.width = Math.max(2, Math.round(frame.clientWidth * DPR)); cv.height = Math.max(2, Math.round(frame.clientHeight * DPR)); gl.viewport(0, 0, cv.width, cv.height); };
+    size(); new ResizeObserver(size).observe(frame);
+    frame.addEventListener('pointermove', e => { const r = frame.getBoundingClientRect(); hover = true; mx = (e.clientX - r.left) * DPR; my = (r.bottom - e.clientY) * DPR; });
+    frame.addEventListener('pointerleave', () => { hover = false; });
+    const t0 = performance.now();
+    (function tick() {
+      const t = (performance.now() - t0) / 1000;
+      let tx = mx, ty = my;
+      if (!hover) {
+        if (mode === 2) { tx = cv.width * (.66 + .14 * Math.sin(t * .35)); ty = cv.height * (.52 + .2 * Math.cos(t * .27)); }
+        else { tx = -9999; ty = -9999; }
+      }
+      if (sx < -9000 || tx < -9000) { sx = tx; sy = ty; } else { sx += (tx - sx) * .12; sy += (ty - sy) * .12; }
+      gl.uniform2f(uRes, cv.width, cv.height); gl.uniform1f(uTime, t); gl.uniform2f(uMouse, sx, sy); gl.uniform1f(uMode, mode); gl.uniform1f(uPx, 2 * DPR);
+      gl.drawArrays(gl.TRIANGLES, 0, 3);
+      requestAnimationFrame(tick);
+    })();
+  }
+  mount(document.getElementById('A'), 0);
+  mount(document.getElementById('B'), 1);
+  mount(document.getElementById('C'), 2);
+
+  // The work plate: ordered dither that dissolves into the real image in Bayer order.
+  const plate = document.getElementById('plate'), img = plate.querySelector('img'), pc = plate.querySelector('canvas');
+  const B8 = [0,48,12,60,3,51,15,63,32,16,44,28,35,19,47,31,8,56,4,52,11,59,7,55,40,24,36,20,43,27,39,23,2,50,14,62,1,49,13,61,34,18,46,30,33,17,45,29,10,58,6,54,9,57,5,53,42,26,38,22,41,25,37,21].map(v => v / 64);
+  function startPlate() {
+    const w = pc.width = 420, h = pc.height = Math.round(420 * img.naturalHeight / img.naturalWidth);
+    const ctx = pc.getContext('2d', { willReadFrequently: true });
+    ctx.drawImage(img, 0, 0, w, h);
+    const src = ctx.getImageData(0, 0, w, h).data, out = ctx.createImageData(w, h), o = out.data;
+    let k = 0, target = 0, last = -1;
+    plate.addEventListener('pointerenter', () => target = 1.02);
+    plate.addEventListener('pointerleave', () => target = 0);
+    (function draw() {
+      k += (target - k) * .07;
+      if (Math.abs(k - last) > .002) {
+        last = k;
+        for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+          const i = (y * w + x) * 4, b = B8[(y & 7) * 8 + (x & 7)];
+          if (b < k) { o[i + 3] = 0; continue; }
+          const l = (src[i] * .299 + src[i + 1] * .587 + src[i + 2] * .114) / 255;
+          const v = l > b * .92 + .04 ? 236 : 10;
+          o[i] = v; o[i + 1] = v - 3; o[i + 2] = v - 9; o[i + 3] = 255;
+        }
+        ctx.putImageData(out, 0, 0);
+      }
+      requestAnimationFrame(draw);
+    })();
+  }
+  if (img.complete && img.naturalWidth) startPlate(); else img.addEventListener('load', startPlate);
+})();
+</script>
+</body>
+</html>

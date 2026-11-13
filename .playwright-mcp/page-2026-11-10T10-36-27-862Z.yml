@@ -1,0 +1,144 @@
+- generic [active] [ref=f21e1]:
+  - banner:
+    - navigation "Primary" [ref=f21e4]:
+      - link "projects" [ref=f21e5] [cursor=pointer]:
+        - /url: "#projects"
+      - link "certificates" [ref=f21e6] [cursor=pointer]:
+        - /url: /certificates/
+      - link "contacts" [ref=f21e7] [cursor=pointer]:
+        - /url: "#contacts"
+  - generic [ref=f21e8]:
+    - heading "OMAR KARAF" [level=1]
+  - generic [ref=f21e14]:
+    - generic [ref=f21e15]:
+      - link [ref=f21e17] [cursor=pointer]:
+        - /url: https://harmonycoffee.netlify.app
+        - img "HARMONY COFFEE coffee shop concept website screenshot" [ref=f21e18]
+      - generic [ref=f21e19]:
+        - heading "HARMONY COFFEE" [level=2] [ref=f21e20]
+        - paragraph [ref=f21e21]: Concept website for the "HARMONY COFFEE" coffee shop
+    - separator [ref=f21e22]
+    - generic [ref=f21e23]:
+      - link [ref=f21e25] [cursor=pointer]:
+        - /url: https://galereya-mall.netlify.app
+        - img "GALEREYA shopping mall official website screenshot" [ref=f21e26]
+      - generic [ref=f21e27]:
+        - heading "GALEREYA" [level=2] [ref=f21e28]
+        - paragraph [ref=f21e29]: Official website of the "GALEREYA" shopping mall
+    - separator [ref=f21e30]
+    - generic [ref=f21e31]:
+      - link [ref=f21e33] [cursor=pointer]:
+        - /url: https://masterauto-07.ru/
+        - img "MASTER AUTO car service official website screenshot" [ref=f21e34]
+      - generic [ref=f21e35]:
+        - heading "MASTER AUTO" [level=2] [ref=f21e36]
+        - paragraph [ref=f21e37]: Official website of the "MASTER AUTO" car service
+    - separator [ref=f21e38]
+    - generic [ref=f21e39]:
+      - link [ref=f21e41] [cursor=pointer]:
+        - /url: https://melty-cafe.ru
+        - img "MELTY cafe official website screenshot" [ref=f21e42]
+      - generic [ref=f21e43]:
+        - heading "MELTY" [level=2] [ref=f21e44]
+        - paragraph [ref=f21e45]: Official website of the "MELTY" cafe
+    - separator [ref=f21e46]
+    - generic [ref=f21e47]:
+      - link [ref=f21e49] [cursor=pointer]:
+        - /url: https://esoesmusic.ru
+        - img "ESOES artist official website screenshot" [ref=f21e50]
+      - generic [ref=f21e51]:
+        - heading "ESOES" [level=2] [ref=f21e52]
+        - paragraph [ref=f21e53]: Official website of the artist "ESOES"
+  - contentinfo [ref=f21e54]:
+    - generic [ref=f21e55]:
+      - separator [ref=f21e56]
+      - generic [ref=f21e57]:
+        - paragraph [ref=f21e58]: FLUIDITY
+        - paragraph [ref=f21e59]: ♡
+        - paragraph [ref=f21e60]: STRATEGY
+        - paragraph [ref=f21e61]: ♤
+        - paragraph [ref=f21e62]: INTENTIONALITY
+        - paragraph [ref=f21e63]: ♧
+        - paragraph [ref=f21e64]: STRENGTH
+        - paragraph [ref=f21e65]: ♢
+        - paragraph [ref=f21e66]: EMPATHY
+        - paragraph [ref=f21e67]: ♡
+        - paragraph [ref=f21e68]: SKILLS
+        - paragraph [ref=f21e69]: ♤
+        - paragraph [ref=f21e70]: INTELLIGENCE
+        - paragraph [ref=f21e71]: ♧
+        - paragraph [ref=f21e72]: POWER
+        - paragraph [ref=f21e73]: ♢
+        - paragraph [ref=f21e74]: PERFECTION
+        - paragraph [ref=f21e75]: ♡
+        - paragraph [ref=f21e76]: CLASS
+        - paragraph [ref=f21e77]: ♤
+        - paragraph [ref=f21e78]: FOCUS
+        - paragraph [ref=f21e79]: ♧
+        - paragraph [ref=f21e80]: COMMITMENT
+        - paragraph [ref=f21e81]: ♢
+        - paragraph [ref=f21e82]: WILL
+        - paragraph [ref=f21e83]: ♡
+        - paragraph [ref=f21e84]: INTEGRITY
+        - paragraph [ref=f21e85]: ♤
+        - paragraph [ref=f21e86]: COURAGE
+        - paragraph [ref=f21e87]: ♧
+        - paragraph [ref=f21e88]: RESILIENCE
+        - paragraph [ref=f21e89]: ♢
+        - paragraph [ref=f21e90]: FAITH
+        - paragraph [ref=f21e91]: ☾⋆
+        - paragraph [ref=f21e92]: KARAF
+        - paragraph [ref=f21e93]: ♔
+        - paragraph [aria-hidden] [ref=f21e94]: FLUIDITY
+        - paragraph [aria-hidden] [ref=f21e95]: ♡
+        - paragraph [aria-hidden] [ref=f21e96]: STRATEGY
+        - paragraph [aria-hidden] [ref=f21e97]: ♤
+        - paragraph [aria-hidden] [ref=f21e98]: INTENTIONALITY
+        - paragraph [aria-hidden] [ref=f21e99]: ♧
+        - paragraph [aria-hidden] [ref=f21e100]: STRENGTH
+        - paragraph [aria-hidden] [ref=f21e101]: ♢
+        - paragraph [aria-hidden] [ref=f21e102]: EMPATHY
+        - paragraph [aria-hidden] [ref=f21e103]: ♡
+        - paragraph [aria-hidden] [ref=f21e104]: SKILLS
+        - paragraph [aria-hidden] [ref=f21e105]: ♤
+        - paragraph [aria-hidden] [ref=f21e106]: INTELLIGENCE
+        - paragraph [aria-hidden] [ref=f21e107]: ♧
+        - paragraph [aria-hidden] [ref=f21e108]: POWER
+        - paragraph [aria-hidden] [ref=f21e109]: ♢
+        - paragraph [aria-hidden] [ref=f21e110]: PERFECTION
+        - paragraph [aria-hidden] [ref=f21e111]: ♡
+        - paragraph [aria-hidden] [ref=f21e112]: CLASS
+        - paragraph [aria-hidden] [ref=f21e113]: ♤
+        - paragraph [aria-hidden] [ref=f21e114]: FOCUS
+        - paragraph [aria-hidden] [ref=f21e115]: ♧
+        - paragraph [aria-hidden] [ref=f21e116]: COMMITMENT
+        - paragraph [aria-hidden] [ref=f21e117]: ♢
+        - paragraph [aria-hidden] [ref=f21e118]: WILL
+        - paragraph [aria-hidden] [ref=f21e119]: ♡
+        - paragraph [aria-hidden] [ref=f21e120]: INTEGRITY
+        - paragraph [aria-hidden] [ref=f21e121]: ♤
+        - paragraph [aria-hidden] [ref=f21e122]: COURAGE
+        - paragraph [aria-hidden] [ref=f21e123]: ♧
+        - paragraph [aria-hidden] [ref=f21e124]: RESILIENCE
+        - paragraph [aria-hidden] [ref=f21e125]: ♢
+        - paragraph [aria-hidden] [ref=f21e126]: FAITH
+        - paragraph [aria-hidden] [ref=f21e127]: ☾⋆
+        - paragraph [aria-hidden] [ref=f21e128]: KARAF
+        - paragraph [aria-hidden] [ref=f21e129]: ♔
+      - separator [ref=f21e130]
+    - generic [ref=f21e131]:
+      - generic [ref=f21e132]:
+        - heading "when in doubt, look intelligent" [level=3] [ref=f21e133]
+        - paragraph [ref=f21e134]: OMAR KARAF © 2026
+      - generic [ref=f21e135]:
+        - generic [ref=f21e136]: contacts
+        - link "Email" [ref=f21e138] [cursor=pointer]:
+          - /url: mailto:okaraf07@gmail.com
+        - link "Whatsapp" [ref=f21e140] [cursor=pointer]:
+          - /url: https://api.whatsapp.com/send?phone=79289996640
+      - generic [ref=f21e141]:
+        - generic [ref=f21e142]: info
+        - link "Codeforces" [ref=f21e144] [cursor=pointer]:
+          - /url: https://codeforces.com/profile/Alenki_
+        - link "Github" [ref=f21e146] [cursor=pointer]:
+          - /url: https://github.com/alenki

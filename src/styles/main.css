@@ -1,0 +1,1406 @@
+/* ==========================================================================
+   OKARAF
+   Two inks, one material. Everything on the page is ink or paper, and the only
+   colour is the work itself. Sections below, in the order they appear.
+
+   1. Tokens          5. Hero              9. Footer: values, contacts, window
+   2. Base            6. Sheet + intro    10. Certificates page
+   3. Type            7. Projects         11. Not found
+   4. Chrome          8. Record           12. Motion preferences
+   ========================================================================== */
+
+@import "@fontsource/fragment-mono/latin-400.css";
+
+@font-face {
+  font-family: "Fenice";
+  src: url("../fonts/Fenice-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 1. Tokens ---------------------------------------------------------------- */
+
+:root {
+  /* The two inks, plus the grey the dither prints in. */
+  --ink: #0c0c0b;
+  --ink-raised: #151514;
+  --paper: #eceae4;
+  --silver: #9d9b96;
+  --muted: #918f8a;
+  --line: rgb(236 234 228 / 0.16);
+
+  --font-display: "Fenice", "Didot", "Bodoni 72", "Bodoni MT", "Playfair Display", Georgia, serif;
+  --font-mono: "Fragment Mono", ui-monospace, "SFMono-Regular", "Cascadia Mono", Menlo, Consolas, monospace;
+
+  --gutter: clamp(1rem, 2.6vw, 2.5rem);
+  --gap: clamp(0.75rem, 1.4vw, 1.5rem);
+  --section: clamp(5rem, 11vw, 11rem);
+
+  --t-label: 0.75rem;
+  --t-body: clamp(0.9375rem, 0.88rem + 0.22vw, 1.0625rem);
+  --t-statement: clamp(1.85rem, 1rem + 3.55vw, 5rem);
+  --t-title: clamp(2.75rem, 9.4vw, 10.5rem);
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* Stacking, bottom to top. */
+  --z-hero: 0;
+  --z-sheet: 1;
+  --z-nav: 10;
+  --z-peek: 80;
+  --z-cursor: 90;
+  --z-veil: 100;
+  --z-skip: 110;
+}
+
+/* 2. Base ------------------------------------------------------------------ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--ink);
+  color: var(--paper);
+  color-scheme: dark;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scrollbar-color: #3b3a37 var(--ink);
+}
+
+body {
+  margin: 0;
+  min-height: 100svh;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-mono);
+  font-size: var(--t-body);
+  line-height: 1.55;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+}
+
+/* While the veil is counting, the page underneath does not scroll. */
+html.is-locked,
+html.is-locked body {
+  overflow: hidden;
+}
+
+h1,
+h2,
+h3,
+p,
+ul,
+ol,
+dl,
+dd,
+figure {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+img,
+svg,
+canvas {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--paper);
+  outline-offset: 4px;
+}
+
+.sprite {
+  position: absolute;
+}
+
+.wrap {
+  width: 100%;
+  max-width: 120rem;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Icons are hairlines at any size, like the outlined suits they replace. */
+.i {
+  width: 1em;
+  height: 1em;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.25px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  overflow: visible;
+}
+
+.i .solid {
+  fill: currentColor;
+  stroke: none;
+}
+
+/* 3. Type ------------------------------------------------------------------ */
+
+.label {
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.label .i {
+  display: inline-block;
+  vertical-align: -0.2em;
+  width: 1.15em;
+  height: 1.15em;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+/* An underline that draws itself from the left. */
+.link {
+  position: relative;
+  display: inline-block;
+  padding-block: 0.15em;
+}
+
+.link::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s var(--ease-out);
+}
+
+.link:hover::after,
+.link:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.link--on::after {
+  transform: scaleX(1);
+}
+
+.link--on:hover::after {
+  animation: redraw 0.7s var(--ease-out);
+}
+
+@keyframes redraw {
+  0% {
+    transform: scaleX(1);
+    transform-origin: right;
+  }
+  45% {
+    transform: scaleX(0);
+    transform-origin: right;
+  }
+  46% {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  100% {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+/* Things that arrive through the dither are held back until script reveals them. */
+.js [data-din],
+.js [data-lines],
+.js [data-words] {
+  visibility: hidden;
+}
+
+.js.is-stuck [data-din],
+.js.is-stuck [data-lines],
+.js.is-stuck [data-words],
+.js.is-calm [data-din],
+.js.is-calm [data-lines],
+.js.is-calm [data-words] {
+  visibility: visible;
+}
+
+.line {
+  display: block;
+}
+
+/* 4. Chrome: skip link, nav, veil, cursor --------------------------------- */
+
+.skip {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: var(--z-skip);
+  padding: 0.7rem 1rem;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: var(--t-label);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transform: translateY(-200%);
+}
+
+.skip:focus-visible {
+  transform: none;
+}
+
+.site-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: var(--z-nav);
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.navbar {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.5rem, 2.4vw, 1.9rem);
+  width: min(25rem, calc(100vw - 2rem));
+  height: 3.7rem;
+  margin-top: 10px;
+  margin-top: max(10px, env(safe-area-inset-top));
+  padding-inline: 1rem;
+  border: 1px solid rgb(120 119 115 / 0.34);
+  border-radius: 2.5rem;
+  background: rgb(84 83 80 / 0.46);
+  box-shadow:
+    0 4px 30px rgb(0 0 0 / 0.22),
+    inset 0 1px 0 rgb(255 255 255 / 0.08);
+  -webkit-backdrop-filter: blur(9px) saturate(1.2);
+  backdrop-filter: blur(9px) saturate(1.2);
+  transition:
+    transform 0.6s var(--ease-out),
+    opacity 0.4s ease;
+}
+
+.navbar.is-hidden {
+  transform: translateY(-140%);
+}
+
+/* Keyboard users always get the nav back. */
+.navbar.is-hidden:focus-within {
+  transform: none;
+}
+
+.js:not(.is-stuck) .navbar:not(.is-in) {
+  transform: translateY(-140%);
+  opacity: 0;
+}
+
+.navbar__link {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding-inline: 0.35rem;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  letter-spacing: 0.06em;
+  color: #fff;
+}
+
+.navbar__link span {
+  position: relative;
+  padding-block: 0.2em;
+}
+
+.navbar__link span::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 1.5px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.45s var(--ease-out);
+}
+
+.navbar__link:hover span::after,
+.navbar__link:focus-visible span::after,
+.navbar__link[aria-current] span::after,
+.navbar__link.is-active span::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.navbar__link:focus-visible {
+  outline-offset: -2px;
+  border-radius: 2rem;
+}
+
+/* The veil */
+.veil {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-veil);
+  display: none;
+  pointer-events: none;
+}
+
+.js .veil {
+  display: block;
+  background: var(--ink);
+}
+
+.js .veil.is-live {
+  background: none;
+}
+
+.js .veil.is-done,
+.js.is-stuck .veil {
+  display: none;
+}
+
+.veil.is-blocking {
+  pointer-events: auto;
+}
+
+.veil__bits {
+  position: absolute;
+  top: 0;
+  left: 0;
+  image-rendering: pixelated;
+}
+
+.veil__ui {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template: ". note" auto "count count" 1fr / 1fr auto;
+  align-items: start;
+  padding: var(--gutter);
+  padding-bottom: calc(var(--gutter) * 0.6);
+}
+
+.is-return .veil__ui {
+  display: none;
+}
+
+.veil__note {
+  grid-area: note;
+  font-size: var(--t-label);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.veil__count {
+  grid-area: count;
+  align-self: end;
+  justify-self: end;
+  font-family: var(--font-display);
+  font-size: clamp(5.5rem, 21vw, 19rem);
+  line-height: 0.76;
+  letter-spacing: -0.05em;
+  /* Fenice's figures are proportional; fix each in a cell so the count doesn't shiver. */
+  display: flex;
+}
+
+.veil__count i {
+  font-style: normal;
+  display: inline-block;
+  width: 0.56em;
+  text-align: center;
+}
+
+/* The cursor companion */
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--z-cursor);
+  display: none;
+  width: 0.75rem;
+  height: 0.75rem;
+  margin: -0.375rem 0 0 -0.375rem;
+  border-radius: 50%;
+  background: var(--paper);
+  mix-blend-mode: difference;
+  pointer-events: none;
+  opacity: 0;
+  transition:
+    width 0.45s var(--ease-out),
+    height 0.45s var(--ease-out),
+    margin 0.45s var(--ease-out),
+    opacity 0.3s ease;
+}
+
+.cursor.is-on {
+  opacity: 1;
+}
+
+.cursor.is-link {
+  width: 2.75rem;
+  height: 2.75rem;
+  margin: -1.375rem 0 0 -1.375rem;
+}
+
+.cursor.is-label {
+  width: 5.5rem;
+  height: 5.5rem;
+  margin: -2.75rem 0 0 -2.75rem;
+  mix-blend-mode: normal;
+}
+
+/* Over a picture the label circle is ink, with the label in paper. */
+.cursor.is-plate {
+  background: var(--ink);
+}
+
+.cursor.is-plate .cursor__label {
+  color: var(--paper);
+}
+
+.cursor__label {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--ink);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.cursor.is-label .cursor__label {
+  opacity: 1;
+  transition-delay: 0.12s;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .js .cursor {
+    display: block;
+  }
+
+  /* Set by initCursor(): the companion replaces the system pointer everywhere. */
+  .has-cursor,
+  .has-cursor * {
+    cursor: none !important;
+  }
+}
+
+/* 5. Hero ------------------------------------------------------------------ */
+
+.hero {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-hero);
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  height: 100svh;
+  min-height: 26rem;
+  overflow: clip;
+  container-type: inline-size;
+  background: var(--ink);
+}
+
+.hero.is-covered {
+  visibility: hidden;
+}
+
+/* The field: one fragment per dither cell, scaled up without smoothing. Its size is set
+   by script so every cell lands on whole device pixels.
+   The sheet's leading edge lies over the hero on the very same cells: the dots stay put and
+   only their coverage follows the scroll, so it never slides across the field's dither. */
+.field,
+.hero__edge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* May run a fraction of a cell past its box (which clips it) rather than be squeezed. */
+  max-width: none;
+  image-rendering: pixelated;
+  pointer-events: none;
+}
+
+.hero__name {
+  /* "OMAR KARAF" measures 6.19em from the first stroke to the last at this tracking,
+     so the name always runs from gutter to gutter. */
+  --fit: 6.19;
+  position: relative;
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: calc((100vw - 2 * var(--gutter)) / var(--fit));
+  font-size: min(calc((100cqw - 2 * var(--gutter)) / var(--fit)), 46svh);
+  line-height: 0.8;
+  letter-spacing: -0.0625em;
+  white-space: nowrap;
+  color: rgb(255 255 255 / 0.9);
+  /* Optical centring: the tracking pulls the last letter's box in, not its ink. */
+  transform: translateX(-0.0386em);
+  pointer-events: none;
+  user-select: none;
+}
+
+.hero__word {
+  display: inline-block;
+}
+
+.hero__word + .hero__word {
+  margin-left: 0.215em;
+}
+
+/* Letters carry a little padding so the dither mask never clips their overhang. */
+.hero__name .ch {
+  display: inline-block;
+  padding: 0.1em 0.12em;
+  margin: -0.1em -0.12em;
+}
+
+.js:not(.is-stuck):not(.is-calm) .hero__name .ch,
+.js:not(.is-stuck):not(.is-calm) [data-hero-meta] {
+  visibility: hidden;
+}
+
+/* Portrait screens: two lines, each set to the same measure. */
+@media (max-aspect-ratio: 1/1) {
+  .hero__name {
+    --fit: 3.2439;
+    display: grid;
+    justify-items: center;
+    row-gap: 0.02em;
+    font-size: min(calc((100cqw - 2 * var(--gutter)) / var(--fit)), 24svh);
+    line-height: 0.84;
+    transform: translateX(-0.04em);
+  }
+
+  .hero__word + .hero__word {
+    margin-left: 0;
+  }
+
+  /* OMAR is set larger so that it is exactly as wide as KARAF. */
+  .hero__word:first-child {
+    font-size: 1.159em;
+  }
+}
+
+/* 6. Sheet + intro --------------------------------------------------------- */
+
+/* Everything after the hero is one sheet of ink that slides up over it. */
+.sheet {
+  position: relative;
+  z-index: var(--z-sheet);
+  background: var(--ink);
+}
+
+.hero-meta {
+  position: absolute;
+  inset: auto 0 100% 0;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: end;
+  gap: var(--gap);
+  padding: 0 var(--gutter) calc(var(--gutter) * 0.9);
+  padding-bottom: max(calc(var(--gutter) * 0.9), env(safe-area-inset-bottom));
+}
+
+.hero-meta__scroll {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+}
+
+.hero-meta__scroll .i {
+  animation: nudge 2.4s var(--ease-in-out) infinite;
+}
+
+@keyframes nudge {
+  0%,
+  100% {
+    transform: translateY(-0.15em);
+  }
+  50% {
+    transform: translateY(0.2em);
+  }
+}
+
+.hero-meta time {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 40rem) {
+  .hero-meta {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .hero-meta > :not(.hero-meta__scroll) {
+    display: none;
+  }
+}
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--gap);
+  padding-block: 1.1rem;
+}
+
+.intro {
+  padding-block: clamp(4rem, 9vw, 9rem) var(--section);
+}
+
+.intro__grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gap);
+  row-gap: clamp(2.5rem, 6vw, 5rem);
+}
+
+.intro__label {
+  grid-column: 1 / -1;
+}
+
+.intro__statement {
+  grid-column: 1 / -1;
+  font-family: var(--font-display);
+  font-size: var(--t-statement);
+  line-height: 1.04;
+  letter-spacing: -0.022em;
+  text-wrap: pretty;
+}
+
+.intro__statement .w {
+  display: inline-block;
+  /* Room for the dither mask to cover ascenders, descenders and italic overhang. */
+  padding: 0.08em 0.03em;
+  margin: -0.08em -0.03em;
+}
+
+/* The link in the statement. The rule is drawn on the word itself (an inline-block does not
+   inherit its parent's underline), so it sharpens through the same dither as the letters. */
+.intro__statement a,
+.intro__statement a .w {
+  text-decoration: underline;
+  text-decoration-thickness: 0.04em;
+  text-underline-offset: 0.11em;
+}
+
+.intro__statement a:hover,
+.intro__statement a:hover .w,
+.intro__statement a:focus-visible,
+.intro__statement a:focus-visible .w {
+  text-decoration-thickness: 0.085em;
+}
+
+@media (min-width: 56rem) {
+  .intro__label {
+    grid-column: 1 / span 3;
+  }
+
+  .intro__statement {
+    grid-column: 4 / -1;
+  }
+}
+
+/* 7. Projects -------------------------------------------------------------- */
+
+.work {
+  padding-bottom: var(--section);
+}
+
+.project {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gap);
+  padding-block: clamp(2.75rem, 6vw, 6rem) clamp(3.5rem, 8vw, 8rem);
+}
+
+.project__head {
+  grid-column: 1 / -1;
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: 0.9rem;
+  pointer-events: none;
+}
+
+.project__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--t-title);
+  line-height: 0.86;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.project__title .w {
+  display: inline-block;
+  padding: 0.1em 0.06em;
+  margin: -0.1em -0.06em;
+}
+
+.plate {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  aspect-ratio: var(--ar, 4 / 3);
+  background: var(--ink-raised);
+  isolation: isolate;
+}
+
+.plate img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* The 1-bit copy of the picture. Script sizes it so its cells sit on whole device pixels. */
+.plate__bits {
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-width: none;
+  image-rendering: pixelated;
+  pointer-events: none;
+}
+
+/* Until its 1-bit copy is drawn, the colour picture stays out of sight. */
+.js:not(.is-calm):not(.is-stuck) .plate:not(.is-ready) img {
+  visibility: hidden;
+}
+
+/* The title stands on the plate: with this line-height Fenice's baseline sits 0.059em above
+   the bottom of its line box, so pulling the plate up by that much makes its top edge the
+   baseline. */
+.project .plate {
+  grid-column: 1 / -1;
+  margin-top: calc(var(--t-title) * -0.059);
+}
+
+.project__info {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  align-content: start;
+}
+
+.project__lede {
+  max-width: 34ch;
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 1.05rem + 1.1vw, 2rem);
+  line-height: 1.12;
+  letter-spacing: -0.012em;
+}
+
+.meta {
+  display: grid;
+  border-top: 1px solid var(--line);
+}
+
+.meta > div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 0.75rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.meta dt {
+  color: var(--muted);
+}
+
+.meta dd {
+  text-align: right;
+}
+
+.meta a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+}
+
+.meta a .i {
+  transition: transform 0.45s var(--ease-out);
+}
+
+.meta a:hover .i {
+  transform: translate(0.15em, -0.15em);
+}
+
+@media (min-width: 56rem) {
+  .project .plate {
+    grid-column: 1 / span 8;
+    grid-row: 2;
+  }
+
+  .project__info {
+    grid-column: 9 / -1;
+    grid-row: 2;
+    align-self: end;
+    margin-top: 0;
+    padding-left: clamp(0rem, 1.2vw, 1.5rem);
+  }
+
+  /* Every second project is mirrored. */
+  .project--flip .project__head {
+    justify-items: end;
+    text-align: right;
+  }
+
+  .project--flip .plate {
+    grid-column: 5 / -1;
+  }
+
+  .project--flip .project__info {
+    grid-column: 1 / span 4;
+    padding-left: 0;
+    padding-right: clamp(0rem, 1.2vw, 1.5rem);
+  }
+}
+
+/* 8. Record ---------------------------------------------------------------- */
+
+.record {
+  padding-bottom: var(--section);
+}
+
+.record__lead {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gap);
+  row-gap: 2rem;
+  align-items: end;
+  padding-block: clamp(2.5rem, 6vw, 6rem) clamp(3rem, 7vw, 7rem);
+}
+
+.record__stat {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: flex-start;
+  font-family: var(--font-display);
+  font-size: clamp(9rem, 34vw, 34rem);
+  line-height: 0.74;
+  letter-spacing: -0.015em;
+}
+
+.record__figure {
+  display: contents;
+}
+
+.record__stat sup {
+  margin: 0.06em 0 0 0.1em;
+  font-size: 0.19em;
+  line-height: 1;
+  letter-spacing: 0;
+  vertical-align: baseline;
+}
+
+.record__stat .ch {
+  display: inline-block;
+  padding: 0.06em 0.08em;
+  margin: -0.06em -0.08em;
+}
+
+.record__note {
+  grid-column: 1 / -1;
+  max-width: 30ch;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 1.1rem + 1.7vw, 2.75rem);
+  line-height: 1.08;
+  letter-spacing: -0.018em;
+  text-wrap: pretty;
+}
+
+@media (min-width: 56rem) {
+  .record__stat {
+    grid-column: 1 / span 7;
+  }
+
+  .record__note {
+    grid-column: 8 / -1;
+    padding-bottom: 0.35em;
+  }
+}
+
+.ledger {
+  border-top: 1px solid var(--line);
+}
+
+.ledger__row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 3.25rem minmax(0, 1fr) auto;
+  grid-template-areas:
+    "year title go"
+    ".    issuer go"
+    ".    result go";
+  column-gap: var(--gap);
+  row-gap: 0.3rem;
+  align-items: baseline;
+  padding-block: 1.15rem;
+  border-bottom: 1px solid var(--line);
+  isolation: isolate;
+}
+
+/* On hover a row fills with paper. The fill arrives through the dither (script steps the
+   mask), and the text above it is in difference mode, so every dot of paper flips the
+   letters that cross it. Shared by the ledger and the contact links. */
+.ledger__row::before,
+.row-link::before {
+  content: "";
+  position: absolute;
+  inset: 0 calc(var(--gutter) * -0.5);
+  z-index: -1;
+  background: var(--paper);
+  visibility: hidden;
+  -webkit-mask-image: var(--fill, none);
+  mask-image: var(--fill, none);
+  -webkit-mask-size: var(--fill-size, 24px 24px);
+  mask-size: var(--fill-size, 24px 24px);
+}
+
+.ledger__row.is-fill::before,
+.row-link.is-fill::before {
+  visibility: visible;
+}
+
+.ledger__row > *,
+.row-link > * {
+  mix-blend-mode: difference;
+}
+
+.ledger__year {
+  grid-area: year;
+  font-variant-numeric: tabular-nums;
+}
+
+.ledger__title {
+  grid-area: title;
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 1.05rem + 1.1vw, 2rem);
+  line-height: 1.1;
+  letter-spacing: -0.012em;
+}
+
+.ledger__issuer {
+  grid-area: issuer;
+}
+
+.ledger__result {
+  grid-area: result;
+}
+
+.ledger__go {
+  grid-area: go;
+  align-self: center;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.ledger__go .i {
+  width: 1.25em;
+  height: 1.25em;
+  transition: transform 0.45s var(--ease-out);
+}
+
+.ledger__row:hover .ledger__go .i {
+  transform: translate(0.15em, -0.15em);
+}
+
+@media (min-width: 56rem) {
+  .ledger__row {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-template-areas: "year title title title title title issuer issuer issuer result result go";
+    padding-block: 1.35rem;
+  }
+
+  .ledger__go {
+    justify-self: end;
+  }
+}
+
+.record__more {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 1.5rem;
+}
+
+.record__more a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+}
+
+/* The certificate that follows the pointer along the ledger. */
+.peek {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--z-peek);
+  width: clamp(16rem, 24vw, 26rem);
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.peek.is-on {
+  visibility: visible;
+}
+
+.peek .plate {
+  box-shadow: 0 1.5rem 4rem rgb(0 0 0 / 0.55);
+}
+
+@media (hover: none), (pointer: coarse) {
+  .peek {
+    display: none;
+  }
+}
+
+/* 9. Footer: values, contacts, window ------------------------------------- */
+
+.footer {
+  position: relative;
+  z-index: var(--z-sheet);
+  background: var(--ink);
+}
+
+.values {
+  overflow: clip;
+  border-block: 1px solid var(--line);
+  padding-block: clamp(0.9rem, 1.8vw, 1.75rem) clamp(0.6rem, 1.3vw, 1.25rem);
+}
+
+.values__track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+.values__set {
+  display: flex;
+  align-items: center;
+  flex: none;
+  gap: clamp(1rem, 2.6vw, 2.75rem);
+  padding-right: clamp(1rem, 2.6vw, 2.75rem);
+  font-family: var(--font-display);
+  font-size: clamp(2.75rem, 8.2vw, 8.5rem);
+  line-height: 1;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.values__suit .i {
+  width: 0.46em;
+  height: 0.46em;
+  stroke-width: 1.5px;
+}
+
+/* Without script the row still moves, the way it always has. */
+html:not(.js) .values__track {
+  animation: marquee 60s linear infinite;
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.contact {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gap);
+  row-gap: clamp(3rem, 7vw, 6rem);
+  padding-block: var(--section) clamp(4rem, 8vw, 8rem);
+}
+
+.contact__motto {
+  grid-column: 1 / -1;
+  max-width: 11.5em;
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 9.6vw, 10.5rem);
+  line-height: 0.88;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+
+.contact__motto .line {
+  padding-block: 0.08em 0.14em;
+  margin-block: -0.08em -0.14em;
+}
+
+.contact__links {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: clamp(2.5rem, 5vw, 4rem) var(--gap);
+}
+
+.contact__group .label {
+  margin-bottom: 1rem;
+  color: var(--muted);
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  letter-spacing: 0.08em;
+  text-transform: none;
+}
+
+@media (min-width: 56rem) {
+  .contact__links {
+    grid-column: 5 / -1;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.row-link {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: baseline;
+  gap: 1rem;
+  padding-block: 1rem;
+  border-bottom: 1px solid var(--line);
+  isolation: isolate;
+}
+
+.contact__group li:first-child .row-link {
+  border-top: 1px solid var(--line);
+}
+
+.row-link__text {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 1.2rem + 1.6vw, 2.6rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.row-link__meta {
+  font-size: var(--t-label);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.row-link .i {
+  align-self: center;
+  width: 1.4rem;
+  height: 1.4rem;
+  transition: transform 0.45s var(--ease-out);
+}
+
+.row-link:hover .i {
+  transform: translate(0.15em, -0.15em);
+}
+
+/* The window: letters cut from a sheet of ink, the field moving behind them. */
+.window {
+  position: relative;
+  overflow: clip;
+  isolation: isolate;
+  container-type: inline-size;
+  background: var(--ink);
+}
+
+.window__mask {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  background: var(--ink);
+  color: #fff;
+  /* Wherever the mask is white the field shows through; everywhere else stays ink. */
+  mix-blend-mode: darken;
+  font-family: var(--font-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  white-space: nowrap;
+  user-select: none;
+}
+
+/* Each word is fitted to the measure: --fit is how many ems it runs from first stroke to last. */
+.window__word {
+  display: block;
+  font-size: calc((100vw - 2 * var(--gutter)) / var(--fit));
+  font-size: min(calc((100cqw - 2 * var(--gutter)) / var(--fit)), var(--cap, 100rem));
+  line-height: 0.8;
+  letter-spacing: var(--track, -0.05em);
+  /* Room for the round letters' overshoot, top and bottom. */
+  padding-block: 0.055em 0.03em;
+  /* The tracking trails after the last letter; pull the word back to its optical centre. */
+  margin-right: var(--track, -0.05em);
+}
+
+.window__word--okaraf {
+  --fit: 3.953;
+  --track: -0.05em;
+}
+
+.window__word--certificates {
+  --fit: 6.386;
+  --track: -0.04em;
+}
+
+.window__word--404 {
+  --fit: 1.6185;
+  --track: -0.04em;
+  --cap: 58svh;
+}
+
+/* Without WebGL the letters would look into nothing, so they become plain paper. */
+.no-gl .window__mask {
+  mix-blend-mode: normal;
+  color: var(--paper);
+}
+
+/* 10. Certificates page ---------------------------------------------------- */
+
+.page-head {
+  padding-top: clamp(7rem, 16vw, 13rem);
+}
+
+.certs {
+  display: grid;
+  gap: clamp(3rem, 6vw, 6rem) var(--gap);
+  padding-block: clamp(2rem, 5vw, 4rem) var(--section);
+}
+
+@media (min-width: 56rem) {
+  .certs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: clamp(1.5rem, 4vw, 4.5rem);
+  }
+
+  /* A loose stagger, so the page reads as a wall of documents rather than a table. */
+  .cert:nth-child(even) {
+    margin-top: clamp(3rem, 8vw, 8rem);
+  }
+}
+
+.cert {
+  display: grid;
+  gap: 1.1rem;
+  align-content: start;
+}
+
+.cert__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.7rem, 1.2rem + 2vw, 3rem);
+  line-height: 0.98;
+  letter-spacing: -0.012em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.cert__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+}
+
+/* 11. Not found ------------------------------------------------------------ */
+
+.lost {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding-top: 6rem;
+}
+
+.lost .window {
+  align-self: center;
+}
+
+.lost__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem var(--gap);
+  padding-block: 1.5rem;
+  padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
+  border-top: 1px solid var(--line);
+}
+
+.lost__line {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 1.2rem + 2vw, 3rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.lost__foot a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  min-height: 44px;
+}
+
+/* 12. Motion preferences --------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .hero {
+    position: relative;
+  }
+
+  .values {
+    overflow-x: auto;
+  }
+}

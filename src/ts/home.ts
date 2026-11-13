@@ -12,26 +12,34 @@ const hero = document.querySelector<HTMLElement>('.hero')!
 const sheet = document.querySelector<HTMLElement>('.sheet')!
 
 /**
- * The hero is one screen tall (100svh), with the name centred in it. Browsers on iOS (Chrome
- * as well as Safari: both are WebKit) can count the strip under their own toolbars into svh,
- * so the hero runs past what can be seen, the name sits low and the scroll cue lies under the
- * toolbar. Where the visible height is shorter, the hero takes that instead. Measured with the
- * toolbars out, as svh is, and again only when the width changes (the phone is turned), never
- * as the toolbars slide away on scroll.
+ * The hero is one screen tall (100svh), with the name centred in it. Safari on iOS 26 counts
+ * the whole screen into svh, status bar and floating toolbar included (852px on a phone whose
+ * page area above the toolbar is 695px), so the hero ran past what can be seen and the name
+ * sat low. Where the visible height (innerHeight) is shorter, the hero takes that instead.
+ * Safari settles that height only after the page has started loading, so the hero is fitted
+ * again whenever the viewport changes while the page rests at the top. Once it has been
+ * scrolled, the toolbar coming and going is left alone, as it is with svh, or the sheet would
+ * jump; turning the phone (a new width) always refits.
  */
 function fitHero() {
+  const was = hero.style.height
   hero.style.removeProperty('height')
   const vv = window.visualViewport
   const seen = Math.min(window.innerHeight, vv ? vv.height * vv.scale : Infinity)
   if (hero.offsetHeight - seen > 1) hero.style.height = `${Math.round(seen)}px`
+  return hero.style.height !== was
 }
 fitHero()
 let fittedWidth = window.innerWidth
-window.addEventListener('resize', () => {
-  if (window.innerWidth === fittedWidth) return
+const refitHero = () => {
+  const turned = window.innerWidth !== fittedWidth
+  if (!turned && window.scrollY > 0) return
   fittedWidth = window.innerWidth
-  fitHero()
-})
+  // ScrollTrigger lets a height-only resize pass on phones, so it is told the page has moved.
+  if (fitHero()) ScrollTrigger.refresh()
+}
+window.addEventListener('resize', refitHero)
+window.visualViewport?.addEventListener('resize', refitHero)
 
 /** The field's density is the product of two things: its arrival, and how far the sheet has risen. */
 const density = { arrival: 0, scroll: 1 }

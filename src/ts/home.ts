@@ -11,6 +11,28 @@ import { ScrollTrigger } from './lib/scroll'
 const hero = document.querySelector<HTMLElement>('.hero')!
 const sheet = document.querySelector<HTMLElement>('.sheet')!
 
+/**
+ * The hero is one screen tall (100svh), with the name centred in it. Browsers on iOS (Chrome
+ * as well as Safari: both are WebKit) can count the strip under their own toolbars into svh,
+ * so the hero runs past what can be seen, the name sits low and the scroll cue lies under the
+ * toolbar. Where the visible height is shorter, the hero takes that instead. Measured with the
+ * toolbars out, as svh is, and again only when the width changes (the phone is turned), never
+ * as the toolbars slide away on scroll.
+ */
+function fitHero() {
+  hero.style.removeProperty('height')
+  const vv = window.visualViewport
+  const seen = Math.min(window.innerHeight, vv ? vv.height * vv.scale : Infinity)
+  if (hero.offsetHeight - seen > 1) hero.style.height = `${Math.round(seen)}px`
+}
+fitHero()
+let fittedWidth = window.innerWidth
+window.addEventListener('resize', () => {
+  if (window.innerWidth === fittedWidth) return
+  fittedWidth = window.innerWidth
+  fitHero()
+})
+
 /** The field's density is the product of two things: its arrival, and how far the sheet has risen. */
 const density = { arrival: 0, scroll: 1 }
 let field: Field | null = null

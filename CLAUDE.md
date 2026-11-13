@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-OKARAF is the personal portfolio of Omar Karaf: a static, multi-page site built with Vite and TypeScript (no framework). English only on this branch.
+OKARAF is the personal portfolio of Omar Karaf: a static, multi-page site built with Vite and TypeScript (no framework). Russian only on this branch (`main`); the English version of the same site lives on the `english` branch. Keep the two in step: same projects, links and pictures, with the copy translated.
 
 The design rule: **two inks, one material.** The page is ink (`--ink`) and paper (`--paper`), everything textured is an 8×8 ordered (Bayer) dither, and the only colour is the work itself. Project screenshots sit on the page as 1-bit plates and resolve into colour as they are scrolled to. Nothing fades in: text, hover fills, the loader and page transitions all arrive through the same dither.
 
@@ -33,7 +33,7 @@ Shared markup lives in `src/partials/` and is pulled in with `<!-- @include name
 - **GSAP** (ScrollTrigger, SplitText) for scroll-linked and timed animation
 - **Lenis** for smooth scrolling
 - **WebGL** (hand-written, no library) for the dithered field
-- Fonts are self-hosted: Fenice (display, `src/fonts/`) and Fragment Mono (labels, via `@fontsource`)
+- Fonts are self-hosted: Fenice (display, `src/fonts/`) and Fragment Mono (labels, via `@fontsource`). Neither has Cyrillic, so the Russian letters come from Playfair Display (set 113% to match Fenice's x-height and capitals) and PT Mono, both Cyrillic-only subsets in `src/fonts/` (OFL, licences alongside)
 
 ### Scripts (`src/ts/`)
 
@@ -54,11 +54,13 @@ One stylesheet, `src/styles/main.css`, ordered by section with tokens at the top
 
 - **Dither cells must sit on whole device pixels.** Every canvas is sized through `cellDevicePx()` in `dither.ts`; do not put fractional transforms (parallax, scale) on a dithered canvas or the pattern turns to moiré.
 - **One dither never slides across another.** Two dithered layers whose grids move against each other beat: the picture changes with every pixel of scroll and the overlap strobes. Keep the dots on the fixed grid and move the coverage instead, as `edge.ts`, `veil.ts` and `plate.ts` do. `edge.ts` sizes its canvas with the same arithmetic as `field.ts` so the two share every cell; change one and change the other.
-- **Fitted display type.** The hero name and the "window" wordmarks are sized with a `--fit` constant: the word's width in em, measured from the font. If the text, the font or the tracking changes, the constant must be recalculated.
+- **Fitted display type.** The hero name and the "window" wordmarks are sized with a `--fit` constant: the word's width in em, measured from the font. If the text, the font or the tracking changes, the constant must be recalculated. «Сертификаты» is set in Playfair, so its constant includes the 113% size-adjust.
+- **Russian typesetting.** Short prepositions and conjunctions are bound to the next word with `&nbsp;`, and a dash to the word before it. Fenice draws U+00A0 twice as wide as a space, so a second `@font-face` for Fenice (U+00A0 only, size-adjust 50.63%) brings it back; keep it. Words too long for a phone column («программирование», «заключительный») carry a `&shy;` at a proper break, since not every browser hyphenates Russian.
+- The hero name (OMAR KARAF), the OKARAF wordmark and brand names stay in Latin.
 - **Three states to keep working:** `html.js` (normal), `html.is-calm` (prefers-reduced-motion: no veil, no arrivals, plates shown in colour) and no JavaScript at all (everything visible, no field). Anything hidden for an arrival must be hidden only under `.js:not(.is-calm):not(.is-stuck)`.
 - Content is factual: project descriptions, certificate dates and results come from the screenshots and certificates in `public/`. Do not add placeholder or invented copy.
 - `.playwright-mcp/` and `.superpowers/` are tool output, not part of the site.
 
 ## Deployment
 
-Deployed on Netlify (`netlify.toml`): unknown paths get `404.html` with a 404 status, and `/assets/*` is cached immutably. Primary domain: okaraf.netlify.app
+Deployed on Netlify (`netlify.toml`): unknown paths get `404.html` with a 404 status, and `/assets/*` is cached immutably. Primary domain for this (Russian) branch: okaraf.ru, set as `SITE` in `vite.config.ts` and used in `public/robots.txt` and `public/sitemap.xml`.

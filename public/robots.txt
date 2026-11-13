@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://okaraf.netlify.app/sitemap.xml
+Sitemap: https://okaraf.ru/sitemap.xml

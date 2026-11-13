@@ -19,6 +19,43 @@
   font-display: swap;
 }
 
+/* Fenice's no-break space is drawn twice as wide as its space (0.425em against 0.215em), and
+   Russian text binds every short preposition with one. The same file, scaled to 50.63% for that
+   single character, brings it back to the width of a space. Declared after the main face, so it
+   is the one tried first for U+00A0. */
+@font-face {
+  font-family: "Fenice";
+  src: url("../fonts/Fenice-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  size-adjust: 50.63%;
+  unicode-range: U+00A0;
+}
+
+/* Fenice and Fragment Mono have no Cyrillic, so the Russian letters come from these two
+   (each limited to the Cyrillic block; Latin, figures and punctuation stay in the house faces).
+   Playfair's x-height is 0.515 em against Fenice's 0.585 and its capitals 0.708 against 0.794,
+   so it is set 113% to sit on the same lines. PT Mono's capitals already match Fragment Mono's. */
+@font-face {
+  font-family: "Playfair Display Cyrillic";
+  src: url("../fonts/PlayfairDisplay-Cyrillic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  size-adjust: 113%;
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+@font-face {
+  font-family: "PT Mono Cyrillic";
+  src: url("../fonts/PTMono-Cyrillic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
 /* 1. Tokens ---------------------------------------------------------------- */
 
 :root {
@@ -30,8 +67,8 @@
   --muted: #918f8a;
   --line: rgb(236 234 228 / 0.16);
 
-  --font-display: "Fenice", "Didot", "Bodoni 72", "Bodoni MT", "Playfair Display", Georgia, serif;
-  --font-mono: "Fragment Mono", ui-monospace, "SFMono-Regular", "Cascadia Mono", Menlo, Consolas, monospace;
+  --font-display: "Fenice", "Playfair Display Cyrillic", "Didot", "Bodoni 72", "Bodoni MT", "Playfair Display", Georgia, serif;
+  --font-mono: "Fragment Mono", "PT Mono Cyrillic", ui-monospace, "SFMono-Regular", "Cascadia Mono", Menlo, Consolas, monospace;
 
   --gutter: clamp(1rem, 2.6vw, 2.5rem);
   --gap: clamp(0.75rem, 1.4vw, 1.5rem);
@@ -300,11 +337,13 @@ a {
   align-items: center;
   justify-content: center;
   gap: clamp(0.5rem, 2.4vw, 1.9rem);
-  width: min(25rem, calc(100vw - 2rem));
+  /* The Russian labels run about 40% longer than the English ones, so the pill is wider
+     and, on narrow phones, both its padding and the labels step down to fit. */
+  width: min(30rem, calc(100vw - 2rem));
   height: 3.7rem;
   margin-top: 10px;
   margin-top: max(10px, env(safe-area-inset-top));
-  padding-inline: 1rem;
+  padding-inline: clamp(0.5rem, 2.6vw, 1rem);
   border: 1px solid rgb(120 119 115 / 0.34);
   border-radius: 2.5rem;
   background: rgb(84 83 80 / 0.46);
@@ -338,7 +377,7 @@ a {
   min-height: 44px;
   padding-inline: 0.35rem;
   font-family: var(--font-display);
-  font-size: 1rem;
+  font-size: clamp(0.8125rem, 3.55vw, 1rem);
   letter-spacing: 0.06em;
   color: #fff;
 }
@@ -370,6 +409,14 @@ a {
 .navbar__link:focus-visible {
   outline-offset: -2px;
   border-radius: 2rem;
+}
+
+/* The smallest phones (320px): «сертификаты» needs the last few pixels. */
+@media (max-width: 21.25rem) {
+  .navbar__link {
+    padding-inline: 0.2rem;
+    font-size: 0.75rem;
+  }
 }
 
 /* The veil */
@@ -1025,6 +1072,8 @@ a {
   font-size: clamp(1.3rem, 1.05rem + 1.1vw, 2rem);
   line-height: 1.1;
   letter-spacing: -0.012em;
+  /* On the smallest phones the column is ~150px; the long Russian words carry soft hyphens. */
+  overflow-wrap: break-word;
 }
 
 .ledger__issuer {
@@ -1280,9 +1329,13 @@ html:not(.js) .values__track {
   --track: -0.05em;
 }
 
+/* "Сертификаты", set in Playfair at 113% (Fenice has no Cyrillic), kerned as the browser draws it.
+   The box is centred, but Playfair's С starts further from its edge than the Ы ends, which
+   leaves the letters 0.046em right of centre; the nudge puts them back. */
 .window__word--certificates {
-  --fit: 6.386;
+  --fit: 8.173;
   --track: -0.04em;
+  translate: -0.046em 0;
 }
 
 .window__word--404 {
@@ -1305,6 +1358,7 @@ html:not(.js) .values__track {
 
 .certs {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: clamp(3rem, 6vw, 6rem) var(--gap);
   padding-block: clamp(2rem, 5vw, 4rem) var(--section);
 }
@@ -1323,6 +1377,7 @@ html:not(.js) .values__track {
 
 .cert {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 1.1rem;
   align-content: start;
 }
@@ -1335,6 +1390,9 @@ html:not(.js) .values__track {
   letter-spacing: -0.012em;
   text-transform: uppercase;
   text-wrap: balance;
+  /* «ПРОГРАММИРОВАНИЕ» alone is wider than a small phone's column: the long words carry
+     a soft hyphen at a proper break (not every browser hyphenates Russian by itself). */
+  overflow-wrap: break-word;
 }
 
 .cert__foot {

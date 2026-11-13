@@ -3,7 +3,7 @@ import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
 /** Public address of this build. Used for canonical and social-card URLs. */
-const SITE = 'https://okaraf.netlify.app'
+const SITE = 'https://okaraf.ru'
 
 const PARTIALS = resolve(import.meta.dirname, 'src/partials')
 

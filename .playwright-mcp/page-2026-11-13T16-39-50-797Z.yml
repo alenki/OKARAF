@@ -1,0 +1,635 @@
+- generic [active] [ref=e1]:
+  - link "К содержанию" [ref=e2] [cursor=pointer]:
+    - /url: "#main"
+  - generic [ref=e4]: "096"
+  - banner [ref=e5]:
+    - generic [ref=e8]:
+      - 'link "Альфа Принт: наверх" [ref=e9] [cursor=pointer]':
+        - /url: /alfaprint/
+      - navigation "Разделы сайта" [ref=e13]:
+        - list [ref=e14]:
+          - listitem [ref=e15]:
+            - link "Главная" [ref=e16] [cursor=pointer]:
+              - /url: /alfaprint/
+          - listitem [ref=e17]:
+            - link "Услуги" [ref=e18] [cursor=pointer]:
+              - /url: "#dve-formy"
+          - listitem [ref=e19]:
+            - link "Заказ" [ref=e20] [cursor=pointer]:
+              - /url: /alfaprint/raschet/
+          - listitem [ref=e21]:
+            - link "Контакты" [ref=e22] [cursor=pointer]:
+              - /url: /alfaprint/kontakty/
+      - link "Заказать" [ref=e24] [cursor=pointer]:
+        - /url: /alfaprint/raschet/
+  - main [ref=e25]:
+    - generic [ref=e26]:
+      - generic [ref=e27]:
+        - paragraph [ref=e28]: "Печатаем всё, что держит краску. А что не держит: режем, гравируем, вышиваем."
+        - generic [ref=e31]:
+          - heading "Альфа Принт" [level=1] [ref=e32]
+          - link "Обсудить тираж" [ref=e80] [cursor=pointer]:
+            - /url: /alfaprint/kontakty/
+            - generic [aria-hidden] [ref=e81]:
+              - generic [ref=e82]: обсудить
+              - generic [ref=e83]: тираж
+      - region "Печатали для" [ref=e85]:
+        - generic [ref=e86]:
+          - generic [aria-hidden]:
+            - generic:
+              - generic:
+                - list [aria-hidden]:
+                  - listitem:
+                    - generic: Газпром межрегионгаз Нальчик
+                  - listitem:
+                    - generic: Ресторан «Истоки»
+                  - listitem:
+                    - generic: Мойбизнес.рф
+                  - listitem:
+                    - generic: ЖК «Квартал»
+                  - listitem:
+                    - generic: Росмолодёжь
+                  - listitem:
+                    - generic: Мясо & Сыр
+                  - listitem:
+                    - generic: Fazenda 07 Family Market
+                  - listitem:
+                    - generic: Спартак
+                  - listitem:
+                    - generic: Le Rucci
+                  - listitem:
+                    - generic: Движение Первых
+                  - listitem:
+                    - generic: KIBERone
+                - list [aria-hidden]:
+                  - listitem:
+                    - generic: Газпром межрегионгаз Нальчик
+                  - listitem:
+                    - generic: Ресторан «Истоки»
+                  - listitem:
+                    - generic: Мойбизнес.рф
+                  - listitem:
+                    - generic: ЖК «Квартал»
+                  - listitem:
+                    - generic: Росмолодёжь
+                  - listitem:
+                    - generic: Мясо & Сыр
+                  - listitem:
+                    - generic: Fazenda 07 Family Market
+                  - listitem:
+                    - generic: Спартак
+                  - listitem:
+                    - generic: Le Rucci
+                  - listitem:
+                    - generic: Движение Первых
+                  - listitem:
+                    - generic: KIBERone
+                - list [aria-hidden]:
+                  - listitem:
+                    - generic: Газпром межрегионгаз Нальчик
+                  - listitem:
+                    - generic: Ресторан «Истоки»
+                  - listitem:
+                    - generic: Мойбизнес.рф
+                  - listitem:
+                    - generic: ЖК «Квартал»
+                  - listitem:
+                    - generic: Росмолодёжь
+                  - listitem:
+                    - generic: Мясо & Сыр
+                  - listitem:
+                    - generic: Fazenda 07 Family Market
+                  - listitem:
+                    - generic: Спартак
+                  - listitem:
+                    - generic: Le Rucci
+                  - listitem:
+                    - generic: Движение Первых
+                  - listitem:
+                    - generic: KIBERone
+              - generic:
+                - list [aria-hidden]:
+                  - listitem:
+                    - generic: Отель Cheget Star
+                  - listitem:
+                    - generic: Россельхозбанк
+                  - listitem:
+                    - generic: Курорт «Нальчик»
+                  - listitem:
+                    - generic: Национальные проекты России
+                  - listitem:
+                    - generic: Российский экспортный центр
+                  - listitem:
+                    - generic: Foster
+                  - listitem:
+                    - generic: Общество «Динамо»
+                  - listitem:
+                    - generic: Daimond
+                  - listitem:
+                    - generic: Волонтёрская рота
+                  - listitem:
+                    - generic: Brunch restaurant & bar
+                  - listitem:
+                    - generic: Холдинг «Синдика»
+                  - listitem:
+                    - generic: Бутик-отель «Avenue»
+                - list [aria-hidden]:
+                  - listitem:
+                    - generic: Отель Cheget Star
+                  - listitem:
+                    - generic: Россельхозбанк
+                  - listitem:
+                    - generic: Курорт «Нальчик»
+                  - listitem:
+                    - generic: Национальные проекты России
+                  - listitem:
+                    - generic: Российский экспортный центр
+                  - listitem:
+                    - generic: Foster
+                  - listitem:
+                    - generic: Общество «Динамо»
+                  - listitem:
+                    - generic: Daimond
+                  - listitem:
+                    - generic: Волонтёрская рота
+                  - listitem:
+                    - generic: Brunch restaurant & bar
+                  - listitem:
+                    - generic: Холдинг «Синдика»
+                  - listitem:
+                    - generic: Бутик-отель «Avenue»
+                - list [aria-hidden]:
+                  - listitem:
+                    - generic: Отель Cheget Star
+                  - listitem:
+                    - generic: Россельхозбанк
+                  - listitem:
+                    - generic: Курорт «Нальчик»
+                  - listitem:
+                    - generic: Национальные проекты России
+                  - listitem:
+                    - generic: Российский экспортный центр
+                  - listitem:
+                    - generic: Foster
+                  - listitem:
+                    - generic: Общество «Динамо»
+                  - listitem:
+                    - generic: Daimond
+                  - listitem:
+                    - generic: Волонтёрская рота
+                  - listitem:
+                    - generic: Brunch restaurant & bar
+                  - listitem:
+                    - generic: Холдинг «Синдика»
+                  - listitem:
+                    - generic: Бутик-отель «Avenue»
+          - generic [ref=e87]:
+            - generic [ref=e88]:
+              - list [ref=e89]:
+                - listitem [ref=e90]:
+                  - generic [ref=e92]: Газпром межрегионгаз Нальчик
+                - listitem [ref=e93]:
+                  - generic [ref=e95]: Ресторан «Истоки»
+                - listitem [ref=e96]:
+                  - generic [ref=e98]: Мойбизнес.рф
+                - listitem [ref=e99]:
+                  - generic [ref=e101]: ЖК «Квартал»
+                - listitem [ref=e102]:
+                  - generic [ref=e104]: Росмолодёжь
+                - listitem [ref=e105]:
+                  - generic [ref=e107]: Мясо & Сыр
+                - listitem [ref=e108]:
+                  - generic [ref=e110]: Fazenda 07 Family Market
+                - listitem [ref=e111]:
+                  - generic [ref=e113]: Спартак
+                - listitem [ref=e114]:
+                  - generic [ref=e116]: Le Rucci
+                - listitem [ref=e117]:
+                  - generic [ref=e119]: Движение Первых
+                - listitem [ref=e120]:
+                  - generic [ref=e122]: KIBERone
+              - list [aria-hidden] [ref=e123]:
+                - listitem [ref=e124]:
+                  - generic [ref=e126]: Газпром межрегионгаз Нальчик
+                - listitem [ref=e127]:
+                  - generic [ref=e129]: Ресторан «Истоки»
+                - listitem [ref=e130]:
+                  - generic [ref=e132]: Мойбизнес.рф
+                - listitem [ref=e133]:
+                  - generic [ref=e135]: ЖК «Квартал»
+                - listitem [ref=e136]:
+                  - generic [ref=e138]: Росмолодёжь
+                - listitem [ref=e139]:
+                  - generic [ref=e141]: Мясо & Сыр
+                - listitem [ref=e142]:
+                  - generic [ref=e144]: Fazenda 07 Family Market
+                - listitem [ref=e145]:
+                  - generic [ref=e147]: Спартак
+                - listitem [ref=e148]:
+                  - generic [ref=e150]: Le Rucci
+                - listitem [ref=e151]:
+                  - generic [ref=e153]: Движение Первых
+                - listitem [ref=e154]:
+                  - generic [ref=e156]: KIBERone
+              - list [aria-hidden] [ref=e157]:
+                - listitem [ref=e158]:
+                  - generic [ref=e160]: Газпром межрегионгаз Нальчик
+                - listitem [ref=e161]:
+                  - generic [ref=e163]: Ресторан «Истоки»
+                - listitem [ref=e164]:
+                  - generic [ref=e166]: Мойбизнес.рф
+                - listitem [ref=e167]:
+                  - generic [ref=e169]: ЖК «Квартал»
+                - listitem [ref=e170]:
+                  - generic [ref=e172]: Росмолодёжь
+                - listitem [ref=e173]:
+                  - generic [ref=e175]: Мясо & Сыр
+                - listitem [ref=e176]:
+                  - generic [ref=e178]: Fazenda 07 Family Market
+                - listitem [ref=e179]:
+                  - generic [ref=e181]: Спартак
+                - listitem [ref=e182]:
+                  - generic [ref=e184]: Le Rucci
+                - listitem [ref=e185]:
+                  - generic [ref=e187]: Движение Первых
+                - listitem [ref=e188]:
+                  - generic [ref=e190]: KIBERone
+            - generic [ref=e191]:
+              - list [ref=e192]:
+                - listitem [ref=e193]:
+                  - generic [ref=e195]: Отель Cheget Star
+                - listitem [ref=e196]:
+                  - generic [ref=e198]: Россельхозбанк
+                - listitem [ref=e199]:
+                  - generic [ref=e201]: Курорт «Нальчик»
+                - listitem [ref=e202]:
+                  - generic [ref=e204]: Национальные проекты России
+                - listitem [ref=e205]:
+                  - generic [ref=e207]: Российский экспортный центр
+                - listitem [ref=e208]:
+                  - generic [ref=e210]: Foster
+                - listitem [ref=e211]:
+                  - generic [ref=e213]: Общество «Динамо»
+                - listitem [ref=e214]:
+                  - generic [ref=e216]: Daimond
+                - listitem [ref=e217]:
+                  - generic [ref=e219]: Волонтёрская рота
+                - listitem [ref=e220]:
+                  - generic [ref=e222]: Brunch restaurant & bar
+                - listitem [ref=e223]:
+                  - generic [ref=e225]: Холдинг «Синдика»
+                - listitem [ref=e226]:
+                  - generic [ref=e228]: Бутик-отель «Avenue»
+              - list [aria-hidden] [ref=e229]:
+                - listitem [ref=e230]:
+                  - generic [ref=e232]: Отель Cheget Star
+                - listitem [ref=e233]:
+                  - generic [ref=e235]: Россельхозбанк
+                - listitem [ref=e236]:
+                  - generic [ref=e238]: Курорт «Нальчик»
+                - listitem [ref=e239]:
+                  - generic [ref=e241]: Национальные проекты России
+                - listitem [ref=e242]:
+                  - generic [ref=e244]: Российский экспортный центр
+                - listitem [ref=e245]:
+                  - generic [ref=e247]: Foster
+                - listitem [ref=e248]:
+                  - generic [ref=e250]: Общество «Динамо»
+                - listitem [ref=e251]:
+                  - generic [ref=e253]: Daimond
+                - listitem [ref=e254]:
+                  - generic [ref=e256]: Волонтёрская рота
+                - listitem [ref=e257]:
+                  - generic [ref=e259]: Brunch restaurant & bar
+                - listitem [ref=e260]:
+                  - generic [ref=e262]: Холдинг «Синдика»
+                - listitem [ref=e263]:
+                  - generic [ref=e265]: Бутик-отель «Avenue»
+              - list [aria-hidden] [ref=e266]:
+                - listitem [ref=e267]:
+                  - generic [ref=e269]: Отель Cheget Star
+                - listitem [ref=e270]:
+                  - generic [ref=e272]: Россельхозбанк
+                - listitem [ref=e273]:
+                  - generic [ref=e275]: Курорт «Нальчик»
+                - listitem [ref=e276]:
+                  - generic [ref=e278]: Национальные проекты России
+                - listitem [ref=e279]:
+                  - generic [ref=e281]: Российский экспортный центр
+                - listitem [ref=e282]:
+                  - generic [ref=e284]: Foster
+                - listitem [ref=e285]:
+                  - generic [ref=e287]: Общество «Динамо»
+                - listitem [ref=e288]:
+                  - generic [ref=e290]: Daimond
+                - listitem [ref=e291]:
+                  - generic [ref=e293]: Волонтёрская рота
+                - listitem [ref=e294]:
+                  - generic [ref=e296]: Brunch restaurant & bar
+                - listitem [ref=e297]:
+                  - generic [ref=e299]: Холдинг «Синдика»
+                - listitem [ref=e300]:
+                  - generic [ref=e302]: Бутик-отель «Avenue»
+      - paragraph [ref=e304]: вниз
+    - generic [ref=e307]:
+      - 'heading "Что на макете, то и в тираже. Первый лист сверяем с макетом, и пока они не сойдутся, тираж не печатаем: ни сто визиток, ни десять тысяч." [level=2] [ref=e308]':
+        - generic [ref=e309]: Что на макете, то и в тираже.
+        - generic [ref=e315]: Первый лист сверяем с макетом, и пока
+        - generic [ref=e316]: "они не сойдутся, тираж не печатаем:"
+        - generic [ref=e317]: ни сто визиток, ни десять тысяч.
+      - generic [ref=e318]:
+        - paragraph [ref=e320]: "От идеи до готового изделия: печать, резка, гравировка и постпечать стоят на Тарчокова, 29. Материал и способ печати подбираем под задачу, срок и бюджет. Через цех проходит больше 48 000 изделий в месяц."
+        - generic [ref=e321]:
+          - paragraph [ref=e322]: Цена зависит от изделия, тиража, материала и срока. Порядок суммы виден до звонка, точную называем по макету.
+          - link "Сколько это стоит →" [ref=e324] [cursor=pointer]:
+            - /url: /alfaprint/raschet/
+      - generic [ref=e326]:
+        - generic [ref=e327]:
+          - definition [ref=e328]: 12 лет
+          - term [ref=e329]: С 2014 года
+        - generic [ref=e330]:
+          - definition [ref=e331]: 100 000+
+          - term [ref=e332]: Заказов
+        - generic [ref=e333]:
+          - definition [ref=e334]: 72 %
+          - term [ref=e335]: Возвращаются
+        - generic [ref=e336]:
+          - definition [ref=e337]: 4,8 из 5
+          - term [ref=e338]: Яндекс.Карты
+    - generic [ref=e341]:
+      - generic [ref=e342]:
+        - generic [ref=e343]:
+          - heading "Всё, что мы умеем, делится на две формы." [level=2] [ref=e345]:
+            - generic [ref=e346]: Всё, что мы умеем,
+            - generic [ref=e347]: делится на две формы.
+          - paragraph [ref=e348]: "Форма K печатает изображение краской. Форма R делает его самим материалом: краски там нет вовсе."
+        - region "Оттиск" [ref=e351]:
+          - generic [ref=e352]:
+            - generic [ref=e353]:
+              - paragraph [ref=e354]: Оперативная полиграфия
+              - paragraph [ref=e355]: CMYK · 4+0 / 4+4 · 90…350 г/м² · дизайнерская бумага
+            - 'list "Изделия: Оперативная полиграфия" [ref=e356]':
+              - listitem [ref=e357]: Визитки
+              - listitem [ref=e358]: Листовки и флаеры
+              - listitem [ref=e359]: Буклеты
+              - listitem [ref=e360]: Меню и прайс-листы
+              - listitem [ref=e361]: Сертификаты и дипломы
+              - listitem [ref=e362]: Карты лояльности
+              - listitem [ref=e363]: Папки и бланки
+              - listitem [ref=e364]: Календари
+              - listitem [ref=e365]: Вкладыши
+              - listitem [ref=e366]: Карточки благодарности
+              - listitem [ref=e367]: Памятки
+              - listitem [ref=e368]: Ценники
+              - listitem [ref=e369]: Пакеты
+              - listitem [ref=e370]: Крафт-упаковка
+      - generic [ref=e371]:
+        - tablist "Форма на машине" [ref=e372]:
+          - tab "Краска Форма K" [selected] [ref=e373]:
+            - generic [ref=e374]: Краска
+            - generic [aria-hidden] [ref=e375]: ·
+            - generic [ref=e376]: Форма K
+          - tab "Материал Форма R" [ref=e377] [cursor=pointer]:
+            - generic [ref=e378]: Материал
+            - generic [aria-hidden] [ref=e379]: ·
+            - generic [ref=e380]: Форма R
+        - tabpanel "Краска Форма K" [ref=e381]:
+          - generic [ref=e382]:
+            - heading [level=3] [ref=e384]:
+              - button "Полиграфия" [disabled] [expanded] [ref=e385]:
+                - generic [ref=e386]:
+                  - generic [ref=e387]: Полиграфия
+                  - generic [aria-hidden]: Полиграфия
+            - paragraph [ref=e390]: Бумага печатается в цвет и режется в формат. Тираж тут считают сотнями, а не тысячами.
+          - heading [level=3] [ref=e393]:
+            - button "Интерьерная печать" [ref=e394] [cursor=pointer]
+          - heading [level=3] [ref=e400]:
+            - button "Широкий формат" [ref=e401] [cursor=pointer]
+          - heading [level=3] [ref=e407]:
+            - button "УФ-печать" [ref=e408] [cursor=pointer]
+          - heading [level=3] [ref=e414]:
+            - button "Офсет и переплёт" [ref=e415] [cursor=pointer]
+    - generic [ref=e420]:
+      - heading "Тиражи, которые уже разошлись." [level=2] [ref=e425]:
+        - generic [ref=e426]: Тиражи, которые
+        - generic [ref=e427]: уже разошлись.
+      - generic [ref=e429]:
+        - figure "Визитки премиум · 1 000 экз. Мелованный 350 г/м² · 4+4 · ламинация soft-touch" [ref=e430]:
+          - img "Визитка премиум-класса" [ref=e433]:
+            - generic [ref=e439]: Визитка
+            - generic [ref=e440]: премиум-класса
+          - generic [ref=e447]:
+            - paragraph [ref=e448]: Визитки премиум · 1 000 экз.
+            - paragraph [ref=e449]: Мелованный 350 г/м² · 4+4 · ламинация soft-touch
+        - figure "Сатиновые бирки 20×70 мм · от 1 000 шт. Сатин · термоперенос · от 4 ₽ за штуку" [ref=e450]:
+          - img "Сатиновая бирка" [ref=e453]:
+            - generic [ref=e459]: САТИНОВАЯ
+            - generic [ref=e461]: 20 × 70 ММ
+          - generic [ref=e464]:
+            - paragraph [ref=e465]: Сатиновые бирки 20×70 мм · от 1 000 шт.
+            - paragraph [ref=e466]: Сатин · термоперенос · от 4 ₽ за штуку
+        - figure "Меню для кафе · 60 разворотов Матовая ламинация · пружина · тираж 40" [ref=e467]:
+          - img "Меню" [ref=e470]
+          - generic [ref=e506]:
+            - paragraph [ref=e507]: Меню для кафе · 60 разворотов
+            - paragraph [ref=e508]: Матовая ламинация · пружина · тираж 40
+        - figure "Наклейки kiss-cut · 2 000 шт. Самоклеящаяся плёнка · контурный рез · лист" [ref=e509]:
+          - img "Наклейка" [ref=e512]:
+            - generic [ref=e519]: НАКЛЕЙКА
+          - generic [ref=e522]:
+            - paragraph [ref=e523]: Наклейки kiss-cut · 2 000 шт.
+            - paragraph [ref=e524]: Самоклеящаяся плёнка · контурный рез · лист
+        - figure "Листовки А5 · 5 000 экз. Офсет 130 г/м² · 4+4 · срок 1 день" [ref=e525]:
+          - img "Открытие нового зала" [ref=e528]:
+            - generic [ref=e530]: Открытие
+            - generic [ref=e531]: нового зала
+          - generic [ref=e541]:
+            - paragraph [ref=e542]: Листовки А5 · 5 000 экз.
+            - paragraph [ref=e543]: Офсет 130 г/м² · 4+4 · срок 1 день
+        - figure "Дисконтные карты · 500 экз. Пластик 0,76 мм · УФ-печать · скругление" [ref=e544]:
+          - img "Дисконтная карта" [ref=e547]:
+            - generic [ref=e553]: Дисконтная
+            - generic [ref=e554]: карта
+          - generic [ref=e561]:
+            - paragraph [ref=e562]: Дисконтные карты · 500 экз.
+            - paragraph [ref=e563]: Пластик 0,76 мм · УФ-печать · скругление
+        - figure "Каталог продукции · 32 полосы Мелованный 150 г/м² · скоба · тираж 300" [ref=e564]:
+          - img "Каталог" [ref=e567]
+          - generic [ref=e603]:
+            - paragraph [ref=e604]: Каталог продукции · 32 полосы
+            - paragraph [ref=e605]: Мелованный 150 г/м² · скоба · тираж 300
+        - figure "Этикетка на банку · 3 000 шт. Самоклейка глянец · рулон · контурный рез" [ref=e606]:
+          - img "Этикетка" [ref=e609]:
+            - generic [ref=e616]: ЭТИКЕТКА
+          - generic [ref=e619]:
+            - paragraph [ref=e620]: Этикетка на банку · 3 000 шт.
+            - paragraph [ref=e621]: Самоклейка глянец · рулон · контурный рез
+        - figure "Баннер 3×6 м · люверсы по периметру Баннерная ткань 440 г/м² · 720 dpi · проклейка" [ref=e622]:
+          - img "Баннер" [ref=e625]:
+            - generic [ref=e631]: 3000 ММ
+          - generic [ref=e634]:
+            - paragraph [ref=e635]: Баннер 3×6 м · люверсы по периметру
+            - paragraph [ref=e636]: Баннерная ткань 440 г/м² · 720 dpi · проклейка
+    - generic [ref=e637]:
+      - generic [ref=e640]:
+        - 'heading "От заявки до выдачи: один-три рабочих дня." [level=2] [ref=e642]':
+          - generic [ref=e643]: "От заявки до выдачи:"
+          - generic [ref=e644]: один-три рабочих дня.
+        - paragraph [ref=e645]: "Макет согласуем до запуска, качество проверяем до выдачи. Срочный тираж идёт быстрее и считается отдельно: дату называет менеджер."
+      - list [ref=e649]:
+        - listitem [ref=e650]:
+          - generic [ref=e651]:
+            - paragraph [ref=e652]: "01"
+            - paragraph [ref=e653]: Заявка
+        - listitem [ref=e656]:
+          - generic [ref=e657]:
+            - paragraph [ref=e658]: "02"
+            - paragraph [ref=e659]: Макет
+        - listitem [ref=e662]:
+          - generic [ref=e663]:
+            - paragraph [ref=e664]: "03"
+            - paragraph [ref=e665]: Производство
+        - listitem [ref=e668]:
+          - generic [ref=e669]:
+            - paragraph [ref=e670]: "04"
+            - paragraph [ref=e671]: Выдача
+    - generic [ref=e676]:
+      - generic [ref=e678]:
+        - heading "Сорок шесть подписей на цветопробе." [level=2] [ref=e681]:
+          - generic [ref=e682]: Сорок шесть подписей
+          - generic [ref=e683]: на цветопробе.
+        - link "Яндекс.Карты · 4,8 из 5 · 46 отзывов →" [ref=e685] [cursor=pointer]:
+          - /url: https://yandex.ru/maps/org/alfa/147173314874/
+      - generic [ref=e687]:
+        - figure "Джамиля Яндекс.Карты" [ref=e688]:
+          - blockquote [ref=e702]: Команда справилась оперативно, всё сделали в сжатые сроки.
+          - generic [ref=e703]:
+            - generic [ref=e704]: Джамиля
+            - generic [ref=e705]: Яндекс.Карты
+        - figure "Алина А. Яндекс.Карты" [ref=e706]:
+          - blockquote [ref=e720]: Самое лучшее рекламное агентство в Нальчике.
+          - generic [ref=e721]:
+            - generic [ref=e722]: Алина А.
+            - generic [ref=e723]: Яндекс.Карты
+        - figure "Мадина Чеченова Яндекс.Карты" [ref=e724]:
+          - blockquote [ref=e738]: Безумно довольна вашей работой.
+          - generic [ref=e739]:
+            - generic [ref=e740]: Мадина Чеченова
+            - generic [ref=e741]: Яндекс.Карты
+    - generic [ref=e742]:
+      - generic [ref=e744]:
+        - heading "Вход со двора, и с улицы не виден." [level=2] [ref=e747]:
+          - generic [ref=e748]: Вход со двора,
+          - generic [ref=e749]: и с улицы не виден.
+        - generic [ref=e750]:
+          - paragraph [ref=e751]: Нальчик, Тарчокова, 29
+          - paragraph [ref=e752]: "Ориентир на улице один: ресторан History, мы стоим напротив него. Дальше дорога уходит во двор, и с Тарчокова её не видно: идите по кадрам. Если не нашли вход, позвоните менеджеру."
+          - list [ref=e754]:
+            - listitem [ref=e755]:
+              - link "Яндекс.Карты" [ref=e756] [cursor=pointer]:
+                - /url: https://yandex.ru/maps/org/alfa/147173314874/
+            - listitem [ref=e757]:
+              - link "2ГИС" [ref=e758] [cursor=pointer]:
+                - /url: https://2gis.ru/search/Рекламное агентство Альфа Нальчик Тарчокова 29
+            - listitem [ref=e759]:
+              - link "Google Maps" [ref=e760] [cursor=pointer]:
+                - /url: https://www.google.com/maps/search/?api=1&query=Рекламное агентство Альфа Нальчик Тарчокова 29
+            - listitem [ref=e761]:
+              - link "Позвонить" [ref=e762] [cursor=pointer]:
+                - /url: tel:+79674257979
+      - generic [ref=e764]:
+        - 'group "Маршрут до входа: пять кадров" [ref=e765]':
+          - 'button "Кадр 01 из 5. Перекрёсток на Тарчокова: справа деревянное здание ресторана History с вывеской, за ним трёхэтажный дом, слева глухой забор." [ref=e766] [cursor=pointer]':
+            - generic [aria-hidden] [ref=e767]: "01"
+          - button "Кадр 02 из 5. Проезд между стройкой слева и железной оградой справа, вдали строительный кран и белые новостройки." [ref=e768] [cursor=pointer]:
+            - generic [aria-hidden] [ref=e769]: "02"
+          - 'button "Кадр 03 из 5. Тот же проезд ближе: слева бетонный каркас недостроенного дома, справа ограда, впереди белая многоэтажка." [ref=e770] [cursor=pointer]':
+            - generic [aria-hidden] [ref=e771]: "03"
+          - 'button "Кадр 04 из 5. Двор: слева розовый жилой дом с вывесками на первом этаже и машины у подъездов, справа та же ограда." [ref=e772] [cursor=pointer]':
+            - generic [aria-hidden] [ref=e773]: "04"
+          - button "Кадр 05 из 5. Крыльцо с кованым козырьком и тёмной дверью, справа от неё штендер с логотипом «Альфы» и часами работы." [pressed] [ref=e774] [cursor=pointer]:
+            - generic [aria-hidden] [ref=e775]: "05"
+        - generic [ref=e776]:
+          - paragraph [ref=e777]: "05 · Вход: штендер у двери"
+          - paragraph [ref=e778]: 05 / 05
+    - generic [ref=e779]:
+      - generic [ref=e782]:
+        - heading "Ваш тираж ещё не напечатан." [level=2] [ref=e784]:
+          - generic [ref=e785]: Ваш тираж
+          - generic [ref=e786]: ещё не напечатан.
+        - paragraph [ref=e787]: "Пришлите макет или опишите заказ словами. Файл проверим, поправим или нарисуем с нуля: посчитаем сегодня, напечатаем часто в тот же день."
+      - generic [ref=e789]:
+        - link "/ Позвонить +7 967 425-79-79" [ref=e790] [cursor=pointer]:
+          - /url: tel:+79674257979
+          - generic [ref=e791]: / Позвонить
+          - generic [ref=e792]: +7 967 425-79-79
+        - link "/ Написать WhatsApp" [ref=e797] [cursor=pointer]:
+          - /url: https://wa.me/79674257979
+          - generic [ref=e798]: / Написать
+          - generic [ref=e799]: WhatsApp
+      - generic [ref=e805]:
+        - generic [ref=e807]:
+          - generic [ref=e808]: Цех
+          - paragraph [ref=e809]:
+            - generic [ref=e810]: Нальчик,
+            - generic [ref=e811]: Тарчокова, 29
+          - paragraph [ref=e812]: напротив ресторана History
+          - list [ref=e813]:
+            - listitem [ref=e814]: Пн…Пт 09:00…18:00
+            - listitem [ref=e815]: Сб 10:00…15:00
+            - listitem [ref=e816]: Вс выходной
+          - list [ref=e817]:
+            - listitem [ref=e818]: Самовывоз · доставка по городу
+            - listitem [ref=e819]: Повтор тиража без нового макета
+        - generic [ref=e821]:
+          - generic [ref=e822]: Страницы
+          - list [ref=e823]:
+            - listitem [ref=e824]:
+              - link "Главная" [ref=e825] [cursor=pointer]:
+                - /url: /alfaprint/
+            - listitem [ref=e826]:
+              - link "Заказ" [ref=e827] [cursor=pointer]:
+                - /url: /alfaprint/raschet/
+            - listitem [ref=e828]:
+              - link "Контакты" [ref=e829] [cursor=pointer]:
+                - /url: /alfaprint/kontakty/
+        - generic [ref=e831]:
+          - generic [ref=e832]: Связь
+          - list [ref=e833]:
+            - listitem [ref=e834]:
+              - link "WhatsApp" [ref=e835] [cursor=pointer]:
+                - /url: https://wa.me/79674257979
+            - listitem [ref=e836]:
+              - link "Telegram" [ref=e837] [cursor=pointer]:
+                - /url: https://t.me/alfaprint07
+            - listitem [ref=e838]:
+              - link "MAX" [ref=e839] [cursor=pointer]:
+                - /url: https://max.ru/+79674257979
+        - 'link "Открыть в Яндекс.Картах: Нальчик, Тарчокова, 29" [ref=e842] [cursor=pointer]':
+          - /url: https://yandex.ru/maps/?text=Нальчик, Тарчокова, 29
+          - img [aria-hidden] [ref=e843]:
+            - generic [ref=e851]: ТАРЧОКОВА
+            - generic [ref=e852]: НОГМОВА
+            - generic [ref=e859]: 0…100 М
+          - generic [ref=e860]: Построить маршрут →
+  - navigation "Разделы" [ref=e897]:
+    - button "Перейти к 3 % страницы" [ref=e898] [cursor=pointer]
+    - button "Перейти к 8 % страницы" [ref=e899] [cursor=pointer]
+    - button "Перейти к 13 % страницы" [ref=e900] [cursor=pointer]
+    - button "Перейти к 18 % страницы" [ref=e901] [cursor=pointer]
+    - button "Перейти к 23 % страницы" [ref=e902] [cursor=pointer]
+    - button "Перейти к 28 % страницы" [ref=e903] [cursor=pointer]
+    - button "Перейти к 33 % страницы" [ref=e904] [cursor=pointer]
+    - button "Перейти к 38 % страницы" [ref=e905] [cursor=pointer]
+    - button "Перейти к 43 % страницы" [ref=e906] [cursor=pointer]
+    - button "Перейти к 48 % страницы" [ref=e907] [cursor=pointer]
+    - button "Перейти к 53 % страницы" [ref=e908] [cursor=pointer]
+    - button "Перейти к 57 % страницы" [ref=e909] [cursor=pointer]
+    - button "Перейти к 63 % страницы" [ref=e910] [cursor=pointer]
+    - button "Перейти к 68 % страницы" [ref=e911] [cursor=pointer]
+    - button "Перейти к 73 % страницы" [ref=e912] [cursor=pointer]
+    - button "Перейти к 78 % страницы" [ref=e913] [cursor=pointer]
+    - button "Перейти к 83 % страницы" [ref=e914] [cursor=pointer]
+    - button "Перейти к 88 % страницы" [ref=e915] [cursor=pointer]
+    - button "Перейти к 93 % страницы" [ref=e916] [cursor=pointer]
+    - button "Перейти к 98 % страницы" [ref=e917] [cursor=pointer]
